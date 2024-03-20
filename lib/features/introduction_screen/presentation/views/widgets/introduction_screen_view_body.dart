@@ -1,8 +1,7 @@
-import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/login_view.dart';
 import 'package:ecommerce_app/features/introduction_screen/presentation/views/widgets/custom_animated_page_indicator.dart';
-import 'package:ecommerce_app/features/introduction_screen/presentation/views/widgets/custom_button_next.dart';
 import 'package:ecommerce_app/features/introduction_screen/presentation/views/widgets/custom_page_view_model.dart';
+import 'package:ecommerce_app/features/introduction_screen/presentation/views/widgets/introduction_screen_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -55,31 +54,21 @@ class _IntroductionScreenViewBodyState
           currentIndex: currentIndex,
         ),
         const SizedBox(height: 36),
-        CustomButtonNext(
-          onPressed: () {
-            if (currentIndex < 2) {
-              currentIndex++;
-              _pageViewController.animateToPage(
-                currentIndex,
-                duration: const Duration(milliseconds: 400),
-                curve: Curves.easeIn,
-              );
-            } else {
-              GoRouter.of(context).push(LoginView.path);
-            }
+        IntroductionScreenActions(
+          currentIndex: currentIndex,
+          onPressedNextButton: () {
+            currentIndex++;
+            _pageViewController.animateToPage(
+              currentIndex,
+              duration: const Duration(milliseconds: 400),
+              curve: Curves.easeIn,
+            );
             setState(() {});
           },
-        ),
-        const SizedBox(height: 12),
-        GestureDetector(
-          onTap: () {
+          onPressedPush: () {
             GoRouter.of(context).push(LoginView.path);
           },
-          child: Text(
-            'Skip',
-            style: Styles.style20,
-          ),
-        )
+        ),
       ],
     );
   }
