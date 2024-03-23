@@ -18,4 +18,15 @@ abstract class Styles {
     fontSize: 35,
     fontWeight: FontWeight.w600,
   );
+
+  static TextStyle style48 = const TextStyle(
+    fontSize: 48,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle style14 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w300,
+    color: MyColors.hintColorTextField,
+  );
 }

@@ -13,12 +13,12 @@ class EcommerceApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
-      
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
         fontFamily: MyAssets.fontFamilyGilroy,
-        primaryColor: MyColors.primaryColor,
+        scaffoldBackgroundColor: Colors.white,
+        colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primaryColor),
       ),
     );
   }
