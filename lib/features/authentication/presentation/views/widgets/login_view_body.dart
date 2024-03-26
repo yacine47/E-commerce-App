@@ -1,7 +1,9 @@
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_button_submit.dart';
+import 'package:ecommerce_app/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/custom_text_field.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
@@ -17,14 +19,14 @@ class LoginViewBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 16),
+          const SizedBox(height: 28),
           GestureDetector(
               onTap: () => GoRouter.of(context).pop(),
               child: const Icon(IconlyLight.arrow_left, size: 28)),
-          const SizedBox(height: 32),
+          const SizedBox(height: 24),
           Text(
             'Sign in to your Account',
-            style: Styles.style48.copyWith(fontSize: 44),
+            style: Styles.style40,
           ),
           SizedBox(height: MediaQuery.of(context).size.height * .14),
           const CustomTextField(
@@ -61,9 +63,12 @@ class LoginViewBody extends StatelessWidget {
               text: TextSpan(
                   text: 'Don\'t have an account?  ',
                   style: Styles.style14,
-                  children: <TextSpan>[
+                  children: [
                     TextSpan(
                       text: ' Sign up',
+                      recognizer: TapGestureRecognizer()
+                        ..onTap =
+                            () => GoRouter.of(context).push(SignUpView.path),
                       style: Styles.style14.copyWith(
                         color: MyColors.primaryColor,
                         fontWeight: FontWeight.w600,
@@ -78,7 +83,7 @@ class LoginViewBody extends StatelessWidget {
   }
 }
 
-
+// ;
 // Icon(
 //             IconlyLight.search,
 //             color: MyColors.hintColorTextField,

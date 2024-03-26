@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/features/authentication/presentation/views/login_view.dart';
+import 'package:ecommerce_app/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:ecommerce_app/features/introduction_screen/presentation/views/introduction_screen_view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,6 +15,10 @@ abstract class AppRouter {
         path: LoginView.path,
         builder: (context, state) => const LoginView(),
       ),
+      GoRoute(
+        path: SignUpView.path,
+        builder: (context, state) => const SignUpView(),
+      )
     ],
   );
 }
