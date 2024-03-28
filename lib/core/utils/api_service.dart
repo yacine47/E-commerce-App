@@ -10,6 +10,15 @@ class ApiService {
     Response response = await _dio.get('$baseUrl$endPoint');
     return response.data;
   }
+
+  Future<Map<String, dynamic>> post(String endPoint, Map<String, dynamic> data) async {
+    Response response = await _dio.post(
+      '$baseUrl$endPoint',
+      data: data,
+    );
+
+    return response.data;
+  }
 }
 
 

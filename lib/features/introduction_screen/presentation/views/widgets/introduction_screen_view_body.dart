@@ -66,7 +66,7 @@ class _IntroductionScreenViewBodyState
             setState(() {});
           },
           onPressedPush: () {
-            GoRouter.of(context).push(LoginView.path);
+            GoRouter.of(context).pushReplacement(LoginView.path);
           },
         ),
       ],

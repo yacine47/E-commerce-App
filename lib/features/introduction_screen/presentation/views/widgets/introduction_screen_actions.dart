@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/core/utils/styles.dart';
-import 'package:ecommerce_app/core/widgets/custom_button_submit.dart';
+import 'package:ecommerce_app/features/introduction_screen/presentation/views/widgets/custom_button_get_started.dart';
 import 'package:ecommerce_app/features/introduction_screen/presentation/views/widgets/custom_button_next.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +33,7 @@ class IntroductionScreenActions extends StatelessWidget {
           )
         : Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: CustomButtonSubmit(
+            child: CustomButtonGetStarted(
               title: 'Get Started',
               onPressed: onPressedPush,
             ),

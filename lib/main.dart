@@ -1,9 +1,11 @@
 import 'package:ecommerce_app/core/utils/app_router.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/my_assets.dart';
+import 'package:ecommerce_app/core/utils/service_locator.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  setup();
   runApp(const EcommerceApp());
 }
 

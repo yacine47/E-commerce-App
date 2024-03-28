@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/functions/validator_function.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
@@ -44,12 +45,7 @@ class CustomDropDownButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         value: valueRole,
         onChanged: onChanged,
-        validator: (value) {
-          if (value?.isEmpty ?? true) {
-            return 'Field is required';
-          }
-          return null;
-        },
+        validator: validator,
         onSaved: onSaved,
       ),
     );

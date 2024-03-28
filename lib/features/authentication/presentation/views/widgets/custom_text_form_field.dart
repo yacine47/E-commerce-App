@@ -1,9 +1,10 @@
+import 'package:ecommerce_app/core/functions/validator_function.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
+class CustomTextFromField extends StatelessWidget {
+  const CustomTextFromField({
     super.key,
     this.maxLines = 1,
     required this.hint,
@@ -13,7 +14,7 @@ class CustomTextField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.onPressed,
     this.suffixIcon,
-    required this.prefixIcon,
+    required this.prefixIcon, this.onSaved,
   });
   // final TextEditingController? controller;
   final int maxLines;
@@ -23,9 +24,12 @@ class CustomTextField extends StatelessWidget {
   final void Function()? onPressed;
   final IconData? suffixIcon;
   final IconData prefixIcon;
+  final Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      onSaved: onSaved,
+      validator: validator,
       onChanged: onChanged,
       keyboardType: keyboardType,
       cursorColor: Colors.black12,

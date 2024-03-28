@@ -1,85 +1,118 @@
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_button_submit.dart';
+import 'package:ecommerce_app/features/authentication/presentation/view_models/login_cubit/login_cubit.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/sign_up_view.dart';
-import 'package:ecommerce_app/features/authentication/presentation/views/widgets/custom_text_field.dart';
-import 'package:flutter/gestures.dart';
+import 'package:ecommerce_app/features/authentication/presentation/views/widgets/auther_option.dart';
+import 'package:ecommerce_app/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
+import 'package:ecommerce_app/features/authentication/presentation/views/widgets/go_back_button.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 
-class LoginViewBody extends StatelessWidget {
+class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
 
   @override
+  State<LoginViewBody> createState() => _LoginViewBodyState();
+}
+
+class _LoginViewBodyState extends State<LoginViewBody> {
+  GlobalKey<FormState> formKey = GlobalKey();
+
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
+  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 28),
-          GestureDetector(
-              onTap: () => GoRouter.of(context).pop(),
-              child: const Icon(IconlyLight.arrow_left, size: 28)),
-          const SizedBox(height: 24),
-          Text(
-            'Sign in to your Account',
-            style: Styles.style40,
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * .14),
-          const CustomTextField(
-            hint: 'Email',
-            prefixIcon: IconlyBold.message,
-          ),
-          const SizedBox(height: 22),
-          const CustomTextField(
-            hint: 'Password',
-            prefixIcon: IconlyBold.lock,
-            suffixIcon: IconlyBold.hide,
-          ),
-          const SizedBox(height: 22),
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              'Forgot the password?',
-              textAlign: TextAlign.center,
-              style: Styles.style16.copyWith(
-                color: MyColors.primaryColor2,
-                fontWeight: FontWeight.bold,
-              ),
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) {
+        if (state is LoginSuccess) {
+          GoRouter.of(context).pushReplacement(HomeClientView.path);
+        }
+      },
+      builder: (context, state) {
+        return Form(
+          key: formKey,
+          child: SingleChildScrollView(
+              child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 28),
+                const GoBackButton(),
+                const SizedBox(height: 24),
+                Text(
+                  'Sign in to your Account',
+                  style: Styles.style40,
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * .07),
+                state is LoginFailure
+                    ? Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          state.errMessage,
+                          style: Styles.style14.copyWith(color: Colors.red),
+                        ),
+                      )
+                    : const SizedBox(),
+                SizedBox(height: MediaQuery.of(context).size.height * .07),
+                CustomTextFromField(
+                  hint: 'Email',
+                  prefixIcon: IconlyBold.message,
+                  onSaved: (value) => BlocProvider.of<LoginCubit>(context)
+                      .userModel
+                      .email = value,
+                ),
+                const SizedBox(height: 22),
+                CustomTextFromField(
+                  hint: 'Password',
+                  prefixIcon: IconlyBold.lock,
+                  suffixIcon: IconlyBold.hide,
+                  onSaved: (value) => BlocProvider.of<LoginCubit>(context)
+                      .userModel
+                      .password = value,
+                ),
+                const SizedBox(height: 22),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Forgot the password?',
+                    textAlign: TextAlign.center,
+                    style: Styles.style16.copyWith(
+                      color: MyColors.primaryColor2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 22),
+                CustomButtonSubmit(
+                  isLoadingState: state is LoginLoading,
+                  title: 'Sign in',
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      BlocProvider.of<LoginCubit>(context).login();
+                    } else {
+                      autovalidateMode = AutovalidateMode.always;
+                      setState(() {});
+                    }
+                  },
+                ),
+                const SizedBox(height: 21),
+                AutherOption(
+                  text: 'Don\'t have an account?',
+                  buttonText: 'Sign up',
+                  onTap: () => GoRouter.of(context).push(SignUpView.path),
+                )
+              ],
             ),
-          ),
-          const SizedBox(height: 22),
-          CustomButtonSubmit(
-            title: 'Sign in',
-            onPressed: () {},
-          ),
-          const SizedBox(height: 21),
-          Align(
-            alignment: Alignment.center,
-            child: RichText(
-              text: TextSpan(
-                  text: 'Don\'t have an account?  ',
-                  style: Styles.style14,
-                  children: [
-                    TextSpan(
-                      text: ' Sign up',
-                      recognizer: TapGestureRecognizer()
-                        ..onTap =
-                            () => GoRouter.of(context).push(SignUpView.path),
-                      style: Styles.style14.copyWith(
-                        color: MyColors.primaryColor,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    )
-                  ]),
-            ),
-          ),
-        ],
-      ),
-    ));
+          )),
+        );
+      },
+    );
   }
 }
 
@@ -89,3 +122,6 @@ class LoginViewBody extends StatelessWidget {
 //             color: MyColors.hintColorTextField,
 //             size: 20,
 //           ),
+
+
+

@@ -22,7 +22,7 @@ class ServiceFailure extends Failure {
       case DioExceptionType.badResponse:
         return ServiceFailure.fromResponse(
           dioException.response!.statusCode!,
-          dioException.response!.data,
+          dioException.response!.data['message'],
         );
       case DioExceptionType.cancel:
         return ServiceFailure('Resqust was canceled, Please try again!');
@@ -34,8 +34,19 @@ class ServiceFailure extends Failure {
   }
 
   factory ServiceFailure.fromResponse(int statusCode, dynamic response) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServiceFailure(response['error']['message']);
+    if (statusCode == 400 ||
+        statusCode == 401 ||
+        statusCode == 403 ||
+        statusCode == 422) {
+      String errMsg = '';
+
+      if (response is String) {
+        return ServiceFailure(response);
+      }
+      for (int i = 0; i < response.length; i++) {
+        errMsg = '${response[i].toString()}\n';
+      }
+      return ServiceFailure(errMsg);
     } else if (statusCode == 404) {
       return ServiceFailure('Resqust Not Found, Please try again!');
     } else if (statusCode == 500) {
