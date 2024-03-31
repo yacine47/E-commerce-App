@@ -8,6 +8,7 @@ class CustomButtonNext extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width * .35,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(555),
         border: Border.all(color: Colors.transparent),

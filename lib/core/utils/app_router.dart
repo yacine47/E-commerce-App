@@ -7,12 +7,13 @@ import 'package:ecommerce_app/features/authentication/presentation/views/login_v
 import 'package:ecommerce_app/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
 import 'package:ecommerce_app/features/introduction_screen/presentation/views/introduction_screen_view.dart';
+import 'package:ecommerce_app/features/seller_features/home/presentation/views/home_seller_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
   static final router = GoRouter(
-    initialLocation: IntroductionScreenView.path,
+    initialLocation: LoginView.path,
     routes: [
       GoRoute(
         path: IntroductionScreenView.path,
@@ -37,6 +38,10 @@ abstract class AppRouter {
       GoRoute(
         path: HomeClientView.path,
         builder: (context, state) => const HomeClientView(),
+      ),
+      GoRoute(
+        path: HomeSellerView.path,
+        builder: (context, state) => const HomeSellerView(),
       )
     ],
   );

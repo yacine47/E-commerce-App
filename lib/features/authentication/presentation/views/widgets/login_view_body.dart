@@ -8,6 +8,7 @@ import 'package:ecommerce_app/features/authentication/presentation/views/widgets
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/go_back_button.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
+import 'package:ecommerce_app/features/seller_features/home/presentation/views/home_seller_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -30,7 +31,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          GoRouter.of(context).pushReplacement(HomeClientView.path);
+          navigateToHomeView(state, context);
         }
       },
       builder: (context, state) {
@@ -110,15 +111,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       },
     );
   }
+
+  void navigateToHomeView(LoginSuccess state, BuildContext context) {
+    if (state.userModel.roleId == '1') {
+      GoRouter.of(context).pushReplacement(HomeClientView.path);
+    } else if (state.userModel.roleId == '2') {
+      GoRouter.of(context).pushReplacement(HomeSellerView.path);
+    }
+  }
 }
-
-
-// ;
-// Icon(
-//             IconlyLight.search,
-//             color: MyColors.hintColorTextField,
-//             size: 20,
-//           ),
-
-
-

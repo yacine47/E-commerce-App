@@ -24,7 +24,7 @@ class UserModel {
       firstName: data['first_name'],
       lastName: data['last_name'],
       email: data['email'],
-      roleId: data['role_id'],
+      roleId: data['role_id'].toString(),
       emailVerifiedAt: data['email_verified_at'],
       createdAt: data['created_at'],
       updatedAt: data['updated_at'],

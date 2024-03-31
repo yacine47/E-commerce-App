@@ -23,7 +23,7 @@ class LoginCubit extends Cubit<LoginState> {
               LoginFailure(failure.error),
             ),
         (token) => emit(
-              LoginSuccess(),
+              LoginSuccess(token.userModel),
             ));
   }
 }

@@ -5,7 +5,6 @@ import 'package:ecommerce_app/features/authentication/presentation/views/widgets
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/go_back_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce_app/constants.dart';
-import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_button_submit.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/custom_drop_down_button.dart';
