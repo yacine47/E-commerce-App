@@ -13,7 +13,8 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Either<Failure, TokenModel>> login(Map<String, dynamic> data) async {
     try {
-      Map<String, dynamic> dataResponse = await apiService.post('auth/login', data);
+      Map<String, dynamic> dataResponse =
+          await apiService.post('auth/login', data);
       return right(TokenModel.fromJson(dataResponse));
     } catch (e) {
       if (e is DioException) {
@@ -24,9 +25,19 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, UserModel>> register() {
-    // TODO: implement register
-    throw UnimplementedError();
+  Future<Either<Failure, UserModel>> register(Map<String, dynamic> data) async {
+    try {
+      Map<String, dynamic> dataResponse =
+          await apiService.post('auth/register', data);
+
+      return right(UserModel.fromJson(dataResponse['user']));
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServiceFailure.fromDioError(e));
+      }
+
+      return left(ServiceFailure(e.toString()));
+    }
   }
 }
 

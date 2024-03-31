@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_button_submit.dart';
+import 'package:ecommerce_app/core/widgets/error_message_widget.dart';
 import 'package:ecommerce_app/features/authentication/presentation/view_models/login_cubit/login_cubit.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/auther_option.dart';
@@ -49,15 +50,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   style: Styles.style40,
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * .07),
-                state is LoginFailure
-                    ? Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          state.errMessage,
-                          style: Styles.style14.copyWith(color: Colors.red),
-                        ),
-                      )
-                    : const SizedBox(),
+                ErrMessageWidget(
+                  isLoading: state is LoginFailure,
+                  state: state,
+                ),
                 SizedBox(height: MediaQuery.of(context).size.height * .07),
                 CustomTextFromField(
                   hint: 'Email',
@@ -115,6 +111,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     );
   }
 }
+
 
 // ;
 // Icon(

@@ -21,15 +21,16 @@ class CustomDropDownButton extends StatelessWidget {
         iconEnabledColor: MyColors.hintColorTextField,
         items: const [
           DropdownMenuItem(
-            value: 'Client',
+            value: '1',
             child: Text('Client'),
           ),
           DropdownMenuItem(
-            value: 'Seller',
+            value: '2',
             child: Text('Seller'),
           ),
         ],
         isExpanded: true,
+        padding: const EdgeInsets.symmetric(vertical: 6),
         dropdownColor: MyColors.textFieldColor,
         hint: Text(
           'Select Your Role',

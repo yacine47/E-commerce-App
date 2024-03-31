@@ -1,13 +1,16 @@
-class  UserModel {
-  final String? firstName;
-  final String? lastName;
+class UserModel {
+  String? firstName;
+  String? lastName;
+  String? roleId;
   String? email;
   String? password;
+  String? passwordConfirmation;
   final String? emailVerifiedAt;
   final String? createdAt;
   final String? updatedAt;
 
   UserModel({
+    this.roleId,
     this.firstName,
     this.lastName,
     this.email,
@@ -21,6 +24,7 @@ class  UserModel {
       firstName: data['first_name'],
       lastName: data['last_name'],
       email: data['email'],
+      roleId: data['role_id'],
       emailVerifiedAt: data['email_verified_at'],
       createdAt: data['created_at'],
       updatedAt: data['updated_at'],

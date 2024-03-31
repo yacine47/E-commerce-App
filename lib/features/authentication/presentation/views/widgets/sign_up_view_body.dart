@@ -1,10 +1,15 @@
+import 'package:ecommerce_app/core/widgets/error_message_widget.dart';
+import 'package:ecommerce_app/features/authentication/presentation/view_models/register_cubit/register_cubit.dart';
+import 'package:ecommerce_app/features/authentication/presentation/views/login_view.dart';
+import 'package:ecommerce_app/features/authentication/presentation/views/widgets/auther_option.dart';
+import 'package:ecommerce_app/features/authentication/presentation/views/widgets/go_back_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_button_submit.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/custom_drop_down_button.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/cutom_text_field_signin.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
@@ -18,91 +23,122 @@ class SignUpViewBody extends StatefulWidget {
 
 class _SignUpViewBodyState extends State<SignUpViewBody> {
   String? valueRole;
+  GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 28),
-          GestureDetector(
-              onTap: () => GoRouter.of(context).pop(),
-              child: const Icon(IconlyLight.arrow_left, size: 28)),
-          const SizedBox(height: 24),
-          Text(
-            'Create your Account',
-            style: Styles.style40,
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * .04),
-          const Row(
-            children: [
-              Flexible(
-                child: CustomTextFieldSignIn(
-                  hint: 'First Name',
-                  suffixIcon: IconlyLight.profile,
+    return BlocConsumer<RegisterCubit, RegisterState>(
+      listener: (context, state) {
+        if (state is RegisterSuccess) {
+          GoRouter.of(context).push(LoginView.path);
+        }
+      },
+      builder: (context, state) {
+        return Form(
+          key: formKey,
+          child: SingleChildScrollView(
+              child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 28),
+                const GoBackButton(),
+                const SizedBox(height: 24),
+                Text(
+                  'Create your Account',
+                  style: Styles.style40,
                 ),
-              ),
-              SizedBox(width: 18),
-              Flexible(
-                child: CustomTextFieldSignIn(
-                  hint: 'Last Name',
-                  suffixIcon: IconlyLight.profile,
+                SizedBox(height: MediaQuery.of(context).size.height * .02),
+                ErrMessageWidget(
+                  isLoading: state is RegisterFailure,
+                  state: state,
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: spaceBetweenTextField),
-          const CustomTextFieldSignIn(
-            hint: 'Email',
-            suffixIcon: IconlyLight.message,
-          ),
-          const SizedBox(height: spaceBetweenTextField),
-          const CustomTextFieldSignIn(
-            hint: 'Password',
-            suffixIcon: IconlyLight.lock,
-          ),
-          const SizedBox(height: spaceBetweenTextField),
-          const CustomTextFieldSignIn(
-            hint: 'Password',
-            suffixIcon: IconlyLight.lock,
-          ),
-          const SizedBox(height: spaceBetweenTextField),
-          CustomDropDownButton(
-            valueRole: valueRole,
-            onChanged: (value) {
-              valueRole = value;
-              setState(() {});
-            },
-          ),
-          const SizedBox(height: 34),
-          CustomButtonSubmit(
-            title: 'Sign up',
-            onPressed: () {},
-          ),
-          const SizedBox(height: 21),
-          Align(
-            alignment: Alignment.center,
-            child: RichText(
-              text: TextSpan(
-                  text: 'Already have an account?  ',
-                  style: Styles.style14,
+                SizedBox(height: MediaQuery.of(context).size.height * .02),
+                Row(
                   children: [
-                    TextSpan(
-                      text: ' Sign in',
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () => GoRouter.of(context).pop(),
-                      style: Styles.style14.copyWith(
-                        color: MyColors.primaryColor,
-                        fontWeight: FontWeight.w600,
+                    Flexible(
+                      child: CustomTextFieldSignIn(
+                        onSaved: (value) =>
+                            BlocProvider.of<RegisterCubit>(context)
+                                .userModel
+                                .firstName = value,
+                        hint: 'First Name',
+                        suffixIcon: IconlyLight.profile,
                       ),
-                    )
-                  ]),
+                    ),
+                    const SizedBox(width: 18),
+                    Flexible(
+                      child: CustomTextFieldSignIn(
+                        onSaved: (value) =>
+                            BlocProvider.of<RegisterCubit>(context)
+                                .userModel
+                                .lastName = value,
+                        hint: 'Last Name',
+                        suffixIcon: IconlyLight.profile,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: spaceBetweenTextField),
+                CustomTextFieldSignIn(
+                  onSaved: (value) => BlocProvider.of<RegisterCubit>(context)
+                      .userModel
+                      .email = value,
+                  hint: 'Email',
+                  suffixIcon: IconlyLight.message,
+                ),
+                const SizedBox(height: spaceBetweenTextField),
+                CustomTextFieldSignIn(
+                  onSaved: (value) => BlocProvider.of<RegisterCubit>(context)
+                      .userModel
+                      .password = value,
+                  hint: 'Password',
+                  suffixIcon: IconlyLight.lock,
+                ),
+                const SizedBox(height: spaceBetweenTextField),
+                CustomTextFieldSignIn(
+                  onSaved: (value) => BlocProvider.of<RegisterCubit>(context)
+                      .userModel
+                      .passwordConfirmation = value,
+                  hint: 'Confirm Password',
+                  suffixIcon: IconlyLight.lock,
+                ),
+                const SizedBox(height: spaceBetweenTextField),
+                CustomDropDownButton(
+                  valueRole: valueRole,
+                  onSaved: (value) => BlocProvider.of<RegisterCubit>(context)
+                      .userModel
+                      .roleId = value,
+                  onChanged: (value) {
+                    valueRole = value;
+                    setState(() {});
+                  },
+                ),
+                const SizedBox(height: 34),
+                CustomButtonSubmit(
+                  title: 'Sign up',
+                  isLoadingState: state is RegisterLoading,
+                  onPressed: () async {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      await BlocProvider.of<RegisterCubit>(context).register();
+                    } else {
+                      autovalidateMode = AutovalidateMode.always;
+                    } 
+                  },
+                ),
+                const SizedBox(height: 21),
+                AutherOption(
+                  text: 'Already have an account?',
+                  buttonText: 'Sign in',
+                  onTap: () => GoRouter.of(context).pop(),
+                )
+              ],
             ),
-          ),
-        ],
-      ),
-    ));
+          )),
+        );
+      },
+    );
   }
 }

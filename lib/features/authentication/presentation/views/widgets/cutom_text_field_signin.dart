@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/functions/validator_function.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,11 @@ class CustomTextFieldSignIn extends StatelessWidget {
     this.keyboardType,
     this.onPressed,
     this.suffixIcon,
+    this.onSaved,
   });
+
   final int maxLines;
+  final Function(String?)? onSaved;
   final String hint;
   final void Function(String?)? onChanged;
   final TextInputType? keyboardType;
@@ -20,7 +24,9 @@ class CustomTextFieldSignIn extends StatelessWidget {
   final IconData? suffixIcon;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      onSaved: onSaved,
+      validator: validator,
       onChanged: onChanged,
       keyboardType: keyboardType,
       cursorColor: Colors.black12,
