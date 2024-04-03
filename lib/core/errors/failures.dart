@@ -49,7 +49,7 @@ class ServiceFailure extends Failure {
       return ServiceFailure(errMsg);
     } else if (statusCode == 404) {
       return ServiceFailure('Resqust Not Found, Please try again!');
-    } else if (statusCode == 500) {
+    } else if (statusCode >= 500) {
       return ServiceFailure('Internal Server Error, Please try again!');
     } else {
       return ServiceFailure('Opps there was an Error, Please try again!');
