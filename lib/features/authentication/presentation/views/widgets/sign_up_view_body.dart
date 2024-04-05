@@ -79,7 +79,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     ),
                   ],
                 ),
-                const SizedBox(height: spaceBetweenTextField),
+                const SizedBox(height: kSpaceBetweenTextField),
                 CustomTextFieldSignIn(
                   onSaved: (value) => BlocProvider.of<RegisterCubit>(context)
                       .userModel
@@ -87,7 +87,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   hint: 'Email',
                   suffixIcon: IconlyLight.message,
                 ),
-                const SizedBox(height: spaceBetweenTextField),
+                const SizedBox(height: kSpaceBetweenTextField),
                 CustomTextFieldSignIn(
                   onSaved: (value) => BlocProvider.of<RegisterCubit>(context)
                       .userModel
@@ -95,7 +95,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   hint: 'Password',
                   suffixIcon: IconlyLight.lock,
                 ),
-                const SizedBox(height: spaceBetweenTextField),
+                const SizedBox(height: kSpaceBetweenTextField),
                 CustomTextFieldSignIn(
                   onSaved: (value) => BlocProvider.of<RegisterCubit>(context)
                       .userModel
@@ -103,7 +103,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   hint: 'Confirm Password',
                   suffixIcon: IconlyLight.lock,
                 ),
-                const SizedBox(height: spaceBetweenTextField),
+                const SizedBox(height: kSpaceBetweenTextField),
                 CustomDropDownButton(
                   valueRole: valueRole,
                   onSaved: (value) => BlocProvider.of<RegisterCubit>(context)
@@ -124,7 +124,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                       await BlocProvider.of<RegisterCubit>(context).register();
                     } else {
                       autovalidateMode = AutovalidateMode.always;
-                    } 
+                    }
                   },
                 ),
                 const SizedBox(height: 21),

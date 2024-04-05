@@ -43,6 +43,7 @@ dependencies:
   flutter_bloc: ^8.1.5
   get_it: ^7.6.7
   image_picker: ^1.0.7
+  iconify_flutter: ^0.0.5
 
 dev_dependencies:
   flutter_test:
