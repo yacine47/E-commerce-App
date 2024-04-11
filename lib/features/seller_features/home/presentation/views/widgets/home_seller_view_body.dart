@@ -7,7 +7,10 @@ class HomeSellerViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [],
+      children: [
+        // Image.network(
+        //     'http://10.0.2.2:8000/profile_images/users/VVF8iYxHVMBAkNVe8weH6mEuRo8fCUGHWhUWWWh9.jpg'),
+      ],
     );
   }
 }

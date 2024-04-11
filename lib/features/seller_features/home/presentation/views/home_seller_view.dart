@@ -7,9 +7,12 @@ class HomeSellerView extends StatelessWidget {
   static String path = '/HomeSellerView';
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      bottomNavigationBar: CustomBottomNavigationBar(),
-      body: SafeArea(
+    return Scaffold(
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: 1,
+        onTap: (index) {},
+      ),
+      body: const SafeArea(
         child: HomeSellerViewBody(),
       ),
     );

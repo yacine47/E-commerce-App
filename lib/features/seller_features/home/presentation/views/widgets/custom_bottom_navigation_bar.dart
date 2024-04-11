@@ -4,16 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconly/iconly.dart';
 
-class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key});
+class CustomBottomNavigationBar extends StatelessWidget {
+  const CustomBottomNavigationBar({super.key, this.onTap, required this.currentIndex});
 
-  @override
-  State<CustomBottomNavigationBar> createState() =>
-      _CustomBottomNavigationBarState();
-}
-
-class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  int _currentIndex = 0;
+  final void Function(int)? onTap;
+  final int currentIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +30,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           // landscapeLayout: BottomNavigationBarLandscapeLayout.spread,
           // mouseCursor: MouseCursor.defer,
           type: BottomNavigationBarType.fixed,
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            _currentIndex = index;
-            setState(() {});
-          },
+          currentIndex: currentIndex,
+          onTap: onTap,
           backgroundColor: Colors.white,
           iconSize: 22,
           showSelectedLabels: false,
