@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/home_client_view_body.dart';
-import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/profil_client_view_body.dart';
+import 'package:ecommerce_app/core/widgets/profil_view_body.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/views/widgets/home_seller_view_body.dart';
 import 'package:flutter/material.dart';
 

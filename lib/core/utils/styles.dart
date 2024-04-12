@@ -29,4 +29,10 @@ abstract class Styles {
     fontWeight: FontWeight.w300,
     color: MyColors.hintColorTextField,
   );
+
+  static TextStyle style12 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w300,
+    color: MyColors.hintColorTextField,
+  );
 }

@@ -1,5 +1,5 @@
 const double kSpaceBetweenTextField = 16;
-const double kHorPadding = 22;
+const double kHorPadding = 24;
 const double kSizeIconNoActive = 28;
 const double kSizeIconActive = 32;
 const String kCartIconify =
