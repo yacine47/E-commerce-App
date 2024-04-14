@@ -44,6 +44,8 @@ dependencies:
   get_it: ^7.6.7
   image_picker: ^1.0.7
   iconify_flutter: ^0.0.5
+  readmore: ^3.0.0
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +73,7 @@ flutter:
   assets:
     - assets/images/intoduction_images/
     - assets/images/
+    - assets/images/products/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
