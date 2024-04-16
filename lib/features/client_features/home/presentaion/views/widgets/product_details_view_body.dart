@@ -1,9 +1,11 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
+import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_app_bar_product_details.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_image_slider.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_rate_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:readmore/readmore.dart';
 
 class ProductDetailsViewBody extends StatelessWidget {
@@ -65,6 +67,17 @@ class ProductDetailsViewBody extends StatelessWidget {
                   color: MyColors.primaryColor,
                 ),
               ),
+
+              GestureDetector(
+                onTap: () {
+                  GoRouter.of(context).push('location');
+                },
+                child: Text('All Reviews',
+                    style: Styles.style16.copyWith(
+                      color: MyColors.primaryColor,
+                    )),
+              ),
+
               const SizedBox(height: 22),
               // CustomTitleItems(
               //   onTap: () {},

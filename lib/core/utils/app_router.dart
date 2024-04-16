@@ -7,6 +7,7 @@ import 'package:ecommerce_app/features/authentication/presentation/views/login_v
 import 'package:ecommerce_app/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/product_details_view.dart';
+import 'package:ecommerce_app/features/client_features/review/presentaion/views/product_reviews_view.dart';
 import 'package:ecommerce_app/features/client_features/search/presentaion/views/search_product_view.dart';
 import 'package:ecommerce_app/features/introduction_screen/presentation/views/introduction_screen_view.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/views/home_seller_view.dart';
@@ -15,7 +16,7 @@ import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
   static final router = GoRouter(
-    initialLocation: HomeClientView.path,
+    initialLocation: ProductReviewsView.path,
     routes: [
       GoRoute(
         path: IntroductionScreenView.path,
@@ -52,6 +53,10 @@ abstract class AppRouter {
       GoRoute(
         path: SearchProductView.path,
         builder: (context, state) => const SearchProductView(),
+      ),
+      GoRoute(
+        path: ProductReviewsView.path,
+        builder: (context, state) => const ProductReviewsView(),
       ),
     ],
   );

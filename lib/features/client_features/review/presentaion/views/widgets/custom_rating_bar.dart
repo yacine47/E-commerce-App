@@ -1,0 +1,28 @@
+
+
+
+
+import 'package:ecommerce_app/core/utils/my_colors.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+class CustomRatingBar extends StatelessWidget {
+  const CustomRatingBar({super.key, required this.itemSize});
+  final double itemSize;
+  @override
+  Widget build(BuildContext context) {
+    return RatingBarIndicator(
+      direction: Axis.horizontal,
+      itemSize: itemSize,
+      itemCount: 5,
+      rating: 4,
+      unratedColor: Colors.grey.withOpacity(0.4),
+      itemPadding: const EdgeInsets.symmetric(horizontal: 0),
+      itemBuilder: (context, index) =>  Icon(
+        Icons.star,
+        color: MyColors.primaryColor,
+        size: 18,
+      ),
+    );
+  }
+}
