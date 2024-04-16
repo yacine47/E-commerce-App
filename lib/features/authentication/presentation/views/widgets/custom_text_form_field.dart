@@ -14,10 +14,17 @@ class CustomTextFromField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.onPressed,
     this.suffixIcon,
-    required this.prefixIcon, this.onSaved,
+    required this.prefixIcon,
+    this.onSaved,
+    this.borderColor = MyColors.textFieldColor,
+    this.borderRaduis = 12,
+    this.contentPadding =
+        const EdgeInsets.only(bottom: 18, top: 18, left: 18, right: 18), this.autofocus = false,
   });
   // final TextEditingController? controller;
   final int maxLines;
+  final Color borderColor;
+  final double borderRaduis;
   final String hint;
   final void Function(String?)? onChanged;
   final TextInputType? keyboardType;
@@ -25,9 +32,12 @@ class CustomTextFromField extends StatelessWidget {
   final IconData? suffixIcon;
   final IconData prefixIcon;
   final Function(String?)? onSaved;
+  final EdgeInsetsGeometry contentPadding;
+  final bool autofocus ;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofocus: autofocus,
       onSaved: onSaved,
       validator: validator,
       onChanged: onChanged,
@@ -58,8 +68,7 @@ class CustomTextFromField extends StatelessWidget {
               size: 20,
             ),
           ),
-          contentPadding:
-              const EdgeInsets.only(bottom: 18, top: 18, left: 18, right: 18),
+          contentPadding: contentPadding,
           hintText: hint,
           label: Text(
             hint,
@@ -67,19 +76,19 @@ class CustomTextFromField extends StatelessWidget {
           ),
           hintStyle: TextStyle(color: MyColors.hintColorTextField),
           border: buildBorder(),
-          enabledBorder: buildBorder(color: MyColors.textFieldColor),
-          focusedBorder: buildBorder(
-            color: MyColors.textFieldColor,
-          )),
+          enabledBorder: buildBorder(color: borderColor),
+          focusedBorder: buildBorder(color: borderColor)),
     );
   }
 
   OutlineInputBorder buildBorder({Color? color}) {
     return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(borderRaduis),
       borderSide: BorderSide(
         color: color ?? Colors.white,
       ),
     );
   }
 }
+
+

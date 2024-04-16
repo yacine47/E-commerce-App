@@ -7,6 +7,6 @@ abstract class MyColors {
   static Color iconColorNavigationBar = const Color(0xff767676);
   static Color lighBackgroundColor = const Color(0xffE0E0E0);
   static Color hintColorTextField = const Color(0xff9E9E9E);
-  static Color textFieldColor = const Color(0xffFAFAFA);
+  static const Color textFieldColor = Color(0xffFAFAFA);
   static Color borderCategoryColor = const Color(0xffEDEDED);
 }

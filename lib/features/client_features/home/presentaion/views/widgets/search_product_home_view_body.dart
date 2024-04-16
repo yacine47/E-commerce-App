@@ -15,7 +15,7 @@ class SearchProductHomeViewButton extends StatelessWidget {
         GoRouter.of(context).push(SearchProductView.path);
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 11),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 13),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: Colors.black.withOpacity(0.2)),
@@ -32,8 +32,7 @@ class SearchProductHomeViewButton extends StatelessWidget {
             const SizedBox(width: 12),
             Text(
               'Search Product ...',
-              style:
-                  Styles.style16.copyWith(color: MyColors.hintColorTextField),
+              style: Styles.style14,
             )
           ],
         ),
