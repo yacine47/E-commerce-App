@@ -2,9 +2,7 @@ import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 
 class ProfilInfo extends StatelessWidget {
-  const ProfilInfo(
-      {super.key,
-      this.photo = 'https://cdn-icons-png.flaticon.com/512/5556/5556468.png'});
+  const ProfilInfo({super.key, this.photo = 'assets/images/prfil_avatar.png'});
   final String photo;
   @override
   Widget build(BuildContext context) {
@@ -13,7 +11,7 @@ class ProfilInfo extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(555),
-          child: Image.network(
+          child: Image.asset(
             photo,
             alignment: const Alignment(0, .6),
             fit: BoxFit.cover,

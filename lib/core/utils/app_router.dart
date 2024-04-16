@@ -7,6 +7,7 @@ import 'package:ecommerce_app/features/authentication/presentation/views/login_v
 import 'package:ecommerce_app/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/product_details_view.dart';
+import 'package:ecommerce_app/features/client_features/search/presentaion/views/search_product_view.dart';
 import 'package:ecommerce_app/features/introduction_screen/presentation/views/introduction_screen_view.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/views/home_seller_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,7 +48,11 @@ abstract class AppRouter {
       GoRoute(
         path: ProductDetailsView.path,
         builder: (context, state) => const ProductDetailsView(),
-      )
+      ),
+      GoRoute(
+        path: SearchProductView.path,
+        builder: (context, state) => const SearchProductView(),
+      ),
     ],
   );
 }

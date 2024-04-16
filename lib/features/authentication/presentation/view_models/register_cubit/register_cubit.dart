@@ -19,7 +19,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       'email': userModel.email,
       'password': userModel.password,
       'password_confirmation': userModel.passwordConfirmation,
-      'role_id': userModel.roleId,
+      'role': userModel.role,
     };
     var result = await authRepo.register(data);
 

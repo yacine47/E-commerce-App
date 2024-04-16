@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/constants.dart';
+import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/product_details_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/category_item_list_view.dart';
@@ -7,6 +8,7 @@ import 'package:ecommerce_app/features/client_features/home/presentaion/views/wi
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/title_items.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iconly/iconly.dart';
 
 class HomeClientViewBody extends StatelessWidget {
   const HomeClientViewBody({super.key});
@@ -20,7 +22,23 @@ class HomeClientViewBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              const SearchProductHomeViewButton(),
+              ItemHasPadding(
+                horPadding: kHorPadding,
+                child: Row(
+                  children: [
+                    const Expanded(child: SearchProductHomeViewButton()),
+                    const SizedBox(width: 16),
+                    Badge(
+                      backgroundColor: MyColors.primaryColor,
+                      label: const Text('4'),
+                      child: const Icon(
+                        IconlyLight.notification,
+                        size: 26,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               const SizedBox(height: 20),
               ItemHasPadding(
                   horPadding: kHorPadding,

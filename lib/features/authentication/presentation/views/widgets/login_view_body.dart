@@ -113,9 +113,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   }
 
   void navigateToHomeView(LoginSuccess state, BuildContext context) {
-    if (state.userModel.roleId == '1') {
+    if (state.userModel.role == 'client') {
       GoRouter.of(context).pushReplacement(HomeClientView.path);
-    } else if (state.userModel.roleId == '2') {
+    } else if (state.userModel.role == 'seller') {
       GoRouter.of(context).pushReplacement(HomeSellerView.path);
     }
   }

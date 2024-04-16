@@ -16,7 +16,7 @@ class CircleBackground extends StatelessWidget {
       clipBehavior: Clip.none,
       alignment: Alignment.topCenter,
       children: [
-         Positioned(
+        Positioned(
           top: -500,
           child: CircleAvatar(
             backgroundColor: MyColors.primaryColor,

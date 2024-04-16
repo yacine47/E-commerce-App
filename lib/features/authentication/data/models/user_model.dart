@@ -1,7 +1,7 @@
 class UserModel {
   String? firstName;
   String? lastName;
-  String? roleId;
+  String? role;
   String? email;
   String? password;
   String? passwordConfirmation;
@@ -10,7 +10,7 @@ class UserModel {
   final String? updatedAt;
 
   UserModel({
-    this.roleId,
+    this.role,
     this.firstName,
     this.lastName,
     this.email,
@@ -24,7 +24,7 @@ class UserModel {
       firstName: data['first_name'],
       lastName: data['last_name'],
       email: data['email'],
-      roleId: data['role_id'].toString(),
+      role: data['role'].toString(),
       emailVerifiedAt: data['email_verified_at'],
       createdAt: data['created_at'],
       updatedAt: data['updated_at'],

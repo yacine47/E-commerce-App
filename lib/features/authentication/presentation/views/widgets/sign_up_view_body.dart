@@ -108,7 +108,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   valueRole: valueRole,
                   onSaved: (value) => BlocProvider.of<RegisterCubit>(context)
                       .userModel
-                      .roleId = value,
+                      .role = value,
                   onChanged: (value) {
                     valueRole = value;
                     setState(() {});
