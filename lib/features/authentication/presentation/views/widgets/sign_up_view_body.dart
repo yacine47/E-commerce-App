@@ -2,7 +2,7 @@ import 'package:ecommerce_app/core/widgets/error_message_widget.dart';
 import 'package:ecommerce_app/features/authentication/presentation/view_models/register_cubit/register_cubit.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/login_view.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/auther_option.dart';
-import 'package:ecommerce_app/features/authentication/presentation/views/widgets/go_back_button.dart';
+import 'package:ecommerce_app/core/widgets/go_back_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';

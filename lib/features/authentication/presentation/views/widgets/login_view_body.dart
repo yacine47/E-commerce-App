@@ -6,7 +6,7 @@ import 'package:ecommerce_app/features/authentication/presentation/view_models/l
 import 'package:ecommerce_app/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/auther_option.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
-import 'package:ecommerce_app/features/authentication/presentation/views/widgets/go_back_button.dart';
+import 'package:ecommerce_app/core/widgets/go_back_button.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/views/home_seller_view.dart';
 import 'package:flutter/material.dart';

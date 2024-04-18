@@ -50,7 +50,7 @@ class _IntroductionScreenViewBodyState
           ),
         ),
         const SizedBox(height: 49),
-        CustomanimatedPageIndicator(
+        CustomAnimatedPageIndicator(
           currentIndex: currentIndex,
         ),
         const SizedBox(height: 36),

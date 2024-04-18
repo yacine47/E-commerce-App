@@ -11,7 +11,7 @@ class CustomImageSlider extends StatefulWidget {
 
 class _CustomImageSliderState extends State<CustomImageSlider> {
   int _current = 0;
-  List<String> listImagesPlace = [
+  List<String> listImages = [
     'assets/images/products/1.jpg',
     'assets/images/products/2.jpg',
     'assets/images/products/4.jpg',
@@ -37,7 +37,7 @@ class _CustomImageSliderState extends State<CustomImageSlider> {
               setState(() {});
             },
           ),
-          items: listImagesPlace.map((i) {
+          items: listImages.map((i) {
             return Builder(
               // builder: (context) => CustomImagePlaceView(image: i),
               builder: (context) => Image.asset(
@@ -49,10 +49,11 @@ class _CustomImageSliderState extends State<CustomImageSlider> {
             );
           }).toList(),
         ),
+        const SizedBox(height: 5),
         AnimatedSmoothIndicator(
           activeIndex: _current,
-          count: 3,
-          effect: const WormEffect(
+          count: listImages.length,
+          effect: const ExpandingDotsEffect(
               dotHeight: 8,
               dotWidth: 8,
               activeDotColor: Colors.black,

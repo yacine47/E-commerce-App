@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class CustomanimatedPageIndicator extends StatelessWidget {
-  const CustomanimatedPageIndicator({super.key, required this.currentIndex});
+class CustomAnimatedPageIndicator extends StatelessWidget {
+  const CustomAnimatedPageIndicator({super.key, required this.currentIndex});
   final int currentIndex;
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/core/utils/styles.dart';
+import 'package:ecommerce_app/features/client_features/review/presentaion/views/widgets/custom_rating_bar.dart';
 import 'package:flutter/material.dart';
 
 class CustomRateCard extends StatelessWidget {
@@ -5,44 +7,21 @@ class CustomRateCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 4,
-      ),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(555),
-          border: const Border.symmetric(
-            horizontal: BorderSide(),
-            vertical: BorderSide(),
-          )),
-      child: const Row(
-        children: [
-          Icon(
-            Icons.star,
-            color: Colors.orange,
-            size: 15,
-          ),
-          SizedBox(
-            width: 4,
-          ),
-          Text(
-            '4.5',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          Text(
-            ' (1419)',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: Colors.grey,
-            ),
-          ),
-        ],
-      ),
+    return Row(
+      children: [
+        const CustomRatingBar(itemSize: 16),
+        const SizedBox(
+          width: 4,
+        ),
+        Text('4.5',
+            style: Styles.style12
+                .copyWith(color: Colors.black, fontWeight: FontWeight.w500)),
+        Text(
+          ' (1419 reviews)',
+          style: Styles.style12
+              .copyWith(color: Colors.black, fontWeight: FontWeight.w500),
+        ),
+      ],
     );
   }
 }

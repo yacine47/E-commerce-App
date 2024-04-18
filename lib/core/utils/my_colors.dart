@@ -9,4 +9,5 @@ abstract class MyColors {
   static Color hintColorTextField = const Color(0xff9E9E9E);
   static const Color textFieldColor = Color(0xffFAFAFA);
   static Color borderCategoryColor = const Color(0xffEDEDED);
+  static Color starColor = const Color(0xffE6BB66);
 }
