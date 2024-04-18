@@ -16,7 +16,7 @@ class CustomReviewItem extends StatelessWidget {
             children: [
               CustomPhotoProfile(
                 photo: 'assets/images/prfil_avatar.png',
-                size: 39,
+                size: 30,
               ),
               SizedBox(width: 10),
               Text(

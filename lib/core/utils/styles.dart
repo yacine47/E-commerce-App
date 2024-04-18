@@ -32,7 +32,7 @@ abstract class Styles {
 
   static TextStyle style12 = TextStyle(
     fontSize: 12,
-    fontWeight: FontWeight.w300,
+    fontWeight: FontWeight.w400,
     color: MyColors.hintColorTextField,
   );
 }

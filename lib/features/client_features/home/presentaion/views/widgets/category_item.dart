@@ -25,6 +25,7 @@ class CategoryItem extends StatelessWidget {
         child: Text(
           name,
           style: Styles.style12
+            
               .copyWith(color: isActive ? Colors.white : Colors.black),
         ),
       ),

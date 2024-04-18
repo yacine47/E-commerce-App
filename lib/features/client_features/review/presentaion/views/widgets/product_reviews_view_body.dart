@@ -28,7 +28,7 @@ class ProductReviewsViewBody extends StatelessWidget {
           ),
           SizedBox(height: 12),
           CustomReviewScore(),
-          SizedBox(height: 8),
+          SizedBox(height: 16),
           CustomReviewItemListView(),
         ],
       ),

@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_product_image.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -20,8 +19,7 @@ class _CustomImageSliderState extends State<CustomImageSlider> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.bottomCenter,
+    return Column(
       children: [
         CarouselSlider(
           options: CarouselOptions(
@@ -32,7 +30,7 @@ class _CustomImageSliderState extends State<CustomImageSlider> {
             // enlargeCenterPage: true,
             enlargeFactor: 0.3,
             viewportFraction: 1,
-            height: 370,
+            height: MediaQuery.of(context).size.height * .42,
             autoPlay: false,
             onPageChanged: (index, reason) {
               _current = index;
@@ -41,22 +39,25 @@ class _CustomImageSliderState extends State<CustomImageSlider> {
           ),
           items: listImagesPlace.map((i) {
             return Builder(
-              builder: (context) => CustomImagePlaceView(image: i),
+              // builder: (context) => CustomImagePlaceView(image: i),
+              builder: (context) => Image.asset(
+                i,
+                // height: 370,
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.cover,
+              ),
             );
           }).toList(),
         ),
-        Positioned(
-          bottom: 12,
-          child: AnimatedSmoothIndicator(
-            activeIndex: _current,
-            count: 3,
-            effect: const WormEffect(
-                dotHeight: 10,
-                dotWidth: 10,
-                activeDotColor: Colors.black,
-                dotColor: Colors.black12),
-          ),
-        )
+        AnimatedSmoothIndicator(
+          activeIndex: _current,
+          count: 3,
+          effect: const WormEffect(
+              dotHeight: 8,
+              dotWidth: 8,
+              activeDotColor: Colors.black,
+              dotColor: Colors.black12),
+        ),
       ],
     );
   }

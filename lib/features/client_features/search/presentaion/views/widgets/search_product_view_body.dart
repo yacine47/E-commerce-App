@@ -34,11 +34,33 @@ class SearchProductViewBody extends StatelessWidget {
               GestureDetector(
                 onTap: () => GoRouter.of(context).pop(),
                 child: Text('Cancel',
-                    style: Styles.style16
-                        .copyWith(color: MyColors.hintColorTextField)),
+                    style: Styles.style16.copyWith(
+                      color: MyColors.hintColorTextField,
+                    )),
               )
             ],
-          )
+          ),
+          // Stepper(
+          //   connectorColor: MaterialStatePropertyAll(MyColors.primaryColor),
+          //   steps: const [
+          //     Step(
+          //       title: Text('Order Placed'),
+          //       content: Text('Your order has been placed'),
+          //     ),
+          //     Step(
+          //       title: Text('Preparing'),
+          //       content: Text('Your order is being prepared'),
+          //     ),
+          //     Step(
+          //       title: Text('On the way'),
+          //       content: Text('Our delivery executive is on the way'),
+          //     ),
+          //     Step(
+          //       title: Text('Delivered'),
+          //       content: Text('Your order was delivered successfully'),
+          //     )
+          //   ],
+          // ),
         ],
       ),
     );
