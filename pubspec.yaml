@@ -103,19 +103,18 @@ flutter:
         - asset: assets/fonts/gilroy/Gilroy-Heavy.ttf
         - asset: assets/fonts/gilroy/Gilroy-Light.ttf
         - asset: assets/fonts/gilroy/Gilroy-LightItalic.ttf
-    # - family: Urbanist
-    #   fonts:
-    #     - asset: assets/fonts/urbanist/Urbanist-Black.ttf
-    #     - asset: assets/fonts/urbanist/Urbanist-Medium.ttf
-    #     - asset: assets/fonts/urbanist/Urbanist-Regular.ttf
-    #     - asset: assets/fonts/urbanist/Urbanist-SemiBold.ttf
-    #     - asset: assets/fonts/urbanist/Urbanist-Thin.ttf
-    #     - asset: assets/fonts/urbanist/Urbanist-UltraLight.ttf
-    #     - asset: assets/fonts/urbanist/Urbanist-Black.ttf
-    #     - asset: assets/fonts/urbanist/Urbanist-Bold.ttf
-    #     - asset: assets/fonts/urbanist/Urbanist-ExtraBold.ttf
-    #     - asset: assets/fonts/urbanist/Urbanist-Heavy.ttf
-    #     - asset: assets/fonts/urbanist/Urbanist-Light.ttf
+    - family: Urbanist
+      fonts:
+        - asset: assets/fonts/urbanist/Urbanist-Black.ttf
+        - asset: assets/fonts/urbanist/Urbanist-Bold.ttf
+        - asset: assets/fonts/urbanist/Urbanist-ExtraBold.ttf
+        - asset: assets/fonts/urbanist/Urbanist-ExtraLight.ttf
+        - asset: assets/fonts/urbanist/Urbanist-Light.ttf
+        - asset: assets/fonts/urbanist/Urbanist-Medium.ttf
+        - asset: assets/fonts/urbanist/Urbanist-Regular.ttf
+        - asset: assets/fonts/urbanist/Urbanist-SemiBold.ttf
+        - asset: assets/fonts/urbanist/Urbanist-Thin.ttf
+        
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

@@ -15,11 +15,11 @@ class CustomRateCard extends StatelessWidget {
         ),
         Text('4.5',
             style: Styles.style12
-                .copyWith(color: Colors.black, fontWeight: FontWeight.w500)),
+                .copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
         Text(
           ' (1419 reviews)',
           style: Styles.style12
-              .copyWith(color: Colors.black, fontWeight: FontWeight.w500),
+              .copyWith(color: Colors.black, fontWeight: FontWeight.w600),
         ),
       ],
     );

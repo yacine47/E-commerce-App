@@ -18,8 +18,8 @@ class EcommerceApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
       theme: ThemeData(
-        fontFamily: MyAssets.fontFamilyGilroy,
-        // fontFamily: MyAssets.fontFamilyUrbanist,
+        // fontFamily: MyAssets.fontFamilyGilroy,
+        fontFamily: MyAssets.fontFamilyUrbanist,
         // textTheme: GoogleFonts.urbanistTextTheme(Theme.of(context).textTheme),
         scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primaryColor),

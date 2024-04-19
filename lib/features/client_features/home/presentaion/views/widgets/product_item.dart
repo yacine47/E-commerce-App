@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
@@ -34,21 +35,24 @@ class ProductItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text(
+                      Text(
                         'Laptop Asus VivoBok 15',
                         overflow: TextOverflow.ellipsis,
+                        style: Styles.style14.copyWith(
+                            color: Colors.black, fontWeight: FontWeight.w500),
                       ),
                       Row(
                         children: [
-                          const Icon(
+                          Icon(
                             IconlyBold.star,
-                            color: Colors.orange,
+                            color: MyColors.starColor,
                             size: 16,
                           ),
                           const SizedBox(width: 4),
                           Text(
                             '4.6 (249)',
-                            style: Styles.style12,
+                            style: Styles.style12
+                                .copyWith(fontWeight: FontWeight.w500),
                           )
                         ],
                       ),

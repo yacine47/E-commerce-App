@@ -17,18 +17,18 @@ abstract class Styles {
   static TextStyle style18 = const TextStyle(
     fontSize: 18,
     color: Colors.black,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w600,
   );
 
   static TextStyle style24 = const TextStyle(
     fontSize: 24,
     color: Colors.black,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w600,
   );
 
   static TextStyle style35 = const TextStyle(
     fontSize: 35,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w700,
   );
 
   static TextStyle style40 = const TextStyle(
@@ -38,7 +38,7 @@ abstract class Styles {
 
   static TextStyle style14 = TextStyle(
     fontSize: 14,
-    fontWeight: FontWeight.w300,
+    fontWeight: FontWeight.w400,
     color: MyColors.hintColorTextField,
   );
 
