@@ -1,12 +1,15 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
+import 'package:ecommerce_app/core/widgets/custom_loading_widget.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/category_cubit/category_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/product_details_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/category_item_list_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/product_item.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/search_product_home_view_body.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/title_items.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 
@@ -44,7 +47,18 @@ class HomeClientViewBody extends StatelessWidget {
                   horPadding: kHorPadding,
                   child: Image.asset('assets/images/image 50.png')),
               const SizedBox(height: 24),
-              const CategoryItemListView(),
+              BlocBuilder<CategoryCubit, CategoryState>(
+                builder: (context, state) {
+                  if (state is CategorySuccess) {
+                    return CategoryItemListView(
+                      categories: state.categories,
+                    );
+                  } else if (state is CategoryFailure) {
+                    return Text(state.errMessage);
+                  }
+                  return const CustomLoadingWidget();
+                },
+              ),
               const SizedBox(height: 26),
               const TitleItems(),
               const SizedBox(height: 26),

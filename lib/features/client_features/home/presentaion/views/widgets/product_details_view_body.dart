@@ -41,14 +41,14 @@ class ProductDetailsViewBody extends StatelessWidget {
                     const CustomReadMoreProductDetails(),
                     const SizedBox(height: 21),
                     Text('Size', style: Styles.style18),
-                    // const Row(
-                    //   children: [
-                    //     SizedProductItem(hint: 'S'),
-                    //     SizedProductItem(hint: 'M'),
-                    //     SizedProductItem(hint: 'L'),
-                    //     SizedProductItem(hint: 'XL'),
-                    //   ],
-                    // )
+                    const Row(
+                      children: [
+                        SizedProductItem(hint: 'S'),
+                        SizedProductItem(hint: 'M'),
+                        SizedProductItem(hint: 'L'),
+                        SizedProductItem(hint: 'XL'),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -63,27 +63,27 @@ class ProductDetailsViewBody extends StatelessWidget {
   }
 }
 
-// class SizedProductItem extends StatelessWidget {
-//   const SizedProductItem({
-//     super.key,
-//     required this.hint,
-//   });
-//   final String hint;
+class SizedProductItem extends StatelessWidget {
+  const SizedProductItem({
+    super.key,
+    required this.hint,
+  });
+  final String hint;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return CircleAvatar(
-//       radius: 15,
-//       backgroundColor: Colors.black,
-//       child: CircleAvatar(
-//         radius: 13,
-//         backgroundColor: Colors.white,
-//         child: Text(
-//           hint,
-//           style: Styles.style16
-//               .copyWith(color: Colors.black, fontWeight: FontWeight.w700),
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      radius: 15,
+      backgroundColor: Colors.black,
+      child: CircleAvatar(
+        radius: 13,
+        backgroundColor: Colors.white,
+        child: Text(
+          hint,
+          style: Styles.style16
+              .copyWith(color: Colors.black, fontWeight: FontWeight.w700),
+        ),
+      ),
+    );
+  }
+}

@@ -1,6 +1,3 @@
-
-
-
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
@@ -17,7 +14,7 @@ class BottomBarProductDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return ItemHasPadding(
       horPadding: kHorPadding,
-      verPadding: 23,
+      verPadding: 8,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

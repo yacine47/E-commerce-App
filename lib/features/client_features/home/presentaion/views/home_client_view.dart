@@ -24,11 +24,19 @@ class _HomeClientViewState extends State<HomeClientView> {
         },
       ),
       body: SafeArea(
-        child: NavigationView.navigationViewsClient[_currentIndex],
-      ),
-    );
+        child:NavigationView.navigationViewsClient[_currentIndex],
+        ),
+      );
+    
   }
 }
+
+
+// BlocProvider<CategoryCubit>(
+//               create: (context) =>
+//                   CategoryCubit(getIt.get<HomeClientRepoImpl>())
+//                     ..homeClientRepo.getAllCategories(),
+//             ),
 
 
 // (index) {

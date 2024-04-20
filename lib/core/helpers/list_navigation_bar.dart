@@ -1,11 +1,23 @@
-import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/home_client_view_body.dart';
+import 'package:ecommerce_app/core/utils/service_locator.dart';
 import 'package:ecommerce_app/core/widgets/profil_view_body.dart';
+import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo_impl.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/category_cubit/category_cubit.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/home_client_view_body.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/views/widgets/home_seller_view_body.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 abstract class NavigationView {
   static List<Widget> navigationViewsClient = [
-    const HomeClientViewBody(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<CategoryCubit>(
+          create: (context) => CategoryCubit(getIt.get<HomeClientRepoImpl>())
+            ..getAllCategories(),
+        ),
+      ],
+      child: const HomeClientViewBody(),
+    ),
     const HomeClientViewBody(),
     const HomeClientViewBody(),
     const ProfileViewBody(),
