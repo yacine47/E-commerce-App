@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_app/core/functions/get_image_from_url.dart';
+import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/features/client_features/home/data/models/image_model.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -50,11 +51,14 @@ class _CustomImageSliderState extends State<CustomImageSlider> {
         AnimatedSmoothIndicator(
           activeIndex: _current,
           count: widget.images.length,
-          effect: const ExpandingDotsEffect(
-              dotHeight: 8,
-              dotWidth: 8,
-              activeDotColor: Colors.black,
-              dotColor: Colors.black12),
+          effect: ExpandingDotsEffect(
+            dotHeight: 8,
+            dotWidth: 8,
+            // activeDotColor: Colors.black,
+            // dotColor: Colors.black12,
+            activeDotColor: MyColors.primaryColor,
+            dotColor: MyColors.lighBackgroundColor,
+          ),
         ),
       ],
     );

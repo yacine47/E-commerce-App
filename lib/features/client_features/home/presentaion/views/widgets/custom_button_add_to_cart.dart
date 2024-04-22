@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class CustomButtonAddToCart extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.black,
+          backgroundColor: MyColors.primaryColor,
         ),
         child: isLoadingState == false
             ? Row(

@@ -10,4 +10,10 @@ abstract class MyColors {
   static const Color textFieldColor = Color(0xffFAFAFA);
   static Color borderCategoryColor = const Color(0xffEDEDED);
   static Color starColor = const Color(0xffE6BB66);
+  static Color shimmerBaseColor = Colors.grey.withOpacity(0.05);
+  static Color shimmerHighlightColor = Colors.grey.withOpacity(0.2);
 }
+
+
+// : Colors.grey.withOpacity(0.05),
+//         : Colors.grey.withOpacity(0.2),
