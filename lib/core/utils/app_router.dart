@@ -5,6 +5,7 @@ import 'package:ecommerce_app/features/authentication/presentation/view_models/l
 import 'package:ecommerce_app/features/authentication/presentation/view_models/register_cubit/register_cubit.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/login_view.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/sign_up_view.dart';
+import 'package:ecommerce_app/features/client_features/home/data/models/product_model.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/product_details_view.dart';
 import 'package:ecommerce_app/features/client_features/review/presentaion/views/product_reviews_view.dart';
@@ -48,7 +49,8 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: ProductDetailsView.path,
-        builder: (context, state) => const ProductDetailsView(),
+        builder: (context, state) =>
+            ProductDetailsView(productModel: state.extra as ProductModel),
       ),
       GoRoute(
         path: SearchProductView.path,

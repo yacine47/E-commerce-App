@@ -1,8 +1,8 @@
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
-class ErrMessageWidget extends StatelessWidget {
-  const ErrMessageWidget(
+class ErrMessageWidgetAuth extends StatelessWidget {
+  const ErrMessageWidgetAuth(
       {super.key, required this.state, required this.isLoading});
   final dynamic state;
   final bool isLoading;

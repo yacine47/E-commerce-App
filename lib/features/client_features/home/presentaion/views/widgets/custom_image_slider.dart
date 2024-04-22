@@ -1,21 +1,18 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_app/core/functions/get_image_from_url.dart';
+import 'package:ecommerce_app/features/client_features/home/data/models/image_model.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class CustomImageSlider extends StatefulWidget {
-  const CustomImageSlider({super.key});
-
+  const CustomImageSlider({super.key, required this.images});
+  final List<ImageModel> images;
   @override
   State<CustomImageSlider> createState() => _CustomImageSliderState();
 }
 
 class _CustomImageSliderState extends State<CustomImageSlider> {
   int _current = 0;
-  List<String> listImages = [
-    'assets/images/products/1.jpg',
-    'assets/images/products/2.jpg',
-    'assets/images/products/4.jpg',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +34,11 @@ class _CustomImageSliderState extends State<CustomImageSlider> {
               setState(() {});
             },
           ),
-          items: listImages.map((i) {
+          items: widget.images.map((i) {
             return Builder(
               // builder: (context) => CustomImagePlaceView(image: i),
-              builder: (context) => Image.asset(
-                i,
+              builder: (context) => Image.network(
+                getImageFromUrl(i.path!),
                 // height: 370,
                 width: MediaQuery.of(context).size.width,
                 fit: BoxFit.cover,
@@ -52,7 +49,7 @@ class _CustomImageSliderState extends State<CustomImageSlider> {
         const SizedBox(height: 5),
         AnimatedSmoothIndicator(
           activeIndex: _current,
-          count: listImages.length,
+          count: widget.images.length,
           effect: const ExpandingDotsEffect(
               dotHeight: 8,
               dotWidth: 8,

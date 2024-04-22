@@ -1,14 +1,21 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
+import 'package:ecommerce_app/features/client_features/home/data/models/product_model.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/bottom_bar_product_details.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_app_bar_product_details.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_image_slider.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_rate_card.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_read_more_product_details.dart';
-import 'package:flutter/material.dart';
 
 class ProductDetailsViewBody extends StatelessWidget {
-  const ProductDetailsViewBody({super.key});
+  const ProductDetailsViewBody({
+    Key? key,
+    required this.productModel,
+  }) : super(key: key);
+  final ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +26,9 @@ class ProductDetailsViewBody extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  const CustomImageSlider(),
+                   CustomImageSlider(
+                    images: productModel.images!,
+                  ),
                   Positioned(
                     top: 23,
                     child: SizedBox(
@@ -36,19 +45,20 @@ class ProductDetailsViewBody extends StatelessWidget {
                   children: [
                     const CustomRateCard(),
                     const SizedBox(height: 3),
-                    Text('Iphone 15 prx max', style: Styles.style24),
+                    Text(productModel.name!, style: Styles.style24),
                     const SizedBox(height: 10),
-                    const CustomReadMoreProductDetails(),
+                    CustomReadMoreProductDetails(
+                        text: productModel.description!),
                     const SizedBox(height: 21),
-                    Text('Size', style: Styles.style18),
-                    const Row(
-                      children: [
-                        SizedProductItem(hint: 'S'),
-                        SizedProductItem(hint: 'M'),
-                        SizedProductItem(hint: 'L'),
-                        SizedProductItem(hint: 'XL'),
-                      ],
-                    )
+                    // Text('Size', style: Styles.style18),
+                    // const Row(
+                    //   children: [
+                    //     SizedProductItem(hint: 'S'),
+                    //     SizedProductItem(hint: 'M'),
+                    //     SizedProductItem(hint: 'L'),
+                    //     SizedProductItem(hint: 'XL'),
+                    //   ],
+                    // )
                   ],
                 ),
               ),
@@ -56,6 +66,7 @@ class ProductDetailsViewBody extends StatelessWidget {
           ),
         ),
         BottomBarProductDetails(
+          price: productModel.price!,
           onPressed: () {},
         ),
       ],

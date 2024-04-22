@@ -1,11 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_app/core/functions/get_image_from_url.dart';
+import 'package:ecommerce_app/core/functions/get_price_format.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
+import 'package:ecommerce_app/core/widgets/custom_loading_image.dart';
+import 'package:ecommerce_app/features/client_features/home/data/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key, this.onTap});
+  const ProductItem({super.key, this.onTap, required this.productModel});
   final void Function()? onTap;
+  final ProductModel productModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -19,6 +25,10 @@ class ProductItem extends StatelessWidget {
               blurStyle: BlurStyle.normal),
         ]),
         child: Card(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                  12) // Specify the desired border radius here
+              ),
           elevation: 0,
           shadowColor: Colors.transparent,
           color: Colors.white,
@@ -26,8 +36,18 @@ class ProductItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AspectRatio(
-                  aspectRatio: 180 / 143,
-                  child: Image.asset('assets/images/Rectangle 5676.png')),
+                aspectRatio: 180 / 143,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: CachedNetworkImage(
+                    imageUrl: getImageFromUrl(productModel.images![0].path!),
+                    placeholder: (context, url) => const CustomLoadingImage(),
+                    errorWidget: (context, url, error) =>
+                        const CustomLoadingImage(),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -36,7 +56,7 @@ class ProductItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        'Laptop Asus VivoBok 15',
+                        productModel.name!,
                         overflow: TextOverflow.ellipsis,
                         style: Styles.style14.copyWith(
                             color: Colors.black, fontWeight: FontWeight.w500),
@@ -57,7 +77,7 @@ class ProductItem extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        '45,000 DZD',
+                        '${getPriceFormat(productModel.price!)} DA',
                         style: Styles.style16.copyWith(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,

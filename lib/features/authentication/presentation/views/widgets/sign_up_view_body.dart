@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/core/widgets/error_message_widget.dart';
+import 'package:ecommerce_app/core/widgets/error_message_widget_auth.dart';
 import 'package:ecommerce_app/features/authentication/presentation/view_models/register_cubit/register_cubit.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/login_view.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/auther_option.dart';
@@ -49,7 +49,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   style: Styles.style40,
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * .02),
-                ErrMessageWidget(
+                ErrMessageWidgetAuth(
                   isLoading: state is RegisterFailure,
                   state: state,
                 ),

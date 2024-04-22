@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/constants.dart';
+import 'package:ecommerce_app/core/functions/get_price_format.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_button_add_to_cart.dart';
@@ -7,9 +8,10 @@ import 'package:flutter/material.dart';
 class BottomBarProductDetails extends StatelessWidget {
   const BottomBarProductDetails({
     super.key,
-    this.onPressed,
+    this.onPressed, required this.price,
   });
   final VoidCallback? onPressed;
+  final int price;
   @override
   Widget build(BuildContext context) {
     return ItemHasPadding(
@@ -19,7 +21,7 @@ class BottomBarProductDetails extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            '46000 DZD',
+            '${getPriceFormat(price)} DA',
             style: Styles.style24.copyWith(fontWeight: FontWeight.bold),
           ),
           SizedBox(

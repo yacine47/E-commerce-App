@@ -1,16 +1,15 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
+import 'package:ecommerce_app/core/widgets/custom_failure_widget.dart';
 import 'package:ecommerce_app/core/widgets/custom_loading_widget.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/category_cubit/category_cubit.dart';
-import 'package:ecommerce_app/features/client_features/home/presentaion/views/product_details_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/category_item_list_view.dart';
-import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/product_item.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/product_items_list_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/search_product_home_view_body.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/title_items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 
 class HomeClientViewBody extends StatelessWidget {
@@ -54,7 +53,9 @@ class HomeClientViewBody extends StatelessWidget {
                       categories: state.categories,
                     );
                   } else if (state is CategoryFailure) {
-                    return Text(state.errMessage);
+                    return CustomFailureWidget(
+                      errMessage: state.errMessage,
+                    );
                   }
                   return const CustomLoadingWidget();
                 },
@@ -65,29 +66,25 @@ class HomeClientViewBody extends StatelessWidget {
             ],
           ),
         ),
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: kHorPadding,
-          ),
-          sliver: SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 6,
-              crossAxisSpacing: 0,
-              childAspectRatio: 3 / 4,
-              // childAspectRatio: 3.5 / 4,
-            ),
-
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => ProductItem(
-                onTap: () => GoRouter.of(context).push(ProductDetailsView.path),
-              ),
-              childCount: 15,
-            ),
-            // itemCount: 10,
-            // itemBuilder: (context, index) => const ProductItem(),
-          ),
-        )
+        // const SliverAppBar(
+        //   backgroundColor: Colors.white,
+        //   title: CustomLoadingWidget()),
+        const ProductItemsGridView(),
+        // SliverToBoxAdapter(
+        //   child: GridView.builder(
+        //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        //       crossAxisCount: 2,
+        //       mainAxisSpacing: 6,
+        //       crossAxisSpacing: 0,
+        //       childAspectRatio: 3 / 4,
+        //       // childAspectRatio: 3.5 / 4,
+        //     ),
+        //     itemCount: 15,
+        //     itemBuilder: (context, index) => ProductItem(
+        //       onTap: () => GoRouter.of(context).push(ProductDetailsView.path),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

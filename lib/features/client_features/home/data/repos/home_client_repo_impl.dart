@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:ecommerce_app/core/errors/failures.dart';
 import 'package:ecommerce_app/core/utils/api_service.dart';
 import 'package:ecommerce_app/features/client_features/home/data/models/category_model.dart';
+import 'package:ecommerce_app/features/client_features/home/data/models/product_model.dart';
 import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo.dart';
 
 class HomeClientRepoImpl extends HomeClientRepo {
@@ -21,6 +22,23 @@ class HomeClientRepoImpl extends HomeClientRepo {
       }
 
       return right(categories);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServiceFailure.fromDioError(e));
+      }
+      return left(ServiceFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ProductModel>>> getAllProducts() async {
+    try {
+      List<dynamic> data = await apiService.get('products');
+      List<ProductModel> products = [];
+      for (var element in data) {
+        products.add(ProductModel.fromJson(element));
+      }
+      return right(products);
     } catch (e) {
       if (e is DioException) {
         return left(ServiceFailure.fromDioError(e));
