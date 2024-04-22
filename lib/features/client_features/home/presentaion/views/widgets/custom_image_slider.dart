@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ecommerce_app/core/functions/get_image_from_url.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/features/client_features/home/data/models/image_model.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -14,6 +14,8 @@ class CustomImageSlider extends StatefulWidget {
 
 class _CustomImageSliderState extends State<CustomImageSlider> {
   int _current = 0;
+
+  get productModel => null;
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +40,8 @@ class _CustomImageSliderState extends State<CustomImageSlider> {
           items: widget.images.map((i) {
             return Builder(
               // builder: (context) => CustomImagePlaceView(image: i),
-              builder: (context) => Image.network(
-                getImageFromUrl(i.path!),
-                // height: 370,
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.cover,
-              ),
+              builder: (context) =>
+                  CustomCachedNetworkImage(path: i.path!),
             );
           }).toList(),
         ),

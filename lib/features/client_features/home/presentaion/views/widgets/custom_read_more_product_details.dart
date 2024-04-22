@@ -4,7 +4,8 @@ import 'package:readmore/readmore.dart';
 
 class CustomReadMoreProductDetails extends StatelessWidget {
   const CustomReadMoreProductDetails({
-    super.key, required this.text,
+    super.key,
+    required this.text,
   });
   final String text;
 
@@ -12,7 +13,7 @@ class CustomReadMoreProductDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return ReadMoreText(
       text,
-      trimLines: 3,
+      trimLines: 6,
       trimMode: TrimMode.Line,
       trimCollapsedText: 'Read More.',
       trimExpandedText: ' Show Less.',

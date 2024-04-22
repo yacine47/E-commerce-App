@@ -1,10 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommerce_app/core/functions/get_image_from_url.dart';
 import 'package:ecommerce_app/core/functions/get_price_format.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
-import 'package:ecommerce_app/core/widgets/custom_loading_image.dart';
 import 'package:ecommerce_app/features/client_features/home/data/models/product_model.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
@@ -39,13 +37,8 @@ class ProductItem extends StatelessWidget {
                 aspectRatio: 180 / 143,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
-                  child: CachedNetworkImage(
-                    imageUrl: getImageFromUrl(productModel.images![0].path!),
-                    placeholder: (context, url) => const CustomLoadingImage(),
-                    errorWidget: (context, url, error) =>
-                        const CustomLoadingImage(),
-                    fit: BoxFit.cover,
-                  ),
+                  child: CustomCachedNetworkImage(
+                      path: productModel.images![0].path!),
                 ),
               ),
               Expanded(
