@@ -27,8 +27,8 @@ class ProductModel {
   double? reviewsSum;
   List<ImageModel>? images;
 
-  double devision(double? num1 , int? num2) {
-    return num1!/num2!;
+  double devision(double? num1, int? num2) {
+    return num1! / num2!;
   }
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -46,7 +46,9 @@ class ProductModel {
           : List<ImageModel>.from(
               json["images"]!.map((x) => ImageModel.fromJson(x))),
       reviewsCount: json['reviews_count'],
-      reviewsSum: json['reviews_sum_reviewsrating'],
+      reviewsSum: json['reviews_sum_reviewsrating'] == null
+          ? 0
+          : double.parse(json['reviews_sum_reviewsrating']),
     );
   }
 }
