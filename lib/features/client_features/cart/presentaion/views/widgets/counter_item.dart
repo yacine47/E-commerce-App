@@ -5,20 +5,24 @@ class CounterItem extends StatelessWidget {
   const CounterItem({
     super.key,
     required this.backgroundColor,
-    required this.iconify,
+    required this.iconify, this.onTap,
   });
   final Color backgroundColor;
   final String iconify;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 12,
-      backgroundColor: backgroundColor,
-      child: Iconify(
-        iconify,
-        size: 16,
-        color: Colors.white,
+    return GestureDetector(
+      onTap: onTap,
+      child: CircleAvatar(
+        radius: 12,
+        backgroundColor: backgroundColor,
+        child: Iconify(
+          iconify,
+          size: 16,
+          color: Colors.white,
+        ),
       ),
     );
   }

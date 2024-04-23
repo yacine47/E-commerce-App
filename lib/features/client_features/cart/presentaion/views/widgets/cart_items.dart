@@ -3,8 +3,8 @@ import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/counter_product_cart.dart';
 import 'package:flutter/material.dart';
 
-class AddToCartItems extends StatelessWidget {
-  const AddToCartItems({
+class CartItems extends StatelessWidget {
+  const CartItems({
     super.key,
   });
 
