@@ -1,9 +1,11 @@
 import 'package:ecommerce_app/core/utils/styles.dart';
+import 'package:ecommerce_app/features/client_features/home/data/models/product_model.dart';
 import 'package:ecommerce_app/features/client_features/review/presentaion/views/widgets/custom_rating_bar.dart';
 import 'package:flutter/material.dart';
 
 class CustomRateCard extends StatelessWidget {
-  const CustomRateCard({super.key});
+  const CustomRateCard({super.key, required this.productModel});
+  final ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +15,11 @@ class CustomRateCard extends StatelessWidget {
         const SizedBox(
           width: 4,
         ),
-        Text('4.5',
+        Text('${productModel.rating}',
             style: Styles.style12
                 .copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
         Text(
-          ' (1419 reviews)',
+          ' (${productModel.reviewsCount} reviews)',
           style: Styles.style12
               .copyWith(color: Colors.black, fontWeight: FontWeight.w600),
         ),

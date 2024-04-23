@@ -12,7 +12,7 @@ class ProductModel {
     this.updatedAt,
     this.images,
     this.reviewsCount,
-    this.reviewsSum,
+    this.rating,
   });
 
   int? id;
@@ -24,7 +24,7 @@ class ProductModel {
   DateTime? createdAt;
   DateTime? updatedAt;
   int? reviewsCount;
-  double? reviewsSum;
+  double? rating;
   List<ImageModel>? images;
 
   double devision(double? num1, int? num2) {
@@ -46,9 +46,9 @@ class ProductModel {
           : List<ImageModel>.from(
               json["images"]!.map((x) => ImageModel.fromJson(x))),
       reviewsCount: json['reviews_count'],
-      reviewsSum: json['reviews_sum_reviewsrating'] == null
+      rating: json['reviews_avg_reviewsrating'] == null
           ? 0
-          : double.parse(json['reviews_sum_reviewsrating']),
+          : double.parse(json['reviews_avg_reviewsrating']),
     );
   }
 }

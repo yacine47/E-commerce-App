@@ -26,7 +26,7 @@ class ProductDetailsViewBody extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                   CustomImageSlider(
+                  CustomImageSlider(
                     images: productModel.images!,
                   ),
                   Positioned(
@@ -43,7 +43,7 @@ class ProductDetailsViewBody extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CustomRateCard(),
+                    CustomRateCard(productModel: productModel),
                     const SizedBox(height: 3),
                     Text(productModel.name!, style: Styles.style24),
                     const SizedBox(height: 10),
