@@ -1,10 +1,12 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_button_submit.dart';
+import 'package:ecommerce_app/core/widgets/go_back_button.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/cart_items_list_view.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/total_price_cart.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});
@@ -13,12 +15,22 @@ class CartViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 9),
-        Center(
-          child: Text(
-            'Cart',
-            style: Styles.style24,
-            textAlign: TextAlign.center,
+        const SizedBox(height: 23),
+        ItemHasPadding(
+          horPadding: kHorPadding,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GoRouter.of(context).canPop()
+                  ? const GoBackButton()
+                  : const SizedBox(),
+              Text(
+                'Cart',
+                style: Styles.style24,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox()
+            ],
           ),
         ),
         // const SizedBox(height: 54),

@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/widgets/custom_failure_widget.dart';
 import 'package:ecommerce_app/core/widgets/custom_loading_products_grid_view.dart';
-import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/all_product/all_product_cubit.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/product_by_category_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/product_items_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,32 +14,29 @@ class ProductItemsFetchData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kHorPadding,
-        ),
-        sliver: BlocBuilder<AllProductCubit, AllProductState>(
-          builder: (context, state) {
-            if (state is AllProductFailure) {
-              return SliverAppBar(
-                title: CustomFailureWidget(
-                  errMessage: state.errMessage,
-                ),
-                backgroundColor: Colors.white,
-              );
-            } else if (state is AllProductSuccess) {
-              return ProductItemsGridView(
-                products: state.products,
-              );
-            } else {
-              // return const SliverAppBar(
-              //   backgroundColor: Colors.white,
-              //   title: CustomLoadingWidget(),
-              // );
-
-              return const CustomLoadingProductsGridView();
-            }
-          },
-        ));
+      // ProductByCategoryCubit
+      padding: const EdgeInsets.symmetric(
+        horizontal: kHorPadding,
+      ),
+      sliver: BlocBuilder<ProductByCategoryCubit, ProductByCategoryState>(
+        builder: (context, state) {
+          if (state is ProductByCategoryFailure) {
+            return SliverAppBar(
+              title: CustomFailureWidget(
+                errMessage: state.errMessage,
+              ),
+              backgroundColor: Colors.white,
+            );
+          } else if (state is ProductByCategorySuccess) {
+            return ProductItemsGridView(
+              products: state.products,
+            );
+          } else {
+            return const CustomLoadingProductsGridView();
+          }
+        },
+      ),
+    );
   }
 }
 

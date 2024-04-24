@@ -30,14 +30,34 @@ class HomeClientRepoImpl extends HomeClientRepo {
     }
   }
 
+  // @override
+  // Future<Either<Failure, List<ProductModel>>> getAllProducts() async {
+  //   try {
+  //     List<dynamic> data = await apiService.get('products');
+  //     List<ProductModel> products = [];
+  //     for (var element in data) {
+  //       products.add(ProductModel.fromJson(element));
+  //     }
+  //     return right(products);
+  //   } catch (e) {
+  //     if (e is DioException) {
+  //       return left(ServiceFailure.fromDioError(e));
+  //     }
+  //     return left(ServiceFailure(e.toString()));
+  //   }
+  // }
+
   @override
-  Future<Either<Failure, List<ProductModel>>> getAllProducts() async {
+  Future<Either<Failure, List<ProductModel>>> getProductByCategory(
+      int idCategory) async {
     try {
-      List<dynamic> data = await apiService.get('products');
+      List<dynamic> data =
+          await apiService.get('products/category/$idCategory');
       List<ProductModel> products = [];
       for (var element in data) {
         products.add(ProductModel.fromJson(element));
       }
+
       return right(products);
     } catch (e) {
       if (e is DioException) {

@@ -1,7 +1,9 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/features/client_features/home/data/models/category_model.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/product_by_category_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/category_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoryItemListView extends StatefulWidget {
   const CategoryItemListView({super.key, required this.categories});
@@ -25,6 +27,8 @@ class _CategoryItemListViewState extends State<CategoryItemListView> {
             return CategoryItem(
               onTap: () {
                 currentIndex = index;
+                BlocProvider.of<ProductByCategoryCubit>(context)
+                    .getProductByCategory(index + 1);
                 setState(() {});
               },
               isActive: currentIndex == index,
