@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce_app/features/authentication/data/models/user_model.dart';
 import 'package:ecommerce_app/features/authentication/data/repos/auth_repo.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:meta/meta.dart';
 
 part 'login_state.dart';
@@ -9,7 +10,7 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.authRepo, this.userModel) : super(LoginInitial());
 
   final AuthRepo authRepo;
-  final  UserModel userModel;
+  final UserModel userModel;
 
   Future<void> login() async {
     emit(LoginLoading());
@@ -21,9 +22,11 @@ class LoginCubit extends Cubit<LoginState> {
     result.fold(
         (failure) => emit(
               LoginFailure(failure.error),
-            ),
-        (token) => emit(
-              LoginSuccess(token.userModel),
-            ));
+            ), (token) async {
+      Box setings = Hive.box('settings');
+      await setings.put('token', token.accessToken);
+      await setings.put('role', token.userModel.role);
+      emit(LoginSuccess(token.userModel));
+    });
   }
 }

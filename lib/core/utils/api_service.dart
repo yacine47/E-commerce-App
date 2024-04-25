@@ -8,6 +8,7 @@ class ApiService {
 
   Future<dynamic> get(String endPoint) async {
     Response response = await _dio.get('$baseUrl$endPoint');
+
     return response.data;
   }
 
@@ -19,7 +20,15 @@ class ApiService {
 
     return response.data;
   }
+
+  Future<String> refreshToken(String token) async {
+    Map<String, dynamic> dataResponse = await post('auth/refresh', {
+      'token': token,
+    });
+
+    return dataResponse['access_token'];
+  }
 }
 
 
-// 192.168.2.101
+// 192.168.2. 

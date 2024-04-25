@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/functions/init_route.dart';
 import 'package:ecommerce_app/core/utils/service_locator.dart';
 import 'package:ecommerce_app/features/authentication/data/models/user_model.dart';
 import 'package:ecommerce_app/features/authentication/data/repos/auth_repo_impl.dart';
@@ -18,7 +19,7 @@ import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
   static final router = GoRouter(
-    initialLocation: HomeClientView.path,
+    initialLocation: initRoute(),
     routes: [
       GoRoute(
         path: IntroductionScreenView.path,

@@ -9,6 +9,7 @@ import 'package:ecommerce_app/features/client_features/home/presentaion/views/wi
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_image_slider.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_rate_card.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_read_more_product_details.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class ProductDetailsViewBody extends StatelessWidget {
   const ProductDetailsViewBody({
@@ -66,9 +67,13 @@ class ProductDetailsViewBody extends StatelessWidget {
           ),
         ),
         BottomBarProductDetails(
-          price: productModel.price!,
-          onPressed: () {},
-        ),
+            price: productModel.price!,
+            onPressed: () {
+              bool isExpired = JwtDecoder.isExpired(
+                  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MTQwMzM1OTEsImV4cCI6MTcxNDAzNzE5MSwibmJmIjoxNzE0MDMzNTkxLCJqdGkiOiJ2RXFPdVFCSUJ2b0JobjkxIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.K5MHSEQWyWoXxBVulnFnVgeznV9pidu0TSFK6oAmHLg");
+
+              print(isExpired);
+            }),
       ],
     );
   }

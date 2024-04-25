@@ -8,9 +8,11 @@ import 'package:get_it/get_it.dart';
 final getIt = GetIt.instance;
 
 void setup() {
-  getIt.registerSingleton<ApiService>(ApiService(Dio()));
+  getIt.registerSingleton<Dio>(Dio());
+  getIt.registerSingleton<ApiService>(ApiService(getIt.get<Dio>()));
   getIt.registerSingleton<AuthRepoImpl>(AuthRepoImpl(getIt.get<ApiService>()));
-  getIt.registerSingleton<HomeClientRepoImpl>(HomeClientRepoImpl(getIt.get<ApiService>()));
+  getIt.registerSingleton<HomeClientRepoImpl>(
+      HomeClientRepoImpl(getIt.get<ApiService>()));
   getIt.registerSingleton<UserModel>(UserModel());
 
 // // Alternatively you could write it if you don't like global variables

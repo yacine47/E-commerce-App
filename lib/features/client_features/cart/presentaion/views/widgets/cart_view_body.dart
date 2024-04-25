@@ -29,7 +29,7 @@ class CartViewBody extends StatelessWidget {
                 style: Styles.style24,
                 textAlign: TextAlign.center,
               ),
-              const SizedBox()
+              const SizedBox(),
             ],
           ),
         ),
