@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/features/client_features/home/data/models/image_model.dart';
+import 'package:ecommerce_app/core/models/image_model.dart';
 
 class ProductModel {
   ProductModel({

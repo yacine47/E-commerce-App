@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/cart_view.dart';
-import 'package:ecommerce_app/features/client_features/home/data/models/product_model.dart';
+import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/product_details_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
-import 'package:ecommerce_app/features/client_features/home/data/models/image_model.dart';
+import 'package:ecommerce_app/core/models/image_model.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
