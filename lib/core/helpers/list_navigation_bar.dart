@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/core/utils/service_locator.dart';
 import 'package:ecommerce_app/core/widgets/profil_view_body.dart';
+import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo_impl.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/cart_view.dart';
 import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/category_cubit/category_cubit.dart';
@@ -22,16 +24,19 @@ abstract class NavigationView {
           create: (context) => CategoryCubit(getIt.get<HomeClientRepoImpl>())
             ..getAllCategories(),
         ),
-        // BlocProvider<AllProductCubit>(
-        //     create: (context) =>
-        //         AllProductCubit(getIt.get<HomeClientRepoImpl>())
-        //     // ..getAllProducts(),
-        //     ),
       ],
       child: const HomeClientViewBody(),
     ),
     const HomeClientViewBody(),
-    const CartView(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<ProductCartCubit>(
+          create: (context) =>
+              ProductCartCubit(getIt.get<CartRepoImpl>())..getProductCart(),
+        ),
+      ],
+      child: const CartView(),
+    ),
     const ProfileViewBody(),
   ];
 

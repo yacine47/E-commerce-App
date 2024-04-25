@@ -1,9 +1,22 @@
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
+import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'product_cart_state.dart';
 
 class ProductCartCubit extends Cubit<ProductCartState> {
-  ProductCartCubit() : super(ProductCartInitial());
+  ProductCartCubit(this.cartRepo) : super(ProductCartInitial());
+
+  final CartRepo cartRepo;
+
+  Future<void> getProductCart() async {
+    emit(ProductCartLoading());
+    var result = await cartRepo.getProductCart();
+
+    result.fold(
+      (failure) => emit(ProductCartFailure(failure.error)),
+      (categories) => emit(ProductCartSuccess(categories)),
+    );
+  }
 }

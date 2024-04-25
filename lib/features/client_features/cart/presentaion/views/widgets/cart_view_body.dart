@@ -3,7 +3,7 @@ import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_button_submit.dart';
 import 'package:ecommerce_app/core/widgets/go_back_button.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
-import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/cart_items_list_view.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/cart_item_fetch_data.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/total_price_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -38,7 +38,7 @@ class CartViewBody extends StatelessWidget {
         Expanded(
           child: Column(
             children: [
-              const CartItemsListView(),
+              const CartItemFetchData(),
               const SizedBox(height: 16),
               const TotalPriceCart(),
               const SizedBox(height: 16),
