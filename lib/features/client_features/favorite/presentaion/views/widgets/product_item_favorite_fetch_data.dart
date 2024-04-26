@@ -1,13 +1,13 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/widgets/custom_failure_widget.dart';
 import 'package:ecommerce_app/core/widgets/custom_loading_products_grid_view.dart';
-import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/product_by_category_cubit.dart';
+import 'package:ecommerce_app/features/client_features/favorite/presentaion/view_models/favorite_product/favorite_product_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/product_items_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductItemsFetchData extends StatelessWidget {
-  const ProductItemsFetchData({
+class ProductItemsFavoriteFetchData extends StatelessWidget {
+  const ProductItemsFavoriteFetchData({
     super.key,
   });
 
@@ -18,16 +18,16 @@ class ProductItemsFetchData extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: kHorPadding,
       ),
-      sliver: BlocBuilder<ProductByCategoryCubit, ProductByCategoryState>(
+      sliver: BlocBuilder<FavoriteProductCubit, FavoriteProductState>(
         builder: (context, state) {
-          if (state is ProductByCategoryFailure) {
+          if (state is FavoriteProductFailure) {
             return SliverAppBar(
               title: CustomFailureWidget(
                 errMessage: state.errMessage,
               ),
               backgroundColor: Colors.white,
             );
-          } else if (state is ProductByCategorySuccess) {
+          } else if (state is FavoriteProductSuccess) {
             return ProductItemsGridView(
               products: state.products,
             );
@@ -39,22 +39,3 @@ class ProductItemsFetchData extends StatelessWidget {
     );
   }
 }
-
-// SliverGrid(
-//         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//           crossAxisCount: 2,
-//           mainAxisSpacing: 6,
-//           crossAxisSpacing: 0,
-//           childAspectRatio: 3 / 4,
-//           // childAspectRatio: 3.5 / 4,
-//         ),
-
-//         delegate: SliverChildBuilderDelegate(
-//           (context, index) => ProductItem(
-//             onTap: () => GoRouter.of(context).push(ProductDetailsView.path),
-//           ),
-//           childCount: 15,
-//         ),
-//         // itemCount: 10,
-//         // itemBuilder: (context, index) => const ProductItem(),
-//       ),

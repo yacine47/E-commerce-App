@@ -2,7 +2,7 @@ import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/category_item_fetch_data.dart';
-import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/product_items_fetch_data.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/product_items_home_fetch_data.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/search_product_home_view_body.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/title_items.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +49,7 @@ class HomeClientViewBody extends StatelessWidget {
             ],
           ),
         ),
-        const ProductItemsFetchData(),
+        const ProductItemsHomeFetchData(),
       ],
     );
   }

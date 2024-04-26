@@ -3,6 +3,9 @@ import 'package:ecommerce_app/core/widgets/profil_view_body.dart';
 import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/cart_view.dart';
+import 'package:ecommerce_app/features/client_features/favorite/data/repos/favorite_repo_impl.dart';
+import 'package:ecommerce_app/features/client_features/favorite/presentaion/view_models/favorite_product/favorite_product_cubit.dart';
+import 'package:ecommerce_app/features/client_features/favorite/presentaion/views/widgets/favorite_view_body.dart';
 import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/category_cubit/category_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/product_by_category_cubit.dart';
@@ -27,7 +30,11 @@ abstract class NavigationView {
       ],
       child: const HomeClientViewBody(),
     ),
-    const HomeClientViewBody(),
+    BlocProvider(
+      create: (context) => FavoriteProductCubit(getIt.get<FavoriteRepoImpl>())
+        ..getFavoriteProducts(),
+      child: const FavoriteViewBody(),
+    ),
     MultiBlocProvider(
       providers: [
         BlocProvider<ProductCartCubit>(

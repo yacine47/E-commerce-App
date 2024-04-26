@@ -19,7 +19,7 @@ class CustomTextFromField extends StatelessWidget {
     this.borderColor = MyColors.textFieldColor,
     this.borderRaduis = 12,
     this.contentPadding =
-        const EdgeInsets.only(bottom: 18, top: 18, left: 18, right: 18), this.autofocus = false,
+        const EdgeInsets.only(bottom: 18, top: 18, left: 18, right: 18), this.autofocus = false, this.onFieldSubmitted,
   });
   // final TextEditingController? controller;
   final int maxLines;
@@ -34,10 +34,12 @@ class CustomTextFromField extends StatelessWidget {
   final Function(String?)? onSaved;
   final EdgeInsetsGeometry contentPadding;
   final bool autofocus ;
+  final void Function(String)? onFieldSubmitted;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       autofocus: autofocus,
+      onFieldSubmitted: onFieldSubmitted,
       onSaved: onSaved,
       validator: validator,
       onChanged: onChanged,

@@ -3,7 +3,7 @@ import 'package:ecommerce_app/features/authentication/data/models/user_model.dar
 class TokenModel {
   final String accessToken;
   final String tokenType;
-  final int expiresIn;
+  final double expiresIn;
   final UserModel userModel;
 
   TokenModel(

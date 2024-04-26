@@ -19,7 +19,6 @@ class ProductItemsGridView extends StatelessWidget {
         mainAxisSpacing: 6,
         crossAxisSpacing: 0,
         childAspectRatio: 3 / 4,
-        // childAspectRatio: 3.5 / 4,
       ),
       delegate: SliverChildBuilderDelegate(
         (context, index) => ProductItem(

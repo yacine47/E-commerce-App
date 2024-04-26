@@ -3,7 +3,11 @@ import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
+import 'package:ecommerce_app/features/client_features/search/data/models/result_model.dart';
+import 'package:ecommerce_app/features/client_features/search/presentaion/view_models/search_product_cubit/search_product_cubit.dart';
+import 'package:ecommerce_app/features/client_features/search/presentaion/views/result_product_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 
@@ -21,6 +25,14 @@ class SearchProductViewBody extends StatelessWidget {
             children: [
               Expanded(
                 child: CustomTextFromField(
+                  onFieldSubmitted: (value) async {
+                    if (value.isNotEmpty) {
+                      BlocProvider.of<SearchProductCubit>(context).search =
+                          value;
+                      await BlocProvider.of<SearchProductCubit>(context)
+                          .searchProduct();
+                    }
+                  },
                   autofocus: true,
                   borderColor: Colors.black.withOpacity(0.2),
                   hint: 'Search Product',
@@ -39,6 +51,20 @@ class SearchProductViewBody extends StatelessWidget {
                     )),
               )
             ],
+          ),
+
+          BlocListener<SearchProductCubit, SearchProductState>(
+            listener: (context, state) {
+              if (state is SearchProductSuccess) {
+                GoRouter.of(context).pushReplacement(ResultProductView.path,
+                    extra: ResultModel(
+                      products: state.products,
+                      search:
+                          BlocProvider.of<SearchProductCubit>(context).search,
+                    ));
+              }
+            },
+            child: const SizedBox(),
           ),
           // Stepper(
           //   connectorColor: MaterialStatePropertyAll(MyColors.primaryColor),
