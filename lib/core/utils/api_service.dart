@@ -17,6 +17,7 @@ class ApiService {
 
     Response response = await _dio.get('$baseUrl$endPoint',
         options: Options(headers: {'authorization': 'Bearer $token'}));
+
     return response.data;
   }
 
