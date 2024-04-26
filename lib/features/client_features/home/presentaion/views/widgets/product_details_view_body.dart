@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommerce_app/features/client_features/review/presentaion/views/product_reviews_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ecommerce_app/constants.dart';
@@ -9,7 +10,7 @@ import 'package:ecommerce_app/features/client_features/home/presentaion/views/wi
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_image_slider.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_rate_card.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_read_more_product_details.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductDetailsViewBody extends StatelessWidget {
   const ProductDetailsViewBody({
@@ -44,7 +45,12 @@ class ProductDetailsViewBody extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomRateCard(productModel: productModel),
+                    CustomRateCard(
+                        onTap: () => GoRouter.of(context).push(
+                              ProductReviewsView.path,
+                              extra: productModel.id,
+                            ),
+                        productModel: productModel),
                     const SizedBox(height: 3),
                     Text(productModel.name!, style: Styles.style24),
                     const SizedBox(height: 10),
@@ -66,14 +72,7 @@ class ProductDetailsViewBody extends StatelessWidget {
             ],
           ),
         ),
-        BottomBarProductDetails(
-            price: productModel.price!,
-            onPressed: () {
-              bool isExpired = JwtDecoder.isExpired(
-                  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MTQwMzM1OTEsImV4cCI6MTcxNDAzNzE5MSwibmJmIjoxNzE0MDMzNTkxLCJqdGkiOiJ2RXFPdVFCSUJ2b0JobjkxIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.K5MHSEQWyWoXxBVulnFnVgeznV9pidu0TSFK6oAmHLg");
-
-              print(isExpired);
-            }),
+        BottomBarProductDetails(price: productModel.price!, onPressed: () {}),
       ],
     );
   }

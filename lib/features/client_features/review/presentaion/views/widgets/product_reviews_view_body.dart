@@ -1,8 +1,8 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
 import 'package:ecommerce_app/features/client_features/review/presentaion/views/widgets/app_bar_reviews.dart';
-import 'package:ecommerce_app/features/client_features/review/presentaion/views/widgets/custom_review_item_list_view.dart';
 import 'package:ecommerce_app/features/client_features/review/presentaion/views/widgets/custom_review_score.dart';
+import 'package:ecommerce_app/features/client_features/review/presentaion/views/widgets/product_review_fetch_data.dart';
 import 'package:flutter/material.dart';
 
 class ProductReviewsViewBody extends StatelessWidget {
@@ -29,7 +29,7 @@ class ProductReviewsViewBody extends StatelessWidget {
           SizedBox(height: 12),
           CustomReviewScore(),
           SizedBox(height: 16),
-          CustomReviewItemListView(),
+          ProductReviewFetchData(),
         ],
       ),
     );

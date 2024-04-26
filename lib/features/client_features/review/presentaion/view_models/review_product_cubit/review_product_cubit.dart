@@ -6,9 +6,9 @@ import 'package:meta/meta.dart';
 part 'review_product_state.dart';
 
 class ReviewProductCubit extends Cubit<ReviewProductState> {
-  ReviewProductCubit(this.reviewRepo) : super(ReviewProductInitial());
+  ReviewProductCubit(this.reviewRepo, this.idProduct) : super(ReviewProductInitial());
 
-  late int idProduct;
+  final int idProduct;
   final ReviewRepo reviewRepo;
 
   Future<void> getFavoriteProducts() async {

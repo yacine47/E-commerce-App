@@ -5,6 +5,7 @@ import 'package:ecommerce_app/features/authentication/data/repos/auth_repo_impl.
 import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/favorite/data/repos/favorite_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo_impl.dart';
+import 'package:ecommerce_app/features/client_features/review/data/repos/review_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/search/data/repos/search_repo_impl.dart';
 import 'package:get_it/get_it.dart';
 
@@ -16,6 +17,9 @@ void setup() {
   getIt.registerSingleton<AuthRepoImpl>(AuthRepoImpl(getIt.get<ApiService>()));
   getIt.registerSingleton<FavoriteRepoImpl>(
       FavoriteRepoImpl(getIt.get<ApiService>()));
+
+  getIt.registerSingleton<ReviewRepoImpl>(
+      ReviewRepoImpl(getIt.get<ApiService>()));
 
   getIt.registerSingleton<SearchRepoImpl>(
       SearchRepoImpl(getIt.get<ApiService>()));

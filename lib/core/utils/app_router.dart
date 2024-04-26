@@ -11,6 +11,8 @@ import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/features/client_features/favorite/presentaion/views/favorite_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/product_details_view.dart';
+import 'package:ecommerce_app/features/client_features/review/data/repos/review_repo_impl.dart';
+import 'package:ecommerce_app/features/client_features/review/presentaion/view_models/review_product_cubit/review_product_cubit.dart';
 import 'package:ecommerce_app/features/client_features/review/presentaion/views/product_reviews_view.dart';
 import 'package:ecommerce_app/features/client_features/search/data/models/result_model.dart';
 import 'package:ecommerce_app/features/client_features/search/data/repos/search_repo_impl.dart';
@@ -61,7 +63,12 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: ProductReviewsView.path,
-        builder: (context, state) => const ProductReviewsView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => ReviewProductCubit(
+              getIt.get<ReviewRepoImpl>(), state.extra as int)
+            ..getFavoriteProducts(),
+          child: const ProductReviewsView(),
+        ),
       ),
       GoRoute(
         path: CartView.path,

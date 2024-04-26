@@ -4,9 +4,10 @@ import 'package:ecommerce_app/features/client_features/review/presentaion/views/
 import 'package:flutter/material.dart';
 
 class CustomRateCard extends StatelessWidget {
-  const CustomRateCard({super.key, required this.productModel});
+  const CustomRateCard({super.key, required this.productModel, this.onTap});
   final ProductModel productModel;
 
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,10 +19,13 @@ class CustomRateCard extends StatelessWidget {
         Text('${productModel.rating}',
             style: Styles.style12
                 .copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
-        Text(
-          ' (${productModel.reviewsCount} reviews)',
-          style: Styles.style12
-              .copyWith(color: Colors.black, fontWeight: FontWeight.w600),
+        GestureDetector(
+          onTap: onTap,
+          child: Text(
+            ' (${productModel.reviewsCount} reviews)',
+            style: Styles.style12
+                .copyWith(color: Colors.black, fontWeight: FontWeight.w600),
+          ),
         ),
       ],
     );
