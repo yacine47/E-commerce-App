@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class ApiService {
   final String baseUrl = 'http://10.0.2.2:8000/api/';
@@ -7,8 +9,14 @@ class ApiService {
   ApiService(this._dio);
 
   Future<dynamic> get(String endPoint) async {
-    Response response = await _dio.get('$baseUrl$endPoint',);
+    String? token = Hive.box('settings').get('token');
+    if (token == null || JwtDecoder.isExpired(token)) {
+      Response response = await _dio.get('$baseUrl$endPoint');
+      return response.data;
+    }
 
+    Response response = await _dio.get('$baseUrl$endPoint',
+        options: Options(headers: {'authorization': 'Bearer $token'}));
     return response.data;
   }
 
