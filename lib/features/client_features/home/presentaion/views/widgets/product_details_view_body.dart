@@ -2,7 +2,6 @@
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/widgets/custom_button_submit.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
-import 'package:ecommerce_app/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/add_to_cart/add_to_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_report_product_text_field.dart';
@@ -19,7 +18,6 @@ import 'package:ecommerce_app/features/client_features/home/presentaion/views/wi
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_read_more_product_details.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:iconify_flutter/iconify_flutter.dart';
 
 class ProductDetailsViewBody extends StatelessWidget {
   const ProductDetailsViewBody({
@@ -80,9 +78,9 @@ class ProductDetailsViewBody extends StatelessWidget {
                       ],
                     ),
 
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 4),
                     Text(productModel.name!, style: Styles.style24),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 18),
                     CustomReadMoreProductDetails(
                         text: productModel.description!),
                     const SizedBox(height: 21),

@@ -42,6 +42,12 @@ abstract class Styles {
     color: MyColors.hintColorTextField,
   );
 
+  static TextStyle style13 = const TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
+
   static TextStyle style12 = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,

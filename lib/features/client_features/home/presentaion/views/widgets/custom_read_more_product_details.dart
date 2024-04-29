@@ -13,7 +13,7 @@ class CustomReadMoreProductDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return ReadMoreText(
       text,
-      trimLines: 6,
+      trimLines: 7,
       trimMode: TrimMode.Line,
       trimCollapsedText: 'Read More.',
       trimExpandedText: ' Show Less.',

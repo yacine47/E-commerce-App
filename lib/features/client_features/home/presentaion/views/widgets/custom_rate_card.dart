@@ -12,20 +12,18 @@ class CustomRateCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CustomRatingBar(itemSize: 16),
+        const CustomRatingBar(itemSize: 18),
         const SizedBox(
           width: 4,
         ),
-        Text('${productModel.rating}',
-            style: Styles.style12
-                .copyWith(color: Colors.black, fontWeight: FontWeight.w600)),
+        Text(
+          '${productModel.rating}',
+          style: Styles.style13,
+        ),
         GestureDetector(
           onTap: onTap,
-          child: Text(
-            ' (${productModel.reviewsCount} reviews)',
-            style: Styles.style12
-                .copyWith(color: Colors.black, fontWeight: FontWeight.w600),
-          ),
+          child: Text(' (${productModel.reviewsCount} reviews)',
+              style: Styles.style13),
         ),
       ],
     );

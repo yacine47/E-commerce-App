@@ -29,7 +29,9 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 65),
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.height * .15,
+        ),
         child: FloatingActionButton(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(555),
