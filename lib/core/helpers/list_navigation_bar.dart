@@ -1,14 +1,16 @@
 import 'package:ecommerce_app/core/utils/service_locator.dart';
 import 'package:ecommerce_app/core/widgets/profil_view_body.dart';
 import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo_impl.dart';
-import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/delete_from_cart/delete_from_cart_cubit.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/quantity_cart_item_cubit/quantity_cart_item_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/cart_view.dart';
 import 'package:ecommerce_app/features/client_features/favorite/data/repos/favorite_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/favorite/presentaion/view_models/favorite_product/favorite_product_cubit.dart';
 import 'package:ecommerce_app/features/client_features/favorite/presentaion/views/widgets/favorite_view_body.dart';
 import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/category_cubit/category_cubit.dart';
-import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/product_by_category_cubit.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/product_by_category/product_by_category_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/home_client_view_body.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/views/widgets/home_seller_view_body.dart';
 import 'package:flutter/material.dart';
@@ -30,16 +32,19 @@ abstract class NavigationView {
       ],
       child: const HomeClientViewBody(),
     ),
-    BlocProvider(
-      create: (context) => FavoriteProductCubit(getIt.get<FavoriteRepoImpl>())
-        ..getFavoriteProducts(),
-      child: const FavoriteViewBody(),
-    ),
+    const FavoriteViewBody(),
     MultiBlocProvider(
       providers: [
+        BlocProvider<DeleteFromCartCubit>(
+          create: (context) => DeleteFromCartCubit(getIt.get<CartRepoImpl>()),
+        ),
         BlocProvider<ProductCartCubit>(
           create: (context) =>
               ProductCartCubit(getIt.get<CartRepoImpl>())..getProductCart(),
+        ),
+        BlocProvider<QuantityCartItemCubit>(
+          create: (context) =>
+              QuantityCartItemCubit(getIt.get<CartRepoImpl>()),
         ),
       ],
       child: const CartView(),

@@ -18,10 +18,46 @@ class CartRepoImpl extends CartRepo {
       List<dynamic> productsData = data[0]['products'];
 
       for (int i = 0; i < productsData.length; i++) {
+        print(productsData[i]);
         products.add(ProductModel.fromJson(productsData[i]));
       }
 
       return right(products);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServiceFailure.fromDioError(e));
+      }
+      return left(ServiceFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> deleteProductFromCart(int idProduct) async {
+    try {
+      Map<String, dynamic> data =
+          await apiService.delete('cart/destroy/$idProduct', {});
+
+      return right(data['message']);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServiceFailure.fromDioError(e));
+      }
+      return left(ServiceFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> updateQuantityCartItem(
+      int idProduct, int counter) async {
+    try {
+      Map<String, dynamic> data = await apiService.put(
+        'cart/update/$idProduct',
+        {
+          'quantity_cart_item': counter,
+        },
+      );
+
+      return right(data['message']);
     } catch (e) {
       if (e is DioException) {
         return left(ServiceFailure.fromDioError(e));

@@ -2,9 +2,12 @@ import 'package:ecommerce_app/core/functions/get_price_format.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/delete_from_cart/delete_from_cart_cubit.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/counter_product_cart.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartItems extends StatelessWidget {
   const CartItems({
@@ -65,13 +68,17 @@ class CartItems extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(),
-                  const CounterProductCart(),
+                   CounterProductCart(
+                    productModel: product,
+                  ),
                   const SizedBox(),
                 ],
               ),
             ),
             IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await deleteProductFromFavorite(context);
+                },
                 icon: Icon(
                   Icons.close,
                   color: MyColors.hintColorTextField,
@@ -80,5 +87,12 @@ class CartItems extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> deleteProductFromFavorite(BuildContext context) async {
+    await BlocProvider.of<DeleteFromCartCubit>(context)
+        .deleteProductFromFavorite(product.id!);
+
+    BlocProvider.of<ProductCartCubit>(context).getProductCart();
   }
 }

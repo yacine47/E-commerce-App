@@ -1,15 +1,29 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/cart_view.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/check_proudct/check_product_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/product_details_view_body.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 
-class ProductDetailsView extends StatelessWidget {
+class ProductDetailsView extends StatefulWidget {
   static String path = '/ProductDetailsView';
   const ProductDetailsView({super.key, required this.productModel});
   final ProductModel productModel;
+
+  @override
+  State<ProductDetailsView> createState() => _ProductDetailsViewState();
+}
+
+class _ProductDetailsViewState extends State<ProductDetailsView> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<CheckProductCubit>(context)
+        .checkProductInFavorite(widget.productModel.id!);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +39,7 @@ class ProductDetailsView extends StatelessWidget {
       ),
       body: SafeArea(
         child: ProductDetailsViewBody(
-          productModel: productModel,
+          productModel: widget.productModel,
         ),
       ),
     );

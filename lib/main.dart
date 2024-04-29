@@ -1,10 +1,13 @@
 // import 'package:dio/dio.dart';
 import 'package:ecommerce_app/core/utils/app_router.dart';
+import 'package:ecommerce_app/core/utils/my_assets.dart';
 // import 'package:ecommerce_app/core/utils/dio_interceptor.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
-import 'package:ecommerce_app/core/utils/my_assets.dart';
 import 'package:ecommerce_app/core/utils/service_locator.dart';
+import 'package:ecommerce_app/features/client_features/favorite/data/repos/favorite_repo_impl.dart';
+import 'package:ecommerce_app/features/client_features/favorite/presentaion/view_models/favorite_product/favorite_product_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
@@ -20,15 +23,24 @@ class EcommerceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: AppRouter.router,
-      theme: ThemeData(
-        // fontFamily: MyAssets.fontFamilyGilroy,
-        fontFamily: MyAssets.fontFamilyUrbanist,
-        // textTheme: GoogleFonts.urbanistTextTheme(Theme.of(context).textTheme),
-        scaffoldBackgroundColor: Colors.white,
-        colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primaryColor),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<FavoriteProductCubit>(
+          create: (context) => FavoriteProductCubit(getIt.get<FavoriteRepoImpl>())
+        ..getFavoriteProducts(),
+        ),
+        // TODO: you can add additional providers here
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: AppRouter.router,
+        theme: ThemeData(
+          // fontFamily: MyAssets.fontFamilyGilroy,
+          fontFamily: MyAssets.fontFamilyUrbanist,
+          // textTheme: GoogleFonts.urbanistTextTheme(Theme.of(context).textTheme),
+          scaffoldBackgroundColor: Colors.white,
+          colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primaryColor),
+        ),
       ),
     );
   }

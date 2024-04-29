@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/widgets/custom_failure_widget.dart';
 import 'package:ecommerce_app/core/widgets/custom_loading_products_grid_view.dart';
-import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/product_by_category_cubit.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/product_by_category/product_by_category_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/product_items_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

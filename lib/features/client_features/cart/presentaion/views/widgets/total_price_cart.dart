@@ -1,11 +1,12 @@
-
-
-
 import 'package:ecommerce_app/constants.dart';
+import 'package:ecommerce_app/core/functions/get_price_format.dart';
+import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TotalPriceCart extends StatelessWidget {
   const TotalPriceCart({
@@ -20,15 +21,15 @@ class TotalPriceCart extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            'Total Price :',
+            'Total Price :  ',
             style: Styles.style16.copyWith(
               fontWeight: FontWeight.w500,
               color: MyColors.hintColorTextField,
             ),
           ),
           Text(
-            '15,000 DA',
-            style: Styles.style16.copyWith(
+            "${getPriceFormat(calculTotalPrice(context))} DA",
+            style: Styles.style18.copyWith(
               fontWeight: FontWeight.w600,
               color: Colors.black,
             ),
@@ -36,5 +37,16 @@ class TotalPriceCart extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  int calculTotalPrice(context) {
+    List<ProductModel> products =
+        BlocProvider.of<ProductCartCubit>(context).cartProducts;
+    int sum = 0;
+    for (var element in products) {
+      sum += element.price! * element.quantityCartItem!;
+    }
+
+    return sum;
   }
 }

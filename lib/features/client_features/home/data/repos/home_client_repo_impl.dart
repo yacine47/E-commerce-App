@@ -30,23 +30,6 @@ class HomeClientRepoImpl extends HomeClientRepo {
     }
   }
 
-  // @override
-  // Future<Either<Failure, List<ProductModel>>> getAllProducts() async {
-  //   try {
-  //     List<dynamic> data = await apiService.get('products');
-  //     List<ProductModel> products = [];
-  //     for (var element in data) {
-  //       products.add(ProductModel.fromJson(element));
-  //     }
-  //     return right(products);
-  //   } catch (e) {
-  //     if (e is DioException) {
-  //       return left(ServiceFailure.fromDioError(e));
-  //     }
-  //     return left(ServiceFailure(e.toString()));
-  //   }
-  // }
-
   @override
   Future<Either<Failure, List<ProductModel>>> getProductByCategory(
       int idCategory) async {
@@ -59,6 +42,67 @@ class HomeClientRepoImpl extends HomeClientRepo {
       }
 
       return right(products);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServiceFailure.fromDioError(e));
+      }
+      return left(ServiceFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> checkProductInFavorite(int idProduct) async {
+    try {
+      Map<String, dynamic> data =
+          await apiService.get('favorite/check_product/$idProduct');
+
+      return right(data['response']);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServiceFailure.fromDioError(e));
+      }
+      return left(ServiceFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> addProductToFavorite(int idProduct) async {
+    try {
+      Map<String, dynamic> data =
+          await apiService.post('favorite/product/add/$idProduct', {});
+
+      return right(data['message']);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServiceFailure.fromDioError(e));
+      }
+      return left(ServiceFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> addProductToCart(int idProduct) async {
+    try {
+      Map<String, dynamic> data = await apiService.post('cart/add', {
+        'id': idProduct,
+      });
+
+      return right(data['message']);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServiceFailure.fromDioError(e));
+      }
+      return left(ServiceFailure(e.toString()));
+    }
+  }
+
+   @override
+  Future<Either<Failure, String>> deleteProductFromFavorite(int idProduct) async {
+    try {
+      Map<String, dynamic> data =
+          await apiService.delete('favorite/product/destroy/$idProduct', {});
+
+      return right(data['message']);
     } catch (e) {
       if (e is DioException) {
         return left(ServiceFailure.fromDioError(e));

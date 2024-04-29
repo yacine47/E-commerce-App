@@ -1,4 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommerce_app/core/utils/my_colors.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/add_to_cart/add_to_cart_cubit.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
 import 'package:ecommerce_app/features/client_features/review/presentaion/views/product_reviews_view.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +13,7 @@ import 'package:ecommerce_app/features/client_features/home/presentaion/views/wi
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_image_slider.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_rate_card.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_read_more_product_details.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class ProductDetailsViewBody extends StatelessWidget {
@@ -35,7 +39,9 @@ class ProductDetailsViewBody extends StatelessWidget {
                     top: 23,
                     child: SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        child: const CustomAppBarProductDetails()),
+                        child: CustomAppBarProductDetails(
+                          productModel: productModel,
+                        )),
                   ),
                 ],
               ),
@@ -45,12 +51,20 @@ class ProductDetailsViewBody extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomRateCard(
-                        onTap: () => GoRouter.of(context).push(
-                              ProductReviewsView.path,
-                              extra: productModel.id,
-                            ),
-                        productModel: productModel),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomRateCard(
+                            onTap: () => GoRouter.of(context).push(
+                                  ProductReviewsView.path,
+                                  extra: productModel.id,
+                                ),
+                            productModel: productModel),
+                        CustomPopupMenuButton(
+                          onSelected: (value) {},
+                        )
+                      ],
+                    ),
                     const SizedBox(height: 3),
                     Text(productModel.name!, style: Styles.style24),
                     const SizedBox(height: 10),
@@ -72,33 +86,44 @@ class ProductDetailsViewBody extends StatelessWidget {
             ],
           ),
         ),
-        BottomBarProductDetails(price: productModel.price!, onPressed: () {}),
+        BottomBarProductDetails(
+            price: productModel.price!,
+            onPressed: () {
+              BlocProvider.of<AddToCartCubit>(context)
+                  .addProductToCart(productModel.id!);
+            }),
       ],
     );
   }
 }
 
-class SizedProductItem extends StatelessWidget {
-  const SizedProductItem({
+class CustomPopupMenuButton extends StatelessWidget {
+  const CustomPopupMenuButton({
     super.key,
-    required this.hint,
+    this.onSelected,
   });
-  final String hint;
+
+  final void Function(String)? onSelected;
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 15,
-      backgroundColor: Colors.black,
-      child: CircleAvatar(
-        radius: 13,
-        backgroundColor: Colors.white,
-        child: Text(
-          hint,
-          style: Styles.style16
-              .copyWith(color: Colors.black, fontWeight: FontWeight.w700),
-        ),
+    return PopupMenuButton(
+      elevation: 0,
+      color: Colors.white,
+      shape: Border.all(
+        color: MyColors.borderCategoryColor,
       ),
+      onSelected: (value) {
+        GoRouter.of(context).push(value);
+      },
+      itemBuilder: (BuildContext bc) {
+        return [
+          PopupMenuItem(
+            value: HomeClientView.path,
+            child: const Text("Report Product"),
+          ),
+        ];
+      },
     );
   }
 }

@@ -13,6 +13,7 @@ class ProductModel {
     this.images,
     this.reviewsCount,
     this.rating,
+    this.quantityCartItem,
   });
 
   int? id;
@@ -20,6 +21,7 @@ class ProductModel {
   String? description;
   int? price;
   int? quantity;
+  int? quantityCartItem;
   int? sellerId;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -38,6 +40,7 @@ class ProductModel {
       description: json["description"],
       price: json["price"],
       quantity: json["quantity"],
+      quantityCartItem: json["quantity_cart_item"],
       sellerId: json["seller_id"],
       createdAt: DateTime.tryParse(json["created_at"] ?? ""),
       updatedAt: DateTime.tryParse(json["updated_at"] ?? ""),

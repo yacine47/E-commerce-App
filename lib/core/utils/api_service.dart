@@ -22,11 +22,51 @@ class ApiService {
   }
 
   Future<Map<String, dynamic>> post(String endPoint, Object data) async {
-    Response response = await _dio.post(
-      '$baseUrl$endPoint',
-      data: data,
-    );
+    String? token = Hive.box('settings').get('token');
+    if (token == null || JwtDecoder.isExpired(token)) {
+      Response response = await _dio.post('$baseUrl$endPoint', data: data);
 
+      return response.data;
+    }
+
+    Response response = await _dio.post('$baseUrl$endPoint',
+        data: data,
+        options: Options(
+          headers: {'authorization': 'Bearer $token'},
+        ));
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>> put(String endPoint, Object data) async {
+    String? token = Hive.box('settings').get('token');
+    if (token == null || JwtDecoder.isExpired(token)) {
+      Response response = await _dio.put('$baseUrl$endPoint', data: data);
+
+      return response.data;
+    }
+
+    Response response = await _dio.put('$baseUrl$endPoint',
+        data: data,
+        options: Options(
+          headers: {'authorization': 'Bearer $token'},
+        ));
+    return response.data;
+  }
+
+
+  Future<Map<String, dynamic>> delete(String endPoint, Object data) async {
+    String? token = Hive.box('settings').get('token');
+    if (token == null || JwtDecoder.isExpired(token)) {
+      Response response = await _dio.delete('$baseUrl$endPoint', data: data);
+
+      return response.data;
+    }
+
+    Response response = await _dio.delete('$baseUrl$endPoint',
+        data: data,
+        options: Options(
+          headers: {'authorization': 'Bearer $token'},
+        ));
     return response.data;
   }
 
