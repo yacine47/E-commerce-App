@@ -27,7 +27,7 @@ class CustomButtonAddToCart extends StatelessWidget {
                 children: [
                   const Icon(
                     Icons.shopping_cart_outlined,
-                    size: 30,
+                    size: 26,
                     color: Colors.white,
                   ),
                   // s

@@ -28,13 +28,20 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          GoRouter.of(context).push(CartView.path);
-        },
-        backgroundColor: Colors.white,
-        child: const Iconify(
-          kCartIconify,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 65),
+        child: FloatingActionButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(555),
+          ),
+          onPressed: () {
+            GoRouter.of(context).push(CartView.path);
+          },
+          backgroundColor: Colors.white,
+          child: const Iconify(
+            kCartIconify,
+            size: 28,
+          ),
         ),
       ),
       body: SafeArea(

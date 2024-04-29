@@ -5,8 +5,6 @@ import 'package:ecommerce_app/features/client_features/cart/presentaion/view_mod
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/quantity_cart_item_cubit/quantity_cart_item_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/cart_view.dart';
-import 'package:ecommerce_app/features/client_features/favorite/data/repos/favorite_repo_impl.dart';
-import 'package:ecommerce_app/features/client_features/favorite/presentaion/view_models/favorite_product/favorite_product_cubit.dart';
 import 'package:ecommerce_app/features/client_features/favorite/presentaion/views/widgets/favorite_view_body.dart';
 import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/category_cubit/category_cubit.dart';
