@@ -53,4 +53,9 @@ abstract class Styles {
     fontWeight: FontWeight.w400,
     color: MyColors.hintColorTextField,
   );
+  static TextStyle style10 = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w600,
+    color: MyColors.hintColorTextField,
+  );
 }

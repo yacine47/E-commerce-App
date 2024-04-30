@@ -6,8 +6,12 @@ import 'package:ecommerce_app/features/authentication/presentation/view_models/l
 import 'package:ecommerce_app/features/authentication/presentation/view_models/register_cubit/register_cubit.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/login_view.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/sign_up_view.dart';
+import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo.dart';
+import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo_impl.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/cart_view.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/views/checkout_view.dart';
 import 'package:ecommerce_app/features/client_features/favorite/presentaion/views/favorite_view.dart';
 import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/add_to_cart/add_to_cart_cubit.dart';
@@ -106,6 +110,17 @@ abstract class AppRouter {
         path: ResultProductView.path,
         builder: (context, state) =>
             ResultProductView(resultModel: state.extra as ResultModel),
+      ),
+      GoRoute(
+        path: CheckoutView.path,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider.value(
+                value: ProductCartCubit(getIt.get<CartRepoImpl>())
+                  ..getProductCart()),
+          ],
+          child: const CheckoutView(),
+        ),
       ),
       GoRoute(
         path: SearchProductView.path,

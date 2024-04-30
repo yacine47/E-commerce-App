@@ -12,6 +12,7 @@ abstract class MyColors {
   static Color starColor = const Color(0xffE6BB66);
   static Color shimmerBaseColor = Colors.grey.withOpacity(0.05);
   static Color shimmerHighlightColor = Colors.grey.withOpacity(0.2);
+  static Color gapColor = const Color(0xffF5F5F5);
 }
 
 

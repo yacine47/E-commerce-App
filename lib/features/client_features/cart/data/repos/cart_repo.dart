@@ -9,8 +9,5 @@ abstract class CartRepo {
 
 
   Future<Either<Failure, String>> updateQuantityCartItem(int idProduct,int counter);
-
-
-
   
 }

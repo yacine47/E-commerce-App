@@ -6,6 +6,7 @@ import 'package:ecommerce_app/core/widgets/custom_loading_widget.dart';
 import 'package:ecommerce_app/core/widgets/go_back_button.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/views/checkout_view.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/cart_items_list_view.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/total_price_cart.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,9 @@ class CartViewBody extends StatelessWidget {
                       horPadding: kHorPadding,
                       child: CustomButtonSubmit(
                         title: 'Checkout',
-                        onPressed: () {},
+                        onPressed: () {
+                          GoRouter.of(context).push(CheckoutView.path);
+                        },
                       ),
                     ),
                     const SizedBox(height: 16),
