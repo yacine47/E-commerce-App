@@ -28,6 +28,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       floatingActionButton: Padding(
         padding: EdgeInsets.only(
           bottom: MediaQuery.of(context).size.height * .15,

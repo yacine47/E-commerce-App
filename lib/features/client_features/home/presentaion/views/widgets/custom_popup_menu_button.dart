@@ -1,30 +1,37 @@
 
 
 
-import 'package:ecommerce_app/core/utils/styles.dart';
+import 'package:ecommerce_app/core/utils/my_colors.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
 import 'package:flutter/material.dart';
 
-class SizedProductItem extends StatelessWidget {
-  const SizedProductItem({
+class CustomPopupMenuButton extends StatelessWidget {
+  const CustomPopupMenuButton({
     super.key,
-    required this.hint,
+    this.onSelected,
   });
-  final String hint;
+
+  final void Function(String)? onSelected;
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 15,
-      backgroundColor: Colors.black,
-      child: CircleAvatar(
-        radius: 13,
-        backgroundColor: Colors.white,
-        child: Text(
-          hint,
-          style: Styles.style16
-              .copyWith(color: Colors.black, fontWeight: FontWeight.w700),
-        ),
+    return PopupMenuButton(
+      elevation: 0,
+      color: Colors.white,
+      shape: Border.all(
+        color: MyColors.borderCategoryColor,
       ),
+      onSelected: onSelected,
+      itemBuilder: (BuildContext bc) {
+        return [
+          PopupMenuItem(
+            value: HomeClientView.path,
+            child: const Text(
+              "Report Product",
+            ),
+          ),
+        ];
+      },
     );
   }
 }

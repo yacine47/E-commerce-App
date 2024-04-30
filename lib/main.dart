@@ -29,7 +29,6 @@ class EcommerceApp extends StatelessWidget {
           create: (context) => FavoriteProductCubit(getIt.get<FavoriteRepoImpl>())
         ..getFavoriteProducts(),
         ),
-        // TODO: you can add additional providers here
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

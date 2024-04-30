@@ -96,13 +96,32 @@ class HomeClientRepoImpl extends HomeClientRepo {
     }
   }
 
-   @override
-  Future<Either<Failure, String>> deleteProductFromFavorite(int idProduct) async {
+  @override
+  Future<Either<Failure, String>> deleteProductFromFavorite(
+      int idProduct) async {
     try {
       Map<String, dynamic> data =
           await apiService.delete('favorite/product/destroy/$idProduct', {});
 
       return right(data['message']);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServiceFailure.fromDioError(e));
+      }
+      return left(ServiceFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> createReportProduct(
+      int idProduct, Map<String, dynamic> data) async {
+    try {
+      Map<String, dynamic> dataResponse = await apiService.post(
+        'reports/report_product/add/$idProduct',
+        data,
+      );
+
+      return right(dataResponse['message']);
     } catch (e) {
       if (e is DioException) {
         return left(ServiceFailure.fromDioError(e));

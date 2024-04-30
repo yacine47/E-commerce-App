@@ -9,15 +9,14 @@ abstract class HomeClientRepo {
   Future<Either<Failure, List<ProductModel>>> getProductByCategory(
       int idCategory);
 
-      Future<Either<Failure, bool>> checkProductInFavorite(
-      int idProduct);
+  Future<Either<Failure, bool>> checkProductInFavorite(int idProduct);
 
-      Future<Either<Failure, String>> addProductToFavorite(
-      int idProduct);
+  Future<Either<Failure, String>> addProductToFavorite(int idProduct);
 
-      Future<Either<Failure, String>> addProductToCart(
-      int idProduct);
+  Future<Either<Failure, String>> addProductToCart(int idProduct);
 
-      Future<Either<Failure, String>> deleteProductFromFavorite(
-      int idProduct);
+  Future<Either<Failure, String>> deleteProductFromFavorite(int idProduct);
+
+  Future<Either<Failure, String>> createReportProduct(
+      int idProduct, Map<String, dynamic> data);
 }

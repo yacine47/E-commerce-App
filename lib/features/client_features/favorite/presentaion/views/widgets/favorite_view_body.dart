@@ -14,7 +14,7 @@ class FavoriteViewBody extends StatelessWidget {
           sliver: SliverAppBar(
             title: Center(
               child: Text(
-                'Cart',
+                'Favorite',
                 style: Styles.style24,
                 textAlign: TextAlign.center,
               ),
@@ -28,4 +28,3 @@ class FavoriteViewBody extends StatelessWidget {
     );
   }
 }
-
