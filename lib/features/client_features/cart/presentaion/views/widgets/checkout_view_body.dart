@@ -2,7 +2,7 @@ import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/models/image_model.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
-import 'package:ecommerce_app/core/widgets/go_back_button.dart';
+import 'package:ecommerce_app/core/widgets/custom_app_bar.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/custom_text_field_coupon.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/address_view.dart';
@@ -27,19 +27,10 @@ class CheckoutViewBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 23),
-                ItemHasPadding(
+                const ItemHasPadding(
                   horPadding: kHorPadding,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const GoBackButton(),
-                      Text(
-                        'Checkout',
-                        style: Styles.style24,
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(),
-                    ],
+                  child: CustomAppBar(
+                    title: 'Checkout',
                   ),
                 ),
                 // const SizedBox(height: 54),

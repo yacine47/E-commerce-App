@@ -36,6 +36,11 @@ abstract class Styles {
     fontWeight: FontWeight.bold,
   );
 
+  static TextStyle style44 = const TextStyle(
+    fontSize: 44,
+    fontWeight: FontWeight.bold,
+  );
+
   static TextStyle style14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,

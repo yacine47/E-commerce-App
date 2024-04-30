@@ -59,7 +59,7 @@ class ProductDetailsViewBody extends StatelessWidget {
                         CustomRateCard(
                             onTap: () => GoRouter.of(context).push(
                                   ProductReviewsView.path,
-                                  extra: productModel.id,
+                                  extra: productModel,
                                 ),
                             productModel: productModel),
                         CustomPopupMenuButton(

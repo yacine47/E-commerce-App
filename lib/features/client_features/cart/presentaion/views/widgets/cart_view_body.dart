@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
+import 'package:ecommerce_app/core/widgets/custom_app_bar.dart';
 import 'package:ecommerce_app/core/widgets/custom_button_submit.dart';
 import 'package:ecommerce_app/core/widgets/custom_failure_widget.dart';
 import 'package:ecommerce_app/core/widgets/custom_loading_widget.dart';
@@ -21,21 +22,10 @@ class CartViewBody extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 23),
-        ItemHasPadding(
+        const ItemHasPadding(
           horPadding: kHorPadding,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GoRouter.of(context).canPop()
-                  ? const GoBackButton()
-                  : const SizedBox(),
-              Text(
-                'Cart',
-                style: Styles.style24,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(),
-            ],
+          child: CustomAppBar(
+            title: 'Cart',
           ),
         ),
         // const SizedBox(height: 54),
@@ -50,14 +40,17 @@ class CartViewBody extends StatelessWidget {
                       products: state.products,
                     ),
                     const SizedBox(height: 16),
-                     TotalPriceCart(products: state.products),
+                    TotalPriceCart(products: state.products),
                     const SizedBox(height: 16),
                     ItemHasPadding(
                       horPadding: kHorPadding,
                       child: CustomButtonSubmit(
                         title: 'Checkout',
                         onPressed: () {
-                          GoRouter.of(context).push(CheckoutView.path);
+                          GoRouter.of(context).push(
+                            CheckoutView.path,
+                            extra: state.products,
+                          );
                         },
                       ),
                     ),

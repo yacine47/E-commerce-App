@@ -90,14 +90,16 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: ProductReviewsView.path,
-        builder: (context, state) => BlocProvider(
-          create: (context) => ReviewProductCubit(
-              getIt.get<ReviewRepoImpl>(), state.extra as int)
-            ..getFavoriteProducts(),
-          child: const ProductReviewsView(),
-        ),
-      ),
+          path: ProductReviewsView.path,
+          builder: (context, state) {
+            final product = state.extra as ProductModel;
+            return BlocProvider(
+              create: (context) => ReviewProductCubit(
+                  getIt.get<ReviewRepoImpl>(), product.id as int)
+                ..getFavoriteProducts(),
+              child: ProductReviewsView(productModel: product),
+            );
+          }),
       GoRoute(
         path: CartView.path,
         builder: (context, state) => const CartView(),
@@ -116,10 +118,11 @@ abstract class AppRouter {
         builder: (context, state) => MultiBlocProvider(
           providers: [
             BlocProvider.value(
-                value: ProductCartCubit(getIt.get<CartRepoImpl>())
-                  ..getProductCart()),
+              value: ProductCartCubit(getIt.get<CartRepoImpl>())
+                ..getProductCart(),
+            ),
           ],
-          child: const CheckoutView(),
+          child: CheckoutView(products: state.extra as List<ProductModel>),
         ),
       ),
       GoRoute(
