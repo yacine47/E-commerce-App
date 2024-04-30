@@ -5,12 +5,14 @@ import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/go_back_button.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/custom_text_field_coupon.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/views/address_view.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/checkout_bottom_bar.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/checkout_items_list_view.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/checkout_polices.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/custom_checkout_gap.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/custom_shipping_address.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CheckoutViewBody extends StatelessWidget {
   const CheckoutViewBody({super.key});
@@ -43,7 +45,11 @@ class CheckoutViewBody extends StatelessWidget {
                 // const SizedBox(height: 54),
                 const SizedBox(height: 20),
                 const CustomCheckoutGap(),
-                const CustomShippingAddress(),
+                CustomShippingAddress(
+                  onTap: () {
+                    GoRouter.of(context).push(AddressView.path);
+                  },
+                ),
                 const CustomCheckoutGap(),
 
                 CheckoutItemsListView(products: [
