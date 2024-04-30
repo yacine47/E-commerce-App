@@ -50,7 +50,7 @@ class CartViewBody extends StatelessWidget {
                       products: state.products,
                     ),
                     const SizedBox(height: 16),
-                    const TotalPriceCart(),
+                     TotalPriceCart(products: state.products),
                     const SizedBox(height: 16),
                     ItemHasPadding(
                       horPadding: kHorPadding,

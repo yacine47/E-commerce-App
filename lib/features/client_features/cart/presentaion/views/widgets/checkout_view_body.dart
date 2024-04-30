@@ -34,7 +34,7 @@ class CheckoutViewBody extends StatelessWidget {
                     children: [
                       const GoBackButton(),
                       Text(
-                        'Cart',
+                        'Checkout',
                         style: Styles.style24,
                         textAlign: TextAlign.center,
                       ),
@@ -62,15 +62,15 @@ class CheckoutViewBody extends StatelessWidget {
                       images: [
                         ImageModel(path: '/images/products/10.jpg'),
                       ]),
-                  ProductModel(
-                      id: 1,
-                      name: 'Iphone 15 pro max',
-                      quantity: 150,
-                      quantityCartItem: 1,
-                      price: 379000,
-                      images: [
-                        ImageModel(path: '/images/products/10.jpg'),
-                      ]),
+                  // ProductModel(
+                  //     id: 1,
+                  //     name: 'Iphone 15 pro max',
+                  //     quantity: 150,
+                  //     quantityCartItem: 1,
+                  //     price: 379000,
+                  //     images: [
+                  //       ImageModel(path: '/images/products/10.jpg'),
+                  //     ]),
                   ProductModel(
                       id: 1,
                       name: 'Iphone 15 pro max',
