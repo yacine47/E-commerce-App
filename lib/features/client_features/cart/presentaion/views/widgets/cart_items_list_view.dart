@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
-import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/checkout_item.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/cart_item.dart';
 import 'package:flutter/material.dart';
 
 class CartItemsListView extends StatelessWidget {
@@ -17,7 +17,7 @@ class CartItemsListView extends StatelessWidget {
         shrinkWrap: true,
         padding:
             const EdgeInsets.symmetric(horizontal: kHorPadding, vertical: 8),
-        itemBuilder: (context, index) => CheckoutItem(
+        itemBuilder: (context, index) => CartItem(
           product: products[index],
         ),
         separatorBuilder: (context, index) => const SizedBox(height: 0),

@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/core/functions/get_image_from_url.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_photo_profile.dart';

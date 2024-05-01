@@ -1,10 +1,8 @@
 import 'package:ecommerce_app/constants.dart';
-import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_app_bar.dart';
 import 'package:ecommerce_app/core/widgets/custom_button_submit.dart';
 import 'package:ecommerce_app/core/widgets/custom_failure_widget.dart';
 import 'package:ecommerce_app/core/widgets/custom_loading_widget.dart';
-import 'package:ecommerce_app/core/widgets/go_back_button.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/checkout_view.dart';

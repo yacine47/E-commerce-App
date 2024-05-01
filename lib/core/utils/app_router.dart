@@ -8,6 +8,7 @@ import 'package:ecommerce_app/features/authentication/presentation/views/login_v
 import 'package:ecommerce_app/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/quantity_cart_item_cubit/quantity_cart_item_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/address_view.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/cart_view.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
@@ -121,6 +122,8 @@ abstract class AppRouter {
               value: ProductCartCubit(getIt.get<CartRepoImpl>())
                 ..getProductCart(),
             ),
+            BlocProvider.value(
+                value: QuantityCartItemCubit(getIt.get<CartRepoImpl>())),
           ],
           child: CheckoutView(products: state.extra as List<ProductModel>),
         ),

@@ -1,6 +1,5 @@
 import 'package:ecommerce_app/core/functions/get_price_format.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
-import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/counter_product_cart.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_cached_network_image.dart';
@@ -72,24 +71,9 @@ class CheckoutItem extends StatelessWidget {
                 ],
               ),
             ),
-            IconButton(
-                onPressed: () async {
-                  await deleteProductFromFavorite(context);
-                },
-                icon: Icon(
-                  Icons.close,
-                  color: MyColors.hintColorTextField,
-                ))
           ],
         ),
       ),
     );
-  }
-
-  Future<void> deleteProductFromFavorite(BuildContext context) async {
-    // await BlocProvider.of<DeleteFromCartCubit>(context)
-    //     .deleteProductFromFavorite(product.id!);
-
-    // BlocProvider.of<ProductCartCubit>(context).getProductCart();
   }
 }
