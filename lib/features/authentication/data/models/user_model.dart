@@ -5,6 +5,8 @@ class UserModel {
   String? email;
   String? password;
   String? passwordConfirmation;
+
+  String? photoProfile;
   final String? emailVerifiedAt;
   final String? createdAt;
   final String? updatedAt;
@@ -17,6 +19,7 @@ class UserModel {
     this.createdAt,
     this.emailVerifiedAt,
     this.updatedAt,
+    this.photoProfile,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> data) {
@@ -26,6 +29,7 @@ class UserModel {
       email: data['email'],
       role: data['role'].toString(),
       emailVerifiedAt: data['email_verified_at'],
+      photoProfile: data['photo_profile'],
       createdAt: data['created_at'],
       updatedAt: data['updated_at'],
     );

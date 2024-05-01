@@ -1,14 +1,16 @@
+import 'package:ecommerce_app/features/authentication/data/models/user_model.dart';
+
 class ReviewModel {
-  ReviewModel({
-    this.id,
-    this.userId,
-    this.createdAt,
-    this.updatedAt,
-    this.clientId,
-    this.productId,
-    this.rating,
-    this.comment,
-  });
+  ReviewModel(
+      {this.id,
+      this.userId,
+      this.createdAt,
+      this.updatedAt,
+      this.clientId,
+      this.productId,
+      this.rating,
+      this.comment,
+      this.user});
 
   int? id;
   int? userId;
@@ -16,8 +18,9 @@ class ReviewModel {
   DateTime? updatedAt;
   int? clientId;
   int? productId;
-  String? rating;
+  double? rating;
   String? comment;
+  UserModel? user;
 
   factory ReviewModel.fromJson(Map<String, dynamic> json) {
     return ReviewModel(
@@ -27,8 +30,9 @@ class ReviewModel {
       updatedAt: DateTime.tryParse(json["updated_at"] ?? ""),
       clientId: json["client_id"],
       productId: json["product_id"],
-      rating: json["rating"],
+      rating: json["rating"] == null ? 0 : double.parse(json['rating']),
       comment: json["comment"],
+      user: UserModel.fromJson(json["user"]),
     );
   }
 

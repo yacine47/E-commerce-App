@@ -41,7 +41,7 @@ class CustomReviewCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CustomRatingBar(itemSize: 24),
+                   CustomRatingBar(itemSize: 24,rating: productModel.rating!),
                   const SizedBox(height: 12),
                   Text(
                     '${productModel.reviewsCount} reviews',

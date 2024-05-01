@@ -12,7 +12,7 @@ class CustomRateCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CustomRatingBar(itemSize: 18),
+        CustomRatingBar(rating: productModel.rating!, itemSize: 18),
         const SizedBox(
           width: 4,
         ),

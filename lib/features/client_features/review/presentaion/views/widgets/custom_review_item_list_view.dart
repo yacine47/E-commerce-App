@@ -12,7 +12,9 @@ class CustomReviewItemListView extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: reviews.length,
-      itemBuilder: (context, index) => const CustomReviewItem(),
+      itemBuilder: (context, index) => CustomReviewItem(
+        reviewModel: reviews[index],
+      ),
     );
   }
 }
