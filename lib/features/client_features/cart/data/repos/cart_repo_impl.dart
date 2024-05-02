@@ -66,12 +66,14 @@ class CartRepoImpl extends CartRepo {
     }
   }
 
-   @override
+  @override
   Future<Either<Failure, CouponCartModel>> couponCart(String coupon) async {
     try {
       var data = await apiService.get('cart/coupon?coupon=$coupon');
+      print(data);
       return right(CouponCartModel.fromJson(data['response']));
     } catch (e) {
+      print(e.toString());
       if (e is DioException) {
         return left(ServiceFailure.fromDioError(e));
       }

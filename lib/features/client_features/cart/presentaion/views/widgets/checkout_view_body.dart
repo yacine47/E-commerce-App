@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/widgets/custom_failure_widget.dart';
 import 'package:ecommerce_app/core/widgets/custom_loading_widget.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/coupon_cart_cubit/coupon_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce_app/constants.dart';
@@ -64,8 +65,7 @@ class CheckoutViewBody extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(height: 12),
-                            const CustomTextFieldCoupon(
-                                hint: 'Enter promo code here')
+                            const FormTextFieldCoupon(),
                           ],
                         ),
                       ),
@@ -86,6 +86,42 @@ class CheckoutViewBody extends StatelessWidget {
         }
         return const CustomLoadingWidget();
       },
+    );
+  }
+}
+
+class FormTextFieldCoupon extends StatefulWidget {
+  const FormTextFieldCoupon({
+    super.key,
+  });
+
+  @override
+  State<FormTextFieldCoupon> createState() => _FormTextFieldCouponState();
+}
+
+class _FormTextFieldCouponState extends State<FormTextFieldCoupon> {
+  GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  String? coupon;
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formKey,
+      child: CustomTextFieldCoupon(
+          suffixOnTap: () {
+            if (formKey.currentState!.validate()) {
+              formKey.currentState!.save();
+              print(coupon);
+              BlocProvider.of<CouponCartCubit>(context).couponCart(coupon!);
+            } else {
+              autovalidateMode = AutovalidateMode.always;
+              setState(() {});
+            }
+          },
+          onSaved: (value) {
+            coupon = value!;
+          },
+          hint: 'Enter promo code here'),
     );
   }
 }

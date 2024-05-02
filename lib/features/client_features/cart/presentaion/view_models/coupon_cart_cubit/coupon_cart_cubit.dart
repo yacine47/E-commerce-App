@@ -9,6 +9,7 @@ class CouponCartCubit extends Cubit<CouponCartState> {
   CouponCartCubit(this.cartRepo) : super(CouponCartInitial());
 
   final CartRepo cartRepo;
+  late String coupon;
   Future<void> couponCart(String coupon) async {
     emit(CouponCartLoading());
     var result = await cartRepo.couponCart(coupon);

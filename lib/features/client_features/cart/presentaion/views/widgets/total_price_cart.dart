@@ -10,9 +10,11 @@ class TotalPriceCart extends StatelessWidget {
   const TotalPriceCart({
     super.key,
     required this.products,
+    this.totalPriceWithCoupon,
   });
 
   final List<ProductModel> products;
+  final int? totalPriceWithCoupon;
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +30,33 @@ class TotalPriceCart extends StatelessWidget {
               color: MyColors.hintColorTextField,
             ),
           ),
-          Text(
-            "${getPriceFormat(calculTotalPrice(context))} DA",
-            style: Styles.style18.copyWith(
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
-            ),
-          ),
+          totalPriceWithCoupon != null
+              ? Row(
+                  children: [
+                    Text(
+                      "${getPriceFormat(calculTotalPrice(context))} DA",
+                      style: Styles.style16.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black38,
+                          decoration: TextDecoration.lineThrough),
+                    ),
+                    const SizedBox(width: 12),
+                    Text(
+                      "${getPriceFormat(totalPriceWithCoupon!)} DA",
+                      style: Styles.style18.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                )
+              : Text(
+                  "${getPriceFormat(calculTotalPrice(context))} DA",
+                  style: Styles.style18.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
         ],
       ),
     );

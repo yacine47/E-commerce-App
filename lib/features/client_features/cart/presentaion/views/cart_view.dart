@@ -1,6 +1,5 @@
 import 'package:ecommerce_app/core/utils/service_locator.dart';
 import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo_impl.dart';
-import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/coupon_cart_cubit/coupon_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/delete_from_cart/delete_from_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/quantity_cart_item_cubit/quantity_cart_item_cubit.dart';
@@ -18,10 +17,7 @@ class CartView extends StatelessWidget {
         child: MultiBlocProvider(
           providers: [
             
-            BlocProvider<CouponCartCubit>(
-              create: (context) =>
-                  CouponCartCubit(getIt.get<CartRepoImpl>()),
-            ),
+            
             BlocProvider<DeleteFromCartCubit>(
               create: (context) =>
                   DeleteFromCartCubit(getIt.get<CartRepoImpl>()),
