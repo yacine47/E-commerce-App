@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:ecommerce_app/core/errors/failures.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/core/utils/api_service.dart';
+import 'package:ecommerce_app/features/client_features/cart/data/models/coupon_cart_model.dart';
 import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo.dart';
 
 class CartRepoImpl extends CartRepo {
@@ -18,7 +19,6 @@ class CartRepoImpl extends CartRepo {
       List<dynamic> productsData = data[0]['products'];
 
       for (int i = 0; i < productsData.length; i++) {
-        print(productsData[i]);
         products.add(ProductModel.fromJson(productsData[i]));
       }
 
@@ -58,6 +58,19 @@ class CartRepoImpl extends CartRepo {
       );
 
       return right(data['message']);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServiceFailure.fromDioError(e));
+      }
+      return left(ServiceFailure(e.toString()));
+    }
+  }
+
+   @override
+  Future<Either<Failure, CouponCartModel>> couponCart(String coupon) async {
+    try {
+      var data = await apiService.get('cart/coupon?coupon=$coupon');
+      return right(CouponCartModel.fromJson(data['response']));
     } catch (e) {
       if (e is DioException) {
         return left(ServiceFailure.fromDioError(e));
