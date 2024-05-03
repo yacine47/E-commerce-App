@@ -8,6 +8,7 @@ import 'package:ecommerce_app/features/authentication/presentation/views/login_v
 import 'package:ecommerce_app/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/coupon_cart_cubit/coupon_cart_cubit.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/create_order_cubit/create_order_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/quantity_cart_item_cubit/quantity_cart_item_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/address_view.dart';
@@ -119,6 +120,11 @@ abstract class AppRouter {
         path: CheckoutView.path,
         builder: (context, state) => MultiBlocProvider(
           providers: [
+            // BlocProvider<CreateAddressCubit>(
+            //   create: (context) =>
+            //       CreateAddressCubit(getIt.get<CartRepoImpl>()),
+            // ),
+
             BlocProvider.value(
               value: ProductCartCubit(getIt.get<CartRepoImpl>())
                 ..getProductCart(),
@@ -127,6 +133,9 @@ abstract class AppRouter {
                 value: QuantityCartItemCubit(getIt.get<CartRepoImpl>())),
             BlocProvider<CouponCartCubit>(
               create: (context) => CouponCartCubit(getIt.get<CartRepoImpl>()),
+            ),
+            BlocProvider<CreateOrderCubit>(
+              create: (context) => CreateOrderCubit(getIt.get<CartRepoImpl>()),
             ),
           ],
           child: CheckoutView(products: state.extra as List<ProductModel>),

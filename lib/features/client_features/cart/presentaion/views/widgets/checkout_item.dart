@@ -1,7 +1,6 @@
 import 'package:ecommerce_app/core/functions/get_price_format.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
-import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/counter_product_cart.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -64,9 +63,9 @@ class CheckoutItem extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(),
-                  CounterProductCart(
-                    productModel: product,
-                  ),
+                  Text('Quantity : ${product.quantityCartItem!}',
+                      style: Styles.style14.copyWith(
+                          color: Colors.black, fontWeight: FontWeight.bold)),
                   const SizedBox(),
                 ],
               ),

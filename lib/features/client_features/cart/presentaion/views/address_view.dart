@@ -2,7 +2,8 @@ import 'package:ecommerce_app/features/client_features/cart/presentaion/views/wi
 import 'package:flutter/material.dart';
 
 class AddressView extends StatelessWidget {
-  const AddressView({super.key});
+  const AddressView({super.key, this.onCreateAddress});
+   final VoidCallback? onCreateAddress;
 
   static String path = '/AddressView';
 

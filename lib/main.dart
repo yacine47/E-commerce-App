@@ -4,6 +4,8 @@ import 'package:ecommerce_app/core/utils/my_assets.dart';
 // import 'package:ecommerce_app/core/utils/dio_interceptor.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/service_locator.dart';
+import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo_impl.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/create_address_cubit/create_address_cubit.dart';
 import 'package:ecommerce_app/features/client_features/favorite/data/repos/favorite_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/favorite/presentaion/view_models/favorite_product/favorite_product_cubit.dart';
 import 'package:flutter/material.dart';
@@ -26,9 +28,12 @@ class EcommerceApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<FavoriteProductCubit>(
-          create: (context) => FavoriteProductCubit(getIt.get<FavoriteRepoImpl>())
-        ..getFavoriteProducts(),
+          create: (context) =>
+              FavoriteProductCubit(getIt.get<FavoriteRepoImpl>())
+                ..getFavoriteProducts(),
         ),
+        BlocProvider<CreateAddressCubit>(
+            create: (context) => CreateAddressCubit(getIt.get<CartRepoImpl>())),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

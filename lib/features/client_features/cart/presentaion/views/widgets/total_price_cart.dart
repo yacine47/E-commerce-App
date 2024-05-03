@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/constants.dart';
+import 'package:ecommerce_app/core/functions/calcul_total_price.dart';
 import 'package:ecommerce_app/core/functions/get_price_format.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
@@ -34,7 +35,7 @@ class TotalPriceCart extends StatelessWidget {
               ? Row(
                   children: [
                     Text(
-                      "${getPriceFormat(calculTotalPrice(context))} DA",
+                      "${getPriceFormat(calculTotalPrice(context, products))} DA",
                       style: Styles.style16.copyWith(
                           fontWeight: FontWeight.w600,
                           color: Colors.black38,
@@ -51,7 +52,7 @@ class TotalPriceCart extends StatelessWidget {
                   ],
                 )
               : Text(
-                  "${getPriceFormat(calculTotalPrice(context))} DA",
+                  "${getPriceFormat(calculTotalPrice(context, products))} DA",
                   style: Styles.style18.copyWith(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
@@ -60,14 +61,5 @@ class TotalPriceCart extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  int calculTotalPrice(context) {
-    int sum = 0;
-    for (var element in products) {
-      sum += element.price! * element.quantityCartItem!;
-    }
-
-    return sum;
   }
 }
