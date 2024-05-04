@@ -12,7 +12,7 @@ class OrderModel {
   String? coupon;
   int? couponId;
   int? clientId;
-  String? addressId;
+  int? addressId;
   String? supplement;
   int? totalPrice;
   int? id;
@@ -21,9 +21,9 @@ class OrderModel {
     return OrderModel(
       couponId: json["coupon_id"],
       clientId: json["client_id"],
-      addressId: json["address_id"],
+      addressId: json["address_id"] is String ? int.parse(json["address_id"]): json["address_id"],
       supplement: json["supplement"],
-      totalPrice: json["total_price"],
+      totalPrice: json["total_price"] is String ? int.parse(json["total_price"]): json["total_price"],
       id: json["id"],
     );
   }

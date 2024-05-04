@@ -7,6 +7,7 @@ import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/coupon_cart_cubit/coupon_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/create_address_cubit/create_address_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/create_order_cubit/create_order_cubit.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/total_price_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,6 +63,8 @@ class CheckoutBottomBar extends StatelessWidget {
                           .id!
                           .toString();
                   BlocProvider.of<CreateOrderCubit>(context).createNewOrder();
+
+                  BlocProvider.of<ProductCartCubit>(context).getProductCart();
                 },
               );
             },

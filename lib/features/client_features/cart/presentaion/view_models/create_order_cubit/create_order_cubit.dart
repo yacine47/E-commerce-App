@@ -8,7 +8,7 @@ part 'create_order_state.dart';
 class CreateOrderCubit extends Cubit<CreateOrderState> {
   CreateOrderCubit(this.cartRepo) : super(CreateOrderInitial());
 
-  late String coupon;
+  String coupon = '0000';
   late String addressId;
   String supplement = '';
   late int totalPrice;
@@ -16,15 +16,12 @@ class CreateOrderCubit extends Cubit<CreateOrderState> {
   final CartRepo cartRepo;
   Future<void> createNewOrder() async {
     emit(CreateOrderLoading());
-    print(coupon);
-    print(addressId);
-    print(supplement);
-    print(totalPrice);
 
     var result = await cartRepo.createNewOrder(
       OrderModel(
         coupon: coupon,
-        addressId: addressId,
+        addressId:
+            addressId is String ? int.parse(addressId) : addressId as int,
         supplement: supplement,
         totalPrice: totalPrice,
       ).toJson(),
