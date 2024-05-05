@@ -23,6 +23,10 @@ import 'package:ecommerce_app/features/client_features/home/presentaion/view_mod
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/delete_from_favorite_cubit/delete_from_favorite_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/product_details_view.dart';
+import 'package:ecommerce_app/features/client_features/profile/data/repos/profile_client_repo_impl.dart';
+import 'package:ecommerce_app/features/client_features/profile/presentation/view_models/edit_profile_cubit/edit_profile_cubit.dart';
+import 'package:ecommerce_app/features/client_features/profile/presentation/views/edit_profile_view.dart';
+import 'package:ecommerce_app/features/client_features/profile/presentation/views/order_client_view.dart';
 import 'package:ecommerce_app/features/client_features/review/data/repos/review_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/review/presentaion/view_models/review_product_cubit/review_product_cubit.dart';
 import 'package:ecommerce_app/features/client_features/review/presentaion/views/product_reviews_view.dart';
@@ -151,6 +155,26 @@ abstract class AppRouter {
       GoRoute(
         path: AddressView.path,
         builder: (context, state) => const AddressView(),
+      ),
+      GoRoute(
+        path: EditProfileView.path,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            // BlocProvider.value(
+            //   value: UserInformationCubit(getIt.get<ProfileClientRepoImpl>())
+            //     ..getInformationUser(),
+            // ),
+            BlocProvider(
+              create: (context) =>
+                  EditProfileCubit(getIt.get<ProfileClientRepoImpl>()),
+            ),
+          ],
+          child: const EditProfileView(),
+        ),
+      ),
+      GoRoute(
+        path: OrderClientView.path,
+        builder: (context, state) => const OrderClientView(),
       ),
     ],
   );

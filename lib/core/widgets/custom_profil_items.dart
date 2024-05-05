@@ -1,3 +1,6 @@
+import 'package:ecommerce_app/constants.dart';
+import 'package:ecommerce_app/core/widgets/custom_card_item_height.dart';
+import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 
@@ -17,44 +20,50 @@ class CustomProfielItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 24,
-        ),
-        child: Row(
-          children: [
-            Iconify(
-              icon,
-              size: 24,
+      child: ItemHasPadding(
+        horPadding: kHorPadding,
+        child: CustomCardItemHasHeight(
+          hieght: 68,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24,
             ),
-            // const Icon(
-            //   IconlyLight.activity,
-            //   size: 24,
-            // ),
-            const SizedBox(width: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Row(
               children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                  ),
+                Iconify(
+                  icon,
+                  size: 24,
                 ),
-                // SizedBox(height: 4)
-                Text(
-                  subTitle,
-                  style: const TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey,
-                  ),
-                ),
+                // const Icon(
+                //   IconlyLight.activity,
+                //   size: 24,
+                // ),
+                const SizedBox(width: 16),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    // SizedBox(height: 4)
+                    Text(
+                      subTitle,
+                      style: const TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                )
               ],
-            )
-          ],
+            ),
+          ),
         ),
       ),
     );

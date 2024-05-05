@@ -8,11 +8,14 @@ class CustomPhotoProfile extends StatelessWidget {
   final double size;
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-        radius: size,
-        backgroundColor: Colors.transparent,
-        child: CustomCachedNetworkImage(
-          path: photo,
-        ));
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(555),
+      child: CircleAvatar(
+          radius: size,
+          backgroundColor: Colors.transparent,
+          child: CustomCachedNetworkImage(
+            path: photo,
+          )),
+    );
   }
 }

@@ -1,17 +1,15 @@
 import 'package:ecommerce_app/core/widgets/custom_failure_widget.dart';
 import 'package:ecommerce_app/core/widgets/custom_loading_widget.dart';
 import 'package:ecommerce_app/features/client_features/cart/data/models/address_model.dart';
-import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/coupon_cart_cubit/coupon_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/create_order_cubit/create_order_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/custom_supplement_text_field.dart';
-import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_report_product_text_field.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/form_text_field_coupon.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_app_bar.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
-import 'package:ecommerce_app/features/authentication/presentation/views/widgets/custom_text_field_coupon.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/address_view.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/checkout_bottom_bar.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/checkout_items_list_view.dart';
@@ -116,42 +114,6 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         }
         return const CustomLoadingWidget();
       },
-    );
-  }
-}
-
-class FormTextFieldCoupon extends StatefulWidget {
-  const FormTextFieldCoupon({
-    super.key,
-  });
-
-  @override
-  State<FormTextFieldCoupon> createState() => _FormTextFieldCouponState();
-}
-
-class _FormTextFieldCouponState extends State<FormTextFieldCoupon> {
-  GlobalKey<FormState> formKey = GlobalKey();
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  String? coupon;
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: CustomTextFieldCoupon(
-          suffixOnTap: () async {
-            if (formKey.currentState!.validate()) {
-              formKey.currentState!.save();
-              BlocProvider.of<CouponCartCubit>(context).couponCart(coupon!);
-              BlocProvider.of<CreateOrderCubit>(context).coupon = coupon!;
-            } else {
-              autovalidateMode = AutovalidateMode.always;
-              setState(() {});
-            }
-          },
-          onSaved: (value) {
-            coupon = value!;
-          },
-          hint: 'Enter promo code here'),
     );
   }
 }

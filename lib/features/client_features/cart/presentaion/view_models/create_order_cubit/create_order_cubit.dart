@@ -20,8 +20,8 @@ class CreateOrderCubit extends Cubit<CreateOrderState> {
     var result = await cartRepo.createNewOrder(
       OrderModel(
         coupon: coupon,
-        addressId:
-            addressId is String ? int.parse(addressId) : addressId as int,
+        addressId: int.parse(addressId),
+        // addressId is String ? int.parse(addressId) : addressId as int,
         supplement: supplement,
         totalPrice: totalPrice,
       ).toJson(),

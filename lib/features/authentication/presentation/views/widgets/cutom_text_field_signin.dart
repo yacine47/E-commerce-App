@@ -12,7 +12,7 @@ class CustomTextFieldSignIn extends StatelessWidget {
     this.keyboardType,
     this.onPressed,
     this.suffixIcon,
-    this.onSaved,
+    this.onSaved, this.controller,
   });
 
   final int maxLines;
@@ -22,9 +22,11 @@ class CustomTextFieldSignIn extends StatelessWidget {
   final TextInputType? keyboardType;
   final void Function()? onPressed;
   final IconData? suffixIcon;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       onSaved: onSaved,
       validator: validator,
       onChanged: onChanged,

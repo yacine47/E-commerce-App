@@ -8,6 +8,8 @@ import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/create_address_cubit/create_address_cubit.dart';
 import 'package:ecommerce_app/features/client_features/favorite/data/repos/favorite_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/favorite/presentaion/view_models/favorite_product/favorite_product_cubit.dart';
+import 'package:ecommerce_app/features/client_features/profile/data/repos/profile_client_repo_impl.dart';
+import 'package:ecommerce_app/features/client_features/profile/presentation/view_models/user_information_cubit/user_information_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -34,6 +36,10 @@ class EcommerceApp extends StatelessWidget {
         ),
         BlocProvider<CreateAddressCubit>(
             create: (context) => CreateAddressCubit(getIt.get<CartRepoImpl>())),
+        BlocProvider(
+          create: (context) =>
+              UserInformationCubit(getIt.get<ProfileClientRepoImpl>()),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

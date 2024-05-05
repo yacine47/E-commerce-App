@@ -5,6 +5,7 @@ import 'package:ecommerce_app/features/authentication/data/repos/auth_repo_impl.
 import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/favorite/data/repos/favorite_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo_impl.dart';
+import 'package:ecommerce_app/features/client_features/profile/data/repos/profile_client_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/review/data/repos/review_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/search/data/repos/search_repo_impl.dart';
 import 'package:get_it/get_it.dart';
@@ -25,6 +26,7 @@ void setup() {
       SearchRepoImpl(getIt.get<ApiService>()));
 
   getIt.registerSingleton<CartRepoImpl>(CartRepoImpl(getIt.get<ApiService>()));
+  getIt.registerSingleton<ProfileClientRepoImpl>(ProfileClientRepoImpl(getIt.get<ApiService>()));
   getIt.registerSingleton<HomeClientRepoImpl>(
       HomeClientRepoImpl(getIt.get<ApiService>()));
   getIt.registerSingleton<UserModel>(UserModel());
