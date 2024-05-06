@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/core/errors/failures.dart';
 import 'package:ecommerce_app/core/utils/api_service.dart';
+import 'package:ecommerce_app/features/client_features/home/data/models/advertising_model.dart';
 import 'package:ecommerce_app/features/client_features/home/data/models/category_model.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo.dart';
@@ -22,6 +23,40 @@ class HomeClientRepoImpl extends HomeClientRepo {
       }
 
       return right(categories);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServiceFailure.fromDioError(e));
+      }
+      return left(ServiceFailure(e.toString()));
+    }
+  }
+  
+
+  
+ @override
+  Future<Either<Failure, AdvertisingModel>> getAdsDetails(int id) async {
+    try {
+      Map<String,dynamic> data = await apiService.get('ads/$id');
+    
+      return right(AdvertisingModel.fromJson(data));
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServiceFailure.fromDioError(e));
+      }
+      return left(ServiceFailure(e.toString()));
+    }
+  }
+  @override
+  Future<Either<Failure, List<AdvertisingModel>>> getAdsToday() async {
+    try {
+      List<dynamic> data = await apiService.get('ads');
+      List<AdvertisingModel> advertisings = [];
+
+      for (int i = 0; i < data.length; i++) {
+        advertisings.add(AdvertisingModel.fromJson(data[i]));
+      }
+
+      return right(advertisings);
     } catch (e) {
       if (e is DioException) {
         return left(ServiceFailure.fromDioError(e));

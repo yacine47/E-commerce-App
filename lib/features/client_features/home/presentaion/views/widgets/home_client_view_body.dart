@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/ads_items_fetch_data.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/category_item_fetch_data.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/product_items_home_fetch_data.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/search_product_home_view_body.dart';
@@ -13,23 +14,23 @@ class HomeClientViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return const CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               ItemHasPadding(
                 horPadding: kHorPadding,
                 child: Row(
                   children: [
-                    const Expanded(child: SearchProductHomeViewButton()),
-                    const SizedBox(width: 16),
+                    Expanded(child: SearchProductHomeViewButton()),
+                    SizedBox(width: 16),
                     Badge(
                       backgroundColor: MyColors.primaryColor,
-                      label: const Text('4'),
-                      child: const Icon(
+                      label: Text('4'),
+                      child: Icon(
                         IconlyLight.notification,
                         size: 26,
                       ),
@@ -37,19 +38,27 @@ class HomeClientViewBody extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
-              ItemHasPadding(
-                  horPadding: kHorPadding,
-                  child: Image.asset('assets/images/image 50.png')),
-              const SizedBox(height: 24),
-              const CategoryItemsFetchData(),
-              const SizedBox(height: 26),
-              const TitleItems(),
-              const SizedBox(height: 26),
+              SizedBox(height: 20),
+              // ItemHasPadding(
+              //     horPadding: kHorPadding,
+              //     child: GestureDetector(
+              //         onTap: () {
+              //           GoRouter.of(context).push(StoreSellerView.path);
+              //         },
+              //         child: Image.asset(
+              //           MyAssets.ads2,
+              //         ))),
+
+              AdsItemsFetchData(),
+              SizedBox(height: 24),
+              CategoryItemsFetchData(),
+              SizedBox(height: 26),
+              TitleItems(),
+              SizedBox(height: 26),
             ],
           ),
         ),
-        const ProductItemsHomeFetchData(),
+        ProductItemsHomeFetchData(),
       ],
     );
   }

@@ -2,6 +2,7 @@ import 'package:ecommerce_app/core/utils/service_locator.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/cart_view.dart';
 import 'package:ecommerce_app/features/client_features/favorite/presentaion/views/widgets/favorite_view_body.dart';
 import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo_impl.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/advertising_today_cubit/advertising_today_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/category_cubit/category_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/product_by_category/product_by_category_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/home_client_view_body.dart';
@@ -25,6 +26,11 @@ abstract class NavigationView {
           create: (context) => CategoryCubit(getIt.get<HomeClientRepoImpl>())
             ..getAllCategories(),
         ),
+        BlocProvider<AdvertisingTodayCubit>(
+          create: (context) =>
+              AdvertisingTodayCubit(getIt.get<HomeClientRepoImpl>())
+                ..getAdsToday(),
+        ),
       ],
       child: const HomeClientViewBody(),
     ),
@@ -35,7 +41,6 @@ abstract class NavigationView {
         BlocProvider(
           create: (context) => LogoutCubit(getIt.get<ProfileClientRepoImpl>()),
         ),
-        
       ],
       child: const ProfileClientViewBody(),
     ),

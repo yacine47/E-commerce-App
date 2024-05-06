@@ -7,4 +7,7 @@ abstract class MyAssets {
   static String loadingImage = 'assets/images/Spin@1x-1.0s-200px-200px.gif';
   static String cartEmpty = 'assets/images/cart_empty.png';
   static String photoProfile = 'assets/images/prfil_avatar.png';
+  static String bachgroundBlack = 'assets/images/Rectangle 5686.png';
+  static String ads1 = 'assets/images/ads/ads1.jpg';
+  static String ads2 = 'assets/images/ads/ads2.png';
 }

@@ -16,13 +16,16 @@ import 'package:ecommerce_app/features/client_features/cart/presentaion/views/ca
 import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/checkout_view.dart';
 import 'package:ecommerce_app/features/client_features/favorite/presentaion/views/favorite_view.dart';
+import 'package:ecommerce_app/features/client_features/home/data/models/advertising_model.dart';
 import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/add_to_cart/add_to_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/add_to_favorite/add_to_favorite_cubit.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/advertising_deatils_cubit/advertising_details_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/check_proudct/check_product_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/delete_from_favorite_cubit/delete_from_favorite_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/product_details_view.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/store_seller_view.dart';
 import 'package:ecommerce_app/features/client_features/profile/data/repos/profile_client_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/profile/presentation/view_models/edit_profile_cubit/edit_profile_cubit.dart';
 import 'package:ecommerce_app/features/client_features/profile/presentation/views/edit_profile_view.dart';
@@ -176,6 +179,17 @@ abstract class AppRouter {
         path: OrderClientView.path,
         builder: (context, state) => const OrderClientView(),
       ),
+      GoRoute(
+          path: StoreSellerView.path,
+          builder: (context, state) {
+            AdvertisingModel advertisingModel = state.extra as AdvertisingModel;
+            return BlocProvider(
+              create: (context) =>
+                  AdvertisingDetailsCubit(getIt.get<HomeClientRepoImpl>())
+                    ..getAdsToday(advertisingModel.id!),
+              child: const StoreSellerView(),
+            );
+          }),
     ],
   );
 }

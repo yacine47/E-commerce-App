@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/go_back_button.dart';
 import 'package:flutter/material.dart';
