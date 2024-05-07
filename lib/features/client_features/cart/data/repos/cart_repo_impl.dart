@@ -5,7 +5,7 @@ import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/core/utils/api_service.dart';
 import 'package:ecommerce_app/features/client_features/cart/data/models/address_model.dart';
 import 'package:ecommerce_app/features/client_features/cart/data/models/coupon_cart_model.dart';
-import 'package:ecommerce_app/features/client_features/cart/data/models/order_model.dart';
+import 'package:ecommerce_app/features/client_features/profile/data/models/order_model.dart';
 import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo.dart';
 
 class CartRepoImpl extends CartRepo {

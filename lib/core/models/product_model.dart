@@ -14,6 +14,8 @@ class ProductModel {
     this.reviewsCount,
     this.rating,
     this.quantityCartItem,
+    this.quantityOrderItem,
+    this.orderItemStatus,
   });
 
   int? id;
@@ -22,6 +24,8 @@ class ProductModel {
   int? price;
   int? quantity;
   int? quantityCartItem;
+  int? quantityOrderItem;
+  int? orderItemStatus;
   int? sellerId;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -41,6 +45,7 @@ class ProductModel {
       price: json["price"],
       quantity: json["quantity"],
       quantityCartItem: json["quantity_cart_item"],
+      quantityOrderItem: json["quantity_order_item"],
       sellerId: json["seller_id"],
       createdAt: DateTime.tryParse(json["created_at"] ?? ""),
       updatedAt: DateTime.tryParse(json["updated_at"] ?? ""),
@@ -51,7 +56,10 @@ class ProductModel {
       reviewsCount: json['reviews_count'],
       rating: json['reviews_avg_reviewsrating'] == null
           ? 0
-          : double.parse(json['reviews_avg_reviewsrating']),
+          : double.parse(
+              json['reviews_avg_reviewsrating'],
+            ),
+      orderItemStatus: json['order_item_status'],
     );
   }
 }

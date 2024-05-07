@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:ecommerce_app/features/client_features/cart/data/models/order_model.dart';
+import 'package:ecommerce_app/features/client_features/profile/data/models/order_model.dart';
 import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo.dart';
 import 'package:meta/meta.dart';
 

@@ -24,10 +24,13 @@ import 'package:ecommerce_app/features/client_features/home/presentaion/view_mod
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/check_proudct/check_product_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/delete_from_favorite_cubit/delete_from_favorite_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/notification_reviews_delivered_view.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/notification_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/product_details_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/store_seller_view.dart';
 import 'package:ecommerce_app/features/client_features/profile/data/repos/profile_client_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/profile/presentation/view_models/edit_profile_cubit/edit_profile_cubit.dart';
+import 'package:ecommerce_app/features/client_features/profile/presentation/view_models/get_orders_cubit/get_orders_cubit.dart';
 import 'package:ecommerce_app/features/client_features/profile/presentation/views/edit_profile_view.dart';
 import 'package:ecommerce_app/features/client_features/profile/presentation/views/order_client_view.dart';
 import 'package:ecommerce_app/features/client_features/review/data/repos/review_repo_impl.dart';
@@ -177,7 +180,16 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: OrderClientView.path,
-        builder: (context, state) => const OrderClientView(),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider<GetOrdersCubit>(
+              create: (context) =>
+                  GetOrdersCubit(getIt.get<ProfileClientRepoImpl>())
+                    ..getOrders(),
+            ),
+          ],
+          child: const OrderClientView(),
+        ),
       ),
       GoRoute(
           path: StoreSellerView.path,
@@ -190,6 +202,16 @@ abstract class AppRouter {
               child: const StoreSellerView(),
             );
           }),
+      GoRoute(
+        path: NotificationView.path,
+        builder: (context, state) => const NotificationView(),
+      ),
+       GoRoute(
+        path: NotificationReviewDeliveredView.path,
+        builder: (context, state) => const NotificationReviewDeliveredView(),
+      ),
+
+      
     ],
   );
 }

@@ -1,10 +1,11 @@
-import 'package:ecommerce_app/constants.dart';
+
+
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
-class CategoryItem extends StatelessWidget {
-  const CategoryItem(
+class CategoryItemMyOrder extends StatelessWidget {
+  const CategoryItemMyOrder(
       {super.key, required this.name, this.isActive = false, this.onTap});
 
   final String name;
@@ -17,10 +18,8 @@ class CategoryItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         // width: 96,
-        constraints: BoxConstraints(
-          minWidth:
-              (MediaQuery.of(context).size.width - (kHorPadding * 2)) / 3.3,
-          // minWidth: 96,
+        constraints: const BoxConstraints(
+          minWidth: 96,
         ),
         padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 16),
         decoration: BoxDecoration(

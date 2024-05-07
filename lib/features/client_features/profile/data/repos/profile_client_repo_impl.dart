@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:ecommerce_app/core/errors/failures.dart';
 import 'package:ecommerce_app/core/utils/api_service.dart';
 import 'package:ecommerce_app/features/authentication/data/models/user_model.dart';
+import 'package:ecommerce_app/features/client_features/profile/data/models/order_model.dart';
 import 'package:ecommerce_app/features/client_features/profile/data/repos/profile_client_repo.dart';
 import 'package:hive/hive.dart';
 
@@ -86,5 +87,24 @@ class ProfileClientRepoImpl extends ProfileClientRepo {
       );
     }
     return data?['image'];
+  }
+
+  @override
+  Future<Either<Failure, List<OrderModel>>> getOrders() async {
+    try {
+      List<dynamic> data = await apiService.get('orders');
+      List<OrderModel> orders = [];
+
+      for (int i = 0; i < data.length; i++) {
+        orders.add(OrderModel.fromJson(data[i]));
+      }
+
+      return right(orders);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServiceFailure.fromDioError(e));
+      }
+      return left(ServiceFailure(e.toString()));
+    }
   }
 }
