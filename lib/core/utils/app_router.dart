@@ -17,7 +17,9 @@ import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/checkout_view.dart';
 import 'package:ecommerce_app/features/client_features/favorite/presentaion/views/favorite_view.dart';
 import 'package:ecommerce_app/features/client_features/home/data/models/advertising_model.dart';
+import 'package:ecommerce_app/features/client_features/home/data/models/notification_model.dart';
 import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo_impl.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/add_review_cubit/add_review_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/add_to_cart/add_to_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/add_to_favorite/add_to_favorite_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/advertising_deatils_cubit/advertising_details_cubit.dart';
@@ -136,10 +138,7 @@ abstract class AppRouter {
             //       CreateAddressCubit(getIt.get<CartRepoImpl>()),
             // ),
 
-            BlocProvider.value(
-              value: ProductCartCubit(getIt.get<CartRepoImpl>())
-                ..getProductCart(),
-            ),
+           
             BlocProvider.value(
                 value: QuantityCartItemCubit(getIt.get<CartRepoImpl>())),
             BlocProvider<CouponCartCubit>(
@@ -186,7 +185,7 @@ abstract class AppRouter {
             BlocProvider<GetOrdersCubit>(
               create: (context) =>
                   GetOrdersCubit(getIt.get<ProfileClientRepoImpl>())
-                    ..getOrders(),
+                    ..getOrders(0),
             ),
           ],
           child: const OrderClientView(),
@@ -209,7 +208,11 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AddReviewView.path,
-        builder: (context, state) => const AddReviewView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => AddReviewCubit(getIt.get<HomeClientRepoImpl>()),
+          child: AddReviewView(
+              notificationModel: state.extra as NotificationModel),
+        ),
       ),
       GoRoute(
         path: NotificationReviewDeliveredView.path,

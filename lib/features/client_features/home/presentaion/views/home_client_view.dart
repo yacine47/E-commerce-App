@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/core/helpers/list_navigation_bar.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/all_order_item_delivred_count_cubit/all_order_item_delivred_count_cubit.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeClientView extends StatefulWidget {
   const HomeClientView({super.key});
@@ -11,6 +13,13 @@ class HomeClientView extends StatefulWidget {
 }
 
 class _HomeClientViewState extends State<HomeClientView> {
+  @override
+  void initState() {
+    BlocProvider.of<AllOrderItemDelivredCountCubit>(context)
+        .getAllOrderItemDelivredCount();
+    super.initState();
+  }
+
   int _currentIndex = 0;
 
   @override
@@ -24,10 +33,9 @@ class _HomeClientViewState extends State<HomeClientView> {
         },
       ),
       body: SafeArea(
-        child:NavigationView.navigationViewsClient[_currentIndex],
-        ),
-      );
-    
+        child: NavigationView.navigationViewsClient[_currentIndex],
+      ),
+    );
   }
 }
 

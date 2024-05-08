@@ -44,7 +44,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                 } else if (state is UserInformationFailure) {
                   return CustomFailureWidget(errMessage: state.errMessage);
                 }
-                return const Center(child: CustomLoadingWidget());
+                return const CustomLoadingWidget();
               },
             ),
             ItemHasPadding(

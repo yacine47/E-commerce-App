@@ -10,9 +10,9 @@ class GetOrdersCubit extends Cubit<GetOrdersState> {
 
   final ProfileClientRepo profileClientRepo;
 
-  Future<void> getOrders() async {
+  Future<void> getOrders(int index) async {
     emit(GetOrdersLoading());
-    var result = await profileClientRepo.getOrders();
+    var result = await profileClientRepo.getOrders(index);
 
     result.fold(
       (failure) => emit(GetOrdersFailure(failure.error)),

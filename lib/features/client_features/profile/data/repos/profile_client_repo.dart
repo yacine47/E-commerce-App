@@ -11,5 +11,5 @@ abstract class ProfileClientRepo {
   Future<Either<Failure, void>> editProfile(
       File? imagePath, UserModel userModel);
 
-      Future<Either<Failure, List<OrderModel>>> getOrders();
+      Future<Either<Failure, List<OrderModel>>> getOrders(int index);
 }

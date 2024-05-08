@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/category_item.dart';
+import 'package:ecommerce_app/features/client_features/profile/presentation/view_models/get_orders_cubit/get_orders_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoryItemMyOrderListView extends StatefulWidget {
   const CategoryItemMyOrderListView({
@@ -30,7 +32,7 @@ class _CategoryItemMyOrderListViewState
             return CategoryItem(
               onTap: () {
                 currentIndex = index;
-
+                BlocProvider.of<GetOrdersCubit>(context).getOrders(index);
                 setState(() {});
               },
               isActive: currentIndex == index,

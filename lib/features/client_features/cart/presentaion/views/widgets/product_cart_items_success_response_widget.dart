@@ -1,6 +1,3 @@
-
-
-
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/core/utils/my_assets.dart';
@@ -8,10 +5,12 @@ import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_button_submit.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/checkout_view.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/cart_items_list_view.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/total_price_cart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class ProductCartSuccessResponseWidget extends StatelessWidget {
@@ -38,6 +37,8 @@ class ProductCartSuccessResponseWidget extends StatelessWidget {
                   child: CustomButtonSubmit(
                     title: 'Checkout',
                     onPressed: () {
+                      BlocProvider.of<ProductCartCubit>(context)
+                          .getProductCart();
                       GoRouter.of(context).push(
                         CheckoutView.path,
                         extra: products,

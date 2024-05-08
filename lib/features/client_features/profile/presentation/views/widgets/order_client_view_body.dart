@@ -40,7 +40,10 @@ class OrderClientViewBody extends StatelessWidget {
               } else if (state is GetOrdersFailure) {
                 return CustomFailureWidget(errMessage: state.errMessage);
               }
-              return const CustomLoadingWidget();
+              return const Padding(
+                padding: EdgeInsets.only(top: 24),
+                child: CustomLoadingWidget(),
+              );
             },
           ),
         ),

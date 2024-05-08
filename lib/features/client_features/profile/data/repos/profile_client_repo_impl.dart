@@ -90,9 +90,9 @@ class ProfileClientRepoImpl extends ProfileClientRepo {
   }
 
   @override
-  Future<Either<Failure, List<OrderModel>>> getOrders() async {
+  Future<Either<Failure, List<OrderModel>>> getOrders(int index) async {
     try {
-      List<dynamic> data = await apiService.get('orders');
+      List<dynamic> data = await apiService.get('orders/$index');
       List<OrderModel> orders = [];
 
       for (int i = 0; i < data.length; i++) {

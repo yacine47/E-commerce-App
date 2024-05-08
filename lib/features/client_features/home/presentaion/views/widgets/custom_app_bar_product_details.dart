@@ -1,12 +1,12 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
-import 'package:ecommerce_app/core/widgets/custom_loading_widget.dart';
 import 'package:ecommerce_app/core/widgets/go_back_button.dart';
 import 'package:ecommerce_app/features/client_features/favorite/presentaion/view_models/favorite_product/favorite_product_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/add_to_favorite/add_to_favorite_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/check_proudct/check_product_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/delete_from_favorite_cubit/delete_from_favorite_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_icon_button.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_loading_favorite_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,7 +36,7 @@ class CustomAppBarProductDetails extends StatelessWidget {
                     padRight: 0,
                   );
                 }
-                return const CustomLoadingWidget();
+                return const CustomLoadingFavoriteWidget();
               },
             ),
           ],

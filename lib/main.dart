@@ -6,8 +6,12 @@ import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/service_locator.dart';
 import 'package:ecommerce_app/features/client_features/cart/data/repos/cart_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/create_address_cubit/create_address_cubit.dart';
+import 'package:ecommerce_app/features/client_features/cart/presentaion/view_models/product_cart_cubit/product_cart_cubit.dart';
 import 'package:ecommerce_app/features/client_features/favorite/data/repos/favorite_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/favorite/presentaion/view_models/favorite_product/favorite_product_cubit.dart';
+import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo_impl.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/all_order_item_delivred_count_cubit/all_order_item_delivred_count_cubit.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/all_order_item_delivred_cubit/all_order_item_delivred_cubit.dart';
 import 'package:ecommerce_app/features/client_features/profile/data/repos/profile_client_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/profile/presentation/view_models/user_information_cubit/user_information_cubit.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +44,16 @@ class EcommerceApp extends StatelessWidget {
           create: (context) =>
               UserInformationCubit(getIt.get<ProfileClientRepoImpl>()),
         ),
+        BlocProvider<ProductCartCubit>(
+          create: (context) =>
+              ProductCartCubit(getIt.get<CartRepoImpl>())..getProductCart(),
+        ),
+        BlocProvider(
+            create: (context) =>
+                AllOrderItemDelivredCubit(getIt.get<HomeClientRepoImpl>())),
+        BlocProvider(
+            create: (context) => AllOrderItemDelivredCountCubit(
+                getIt.get<HomeClientRepoImpl>())),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

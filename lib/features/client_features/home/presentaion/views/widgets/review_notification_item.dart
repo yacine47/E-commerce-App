@@ -1,24 +1,26 @@
-
-
-
-import 'package:ecommerce_app/core/utils/my_assets.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
+import 'package:ecommerce_app/features/client_features/home/data/models/notification_model.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/add_review_view.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ReviewNotificationItem extends StatelessWidget {
   const ReviewNotificationItem({
     super.key,
+    required this.notificationModel,
   });
+
+  final NotificationModel notificationModel;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Card(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         elevation: 0,
         color: MyColors.gapColor,
         child: ItemHasPadding(
@@ -31,7 +33,7 @@ class ReviewNotificationItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Leave a Quick Review!',
+                    'Add a Quick Review!',
                     style: Styles.style16.copyWith(
                       color: Colors.black,
                       fontWeight: FontWeight.w600,
@@ -50,15 +52,22 @@ class ReviewNotificationItem extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
-                      MyAssets.product,
-                      fit: BoxFit.cover,
-                      width: MediaQuery.of(context).size.width * .2,
-                    ),
-                    // child: CustomCachedNetworkImage(
-                    //     path: productModel.images![0].path!),
-                  ),
+                      borderRadius: BorderRadius.circular(12),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * .2,
+                        child: CustomCachedNetworkImage(
+                          path: notificationModel.product!.images![0].path!,
+                        ),
+                      )
+
+                      // Image.asset(
+                      //   MyAssets.product,
+                      //   fit: BoxFit.cover,
+                      //   width: MediaQuery.of(context).size.width * .2,
+                      // ),
+                      // child: CustomCachedNetworkImage(
+                      //     path: productModel.images![0].path!),
+                      ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Column(
@@ -69,11 +78,15 @@ class ReviewNotificationItem extends StatelessWidget {
                             style: Styles.style12,
                             overflow: TextOverflow.clip),
                         const SizedBox(height: 6),
-                        Text(
-                          'Add Review',
-                          style: Styles.style14.copyWith(
-                            color: MyColors.primaryColor2,
-                            fontWeight: FontWeight.w600,
+                        GestureDetector(
+                          onTap: () =>
+                              GoRouter.of(context).push(AddReviewView.path,extra: notificationModel),
+                          child: Text(
+                            'Add Review',
+                            style: Styles.style14.copyWith(
+                              color: MyColors.primaryColor2,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ],

@@ -3,6 +3,7 @@ import 'package:ecommerce_app/core/errors/failures.dart';
 import 'package:ecommerce_app/features/client_features/home/data/models/advertising_model.dart';
 import 'package:ecommerce_app/features/client_features/home/data/models/category_model.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
+import 'package:ecommerce_app/features/client_features/home/data/models/notification_model.dart';
 
 abstract class HomeClientRepo {
   Future<Either<Failure, List<CategoryModel>>> getAllCategories();
@@ -21,6 +22,13 @@ abstract class HomeClientRepo {
   Future<Either<Failure, String>> createReportProduct(
       int idProduct, Map<String, dynamic> data);
 
-      Future<Either<Failure, List<AdvertisingModel>>> getAdsToday();
-      Future<Either<Failure, AdvertisingModel>> getAdsDetails(int id);
+      Future<Either<Failure, String>> createReviewProduct(
+       Map<String, dynamic> dataReview, Map<String, dynamic> dataNotification);
+
+  Future<Either<Failure, List<AdvertisingModel>>> getAdsToday();
+  Future<Either<Failure, AdvertisingModel>> getAdsDetails(int id);
+
+  Future<Either<Failure, List<NotificationModel>>> getAllOrderItemDelivred();
+
+  Future<Either<Failure, int>> getAllOrderItemDelivredCount();
 }

@@ -15,7 +15,6 @@ class AddReviewProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var productModel;
     return Container(
       height: MediaQuery.of(context).size.height * .14,
       decoration: const BoxDecoration(boxShadow: [
@@ -67,13 +66,13 @@ class AddReviewProductItem extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        '${productModel.rating} (${productModel.reviewsCount})',
+                        '${product.rating!.toStringAsFixed(2)} (${product.reviewsCount})',
                         style: Styles.style12
                             .copyWith(fontWeight: FontWeight.w500),
                       )
                     ],
                   ),
-                  Text(
+                  Text(  
                     '${getPriceFormat(product.price!)} DA',
                     style: Styles.style12.copyWith(
                       color: Colors.black,
@@ -88,6 +87,7 @@ class AddReviewProductItem extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(width: 16),
           ],
         ),
       ),

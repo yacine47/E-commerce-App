@@ -7,24 +7,30 @@ import 'package:ecommerce_app/features/client_features/cart/presentaion/views/wi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CartView extends StatelessWidget {
+class CartView extends StatefulWidget {
   const CartView({super.key});
   static String path = '/AddToCartView';
+
+  @override
+  State<CartView> createState() => _CartViewState();
+}
+
+class _CartViewState extends State<CartView> {
+  @override
+  void initState() {
+    BlocProvider.of<ProductCartCubit>(context).getProductCart();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: MultiBlocProvider(
           providers: [
-            
-            
             BlocProvider<DeleteFromCartCubit>(
               create: (context) =>
                   DeleteFromCartCubit(getIt.get<CartRepoImpl>()),
-            ),
-            BlocProvider<ProductCartCubit>(
-              create: (context) =>
-                  ProductCartCubit(getIt.get<CartRepoImpl>())..getProductCart(),
             ),
             BlocProvider<QuantityCartItemCubit>(
               create: (context) =>
