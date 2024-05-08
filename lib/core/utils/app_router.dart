@@ -23,6 +23,7 @@ import 'package:ecommerce_app/features/client_features/home/presentaion/view_mod
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/advertising_deatils_cubit/advertising_details_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/check_proudct/check_product_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/delete_from_favorite_cubit/delete_from_favorite_cubit.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/add_review_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/home_client_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/notification_reviews_delivered_view.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/notification_view.dart';
@@ -206,12 +207,14 @@ abstract class AppRouter {
         path: NotificationView.path,
         builder: (context, state) => const NotificationView(),
       ),
-       GoRoute(
+      GoRoute(
+        path: AddReviewView.path,
+        builder: (context, state) => const AddReviewView(),
+      ),
+      GoRoute(
         path: NotificationReviewDeliveredView.path,
         builder: (context, state) => const NotificationReviewDeliveredView(),
       ),
-
-      
     ],
   );
 }

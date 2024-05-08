@@ -10,4 +10,5 @@ abstract class MyAssets {
   static String bachgroundBlack = 'assets/images/Rectangle 5686.png';
   static String ads1 = 'assets/images/ads/ads1.jpg';
   static String ads2 = 'assets/images/ads/ads2.png';
+  static String product = 'assets/images/products/1.jpg';
 }

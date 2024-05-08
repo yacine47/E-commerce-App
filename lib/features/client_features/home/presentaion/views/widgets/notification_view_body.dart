@@ -13,7 +13,7 @@ class NotificationViewBody extends StatelessWidget {
       horPadding: kHorPadding,
       child: Column(
         children: [
-          SizedBox(height: 9),
+          SizedBox(height: 24),
           CustomAppBar(
             title: 'Notifications',
           ),
