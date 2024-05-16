@@ -7,7 +7,7 @@ String initRoute() {
   Box setings = Hive.box('settings');
   // bool isExiste =  setings.get('token') == null;
 
-  if (setings.get('token') != null) {
+  if (setings.get('token') != null && setings.get('role') != null) {
     if (setings.get('role') == 'client') {
       return HomeClientView.path;
     }

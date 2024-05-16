@@ -23,6 +23,7 @@ class ProfileClientRepoImpl extends ProfileClientRepo {
       );
 
       await Hive.box('settings').put('token', null);
+      await Hive.box('settings').put('role', null);
 
       return right(null);
     } catch (e) {

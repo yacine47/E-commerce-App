@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconly/iconly.dart';
 
-class CustomBottomNavigationBar extends StatelessWidget {
-  const CustomBottomNavigationBar({super.key, this.onTap, required this.currentIndex});
+class CustomBottomNavigationBarSeller extends StatelessWidget {
+  const CustomBottomNavigationBarSeller(
+      {super.key, this.onTap, required this.currentIndex});
 
   final void Function(int)? onTap;
   final int currentIndex;
@@ -41,8 +42,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
           // unselectedItemColor: primaryColor,
           items: [
-            BottomNavigationBarItem(
-              icon: const Icon(
+            const BottomNavigationBarItem(
+              icon: Icon(
                 IconlyLight.home,
                 size: kSizeIconNoActive,
               ),
@@ -53,8 +54,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
               ),
               label: '',
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(
+            const BottomNavigationBarItem(
+              icon: Icon(
                 IconlyLight.heart,
                 size: kSizeIconNoActive,
               ),
@@ -71,15 +72,15 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 size: kSizeIconNoActive + 4,
                 color: MyColors.iconColorNavigationBar,
               ),
-              activeIcon: Iconify(
+              activeIcon: const Iconify(
                 kCartIconifyActive,
                 size: kSizeIconNoActive + 8,
                 color: MyColors.primaryColor,
               ),
               label: '',
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(
+            const BottomNavigationBarItem(
+              icon: Icon(
                 IconlyLight.profile,
                 size: kSizeIconNoActive,
               ),

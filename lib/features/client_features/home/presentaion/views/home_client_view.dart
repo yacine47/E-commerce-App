@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/core/helpers/list_navigation_bar.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/all_order_item_delivred_count_cubit/all_order_item_delivred_count_cubit.dart';
-import 'package:ecommerce_app/features/seller_features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
+import 'package:ecommerce_app/features/client_features/home/presentaion/views/custom_bottom_navigation_bar_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,7 +25,7 @@ class _HomeClientViewState extends State<HomeClientView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomBottomNavigationBar(
+      bottomNavigationBar: CustomBottomNavigationBarClient(
         currentIndex: _currentIndex,
         onTap: (index) {
           _currentIndex = index;

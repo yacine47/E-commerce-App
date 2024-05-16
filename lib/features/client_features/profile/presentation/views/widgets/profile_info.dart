@@ -16,6 +16,7 @@ class ProfileInfo extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * .3,
       color: MyColors.primaryColor,
+      // color: Colors.black,
       child: BlocBuilder<UserInformationCubit, UserInformationState>(
         builder: (context, state) {
           if (state is UserInformationSuccess) {

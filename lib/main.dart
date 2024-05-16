@@ -45,8 +45,7 @@ class EcommerceApp extends StatelessWidget {
               UserInformationCubit(getIt.get<ProfileClientRepoImpl>()),
         ),
         BlocProvider<ProductCartCubit>(
-          create: (context) =>
-              ProductCartCubit(getIt.get<CartRepoImpl>())..getProductCart(),
+          create: (context) => ProductCartCubit(getIt.get<CartRepoImpl>()),
         ),
         BlocProvider(
             create: (context) =>

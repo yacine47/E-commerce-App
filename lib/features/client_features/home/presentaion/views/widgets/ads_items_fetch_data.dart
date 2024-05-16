@@ -15,9 +15,11 @@ class AdsItemsFetchData extends StatelessWidget {
     return BlocBuilder<AdvertisingTodayCubit, AdvertisingTodayState>(
       builder: (context, state) {
         if (state is AdvertisingTodaySuccess) {
-          return CustomAds(
-            advertisings: state.ads,
-          );
+          return state.ads.isNotEmpty
+              ? CustomAds(
+                  advertisings: state.ads,
+                )
+              : const SizedBox();
         } else if (state is AdvertisingTodayFailure) {
           return CustomFailureWidget(
             errMessage: state.errMessage,

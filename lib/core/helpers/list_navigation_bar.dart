@@ -49,6 +49,8 @@ abstract class NavigationView {
   static List<Widget> navigationViewSeller = [
     const HomeSellerViewBody(),
     const HomeSellerViewBody(),
+    const HomeSellerViewBody(),
+    const HomeSellerViewBody(),
     // const AddToCartView(),
     const ProfileClientViewBody(),
   ];
