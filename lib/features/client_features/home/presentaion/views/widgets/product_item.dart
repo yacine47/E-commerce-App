@@ -63,7 +63,7 @@ class ProductItem extends StatelessWidget {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            '${productModel.rating!.toStringAsFixed(2)} (${productModel.reviewsCount})',
+                            '${productModel.rating!.toStringAsFixed(1)} (${productModel.reviewsCount})',
                             style: Styles.style12
                                 .copyWith(fontWeight: FontWeight.w500),
                           )

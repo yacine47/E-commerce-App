@@ -12,10 +12,13 @@ class CustomTextFieldSignIn extends StatelessWidget {
     this.keyboardType,
     this.onPressed,
     this.suffixIcon,
-    this.onSaved, this.controller,
+    this.onSaved,
+    this.controller,
+    this.minLines,
   });
 
   final int maxLines;
+  final int? minLines;
   final Function(String?)? onSaved;
   final String hint;
   final void Function(String?)? onChanged;
@@ -32,6 +35,8 @@ class CustomTextFieldSignIn extends StatelessWidget {
       onChanged: onChanged,
       keyboardType: keyboardType,
       cursorColor: Colors.black12,
+      minLines: minLines,
+      maxLines: maxLines,
       decoration: InputDecoration(
           filled: true,
           fillColor: MyColors.textFieldColor,

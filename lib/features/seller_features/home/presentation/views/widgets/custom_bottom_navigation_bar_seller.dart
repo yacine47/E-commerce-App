@@ -56,6 +56,7 @@ class CustomBottomNavigationBarSeller extends StatelessWidget {
             ),
             const BottomNavigationBarItem(
               icon: Icon(
+                
                 IconlyLight.heart,
                 size: kSizeIconNoActive,
               ),

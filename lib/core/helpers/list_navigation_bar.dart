@@ -52,6 +52,6 @@ abstract class NavigationView {
     const HomeSellerViewBody(),
     const HomeSellerViewBody(),
     // const AddToCartView(),
-    const ProfileClientViewBody(),
+    // const ProfileClientViewBody(),
   ];
 }

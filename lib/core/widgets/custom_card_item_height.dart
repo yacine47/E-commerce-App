@@ -53,7 +53,7 @@ class CustomCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(color: Colors.white, boxShadow: [
+      decoration: const BoxDecoration(boxShadow: [
         BoxShadow(
             blurRadius: 20,
             color: Color.fromARGB(20, 0, 0, 0),
@@ -63,6 +63,7 @@ class CustomCardItem extends StatelessWidget {
       child: Card(
         shadowColor: Colors.transparent,
         color: Colors.white,
+        elevation: 0,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             vertical: 0,

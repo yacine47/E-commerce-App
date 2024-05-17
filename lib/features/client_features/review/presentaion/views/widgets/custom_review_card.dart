@@ -34,14 +34,14 @@ class CustomReviewCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${productModel.rating}',
+                productModel.rating!.toStringAsFixed(1),
                 style: Styles.style44,
               ),
               const SizedBox(width: 26),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   CustomRatingBar(itemSize: 24,rating: productModel.rating!),
+                  CustomRatingBar(itemSize: 24, rating: productModel.rating!),
                   const SizedBox(height: 12),
                   Text(
                     '${productModel.reviewsCount} reviews',

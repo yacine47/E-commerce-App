@@ -8,6 +8,7 @@ import 'package:ecommerce_app/features/client_features/home/data/repos/home_clie
 import 'package:ecommerce_app/features/client_features/profile/data/repos/profile_client_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/review/data/repos/review_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/search/data/repos/search_repo_impl.dart';
+import 'package:ecommerce_app/features/seller_features/home/data/repos/home_seller_repo_impl.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -26,9 +27,14 @@ void setup() {
       SearchRepoImpl(getIt.get<ApiService>()));
 
   getIt.registerSingleton<CartRepoImpl>(CartRepoImpl(getIt.get<ApiService>()));
-  getIt.registerSingleton<ProfileClientRepoImpl>(ProfileClientRepoImpl(getIt.get<ApiService>()));
+  getIt.registerSingleton<ProfileClientRepoImpl>(
+      ProfileClientRepoImpl(getIt.get<ApiService>()));
   getIt.registerSingleton<HomeClientRepoImpl>(
       HomeClientRepoImpl(getIt.get<ApiService>()));
+
+  getIt.registerSingleton<HomeSellerRepoImpl>(
+      HomeSellerRepoImpl(getIt.get<ApiService>()));
+
   getIt.registerSingleton<UserModel>(UserModel());
 
 // // Alternatively you could write it if you don't like global variables

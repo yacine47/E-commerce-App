@@ -31,16 +31,6 @@ class HomeClientViewBody extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              // ItemHasPadding(
-              //     horPadding: kHorPadding,
-              //     child: GestureDetector(
-              //         onTap: () {
-              //           GoRouter.of(context).push(StoreSellerView.path);
-              //         },
-              //         child: Image.asset(
-              //           MyAssets.ads2,
-              //         ))),
-
               AdsItemsFetchData(),
               SizedBox(height: 24),
               CategoryItemsFetchData(),

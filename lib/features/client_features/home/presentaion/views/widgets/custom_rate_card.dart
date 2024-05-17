@@ -17,7 +17,7 @@ class CustomRateCard extends StatelessWidget {
           width: 4,
         ),
         Text(
-          '${productModel.rating}',
+          productModel.rating!.toStringAsFixed(1),
           style: Styles.style13,
         ),
         GestureDetector(

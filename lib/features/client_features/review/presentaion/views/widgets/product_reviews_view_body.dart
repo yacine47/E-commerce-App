@@ -39,7 +39,7 @@ class ProductReviewsViewBody extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           Text(
-            'Reviews (2)',
+            'Reviews (${productModel.reviewsCount})',
             style: Styles.style18,
           ),
           const SizedBox(height: 12),

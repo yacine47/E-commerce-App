@@ -47,7 +47,7 @@ class AddReviewProductItem extends StatelessWidget {
             const SizedBox(width: 16),
             Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(),
@@ -66,15 +66,15 @@ class AddReviewProductItem extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        '${product.rating!.toStringAsFixed(2)} (${product.reviewsCount})',
+                        '${product.rating!.toStringAsFixed(1)} (${product.reviewsCount})',
                         style: Styles.style12
                             .copyWith(fontWeight: FontWeight.w500),
                       )
                     ],
                   ),
-                  Text(  
+                  Text(
                     '${getPriceFormat(product.price!)} DA',
-                    style: Styles.style12.copyWith(
+                    style: Styles.style14.copyWith(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
@@ -83,7 +83,7 @@ class AddReviewProductItem extends StatelessWidget {
                   // Text('Quantity : ${product.quantityCartItem!}',
                   //     style: Styles.style14.copyWith(
                   //         color: Colors.black, fontWeight: FontWeight.bold)),
-                  const SizedBox(),
+                  // const SizedBox(),
                 ],
               ),
             ),

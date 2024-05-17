@@ -44,7 +44,11 @@ import 'package:ecommerce_app/features/client_features/search/presentaion/view_m
 import 'package:ecommerce_app/features/client_features/search/presentaion/views/result_product_view.dart';
 import 'package:ecommerce_app/features/client_features/search/presentaion/views/search_product_view.dart';
 import 'package:ecommerce_app/features/introduction_screen/presentation/views/introduction_screen_view.dart';
+import 'package:ecommerce_app/features/seller_features/home/data/repos/home_seller_repo_impl.dart';
+import 'package:ecommerce_app/features/seller_features/home/presentation/view_models/product_seller_cubit/product_seller_cubit.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/views/home_seller_view.dart';
+import 'package:ecommerce_app/features/seller_features/product/presentaion/views/edit_product_view.dart';
+import 'package:ecommerce_app/features/seller_features/product/presentaion/views/seller_product_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -137,7 +141,6 @@ abstract class AppRouter {
             //       CreateAddressCubit(getIt.get<CartRepoImpl>()),
             // ),
 
-           
             BlocProvider.value(
                 value: QuantityCartItemCubit(getIt.get<CartRepoImpl>())),
             BlocProvider<CouponCartCubit>(
@@ -216,6 +219,19 @@ abstract class AppRouter {
       GoRoute(
         path: NotificationReviewDeliveredView.path,
         builder: (context, state) => const NotificationReviewDeliveredView(),
+      ),
+      GoRoute(
+        path: SellerProductView.path,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              ProductSellerCubit(getIt.get<HomeSellerRepoImpl>())
+                ..getProductOfSeller(),
+          child: const SellerProductView(),
+        ),
+      ),
+      GoRoute(
+        path: EditProductView.path,
+        builder: (context, state) => const EditProductView(),
       ),
     ],
   );

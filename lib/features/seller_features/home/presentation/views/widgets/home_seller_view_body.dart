@@ -1,54 +1,56 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/widgets/custom_app_bar.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
-import 'package:ecommerce_app/features/seller_features/home/presentation/views/widgets/seller_dashbord_item.dart';
+import 'package:ecommerce_app/features/seller_features/product/presentaion/views/seller_product_view.dart';
+import 'package:ecommerce_app/features/seller_features/home/presentation/views/widgets/seller_dashboard_item.dart';
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeSellerViewBody extends StatelessWidget {
   const HomeSellerViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScrollView(
+    return CustomScrollView(
       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       slivers: [
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: Column(
             children: [
               SizedBox(height: 23),
               ItemHasPadding(
                   horPadding: kHorPadding,
-                  child: CustomAppBar(title: 'Seller Dashbord')),
+                  child: CustomAppBar(title: 'Seller Center')),
               // const SizedBox(height: 54),
               SizedBox(height: 26)
             ],
           ),
         ),
         SliverPadding(
-          padding: EdgeInsets.symmetric(horizontal: kHorPadding),
+          padding: const EdgeInsets.symmetric(horizontal: kHorPadding),
           sliver: SliverGrid(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 16,
               childAspectRatio: 2 / 2.5,
             ),
             delegate: SliverChildListDelegate.fixed([
-              SellerDashbordItem(
+              const SellerDashboardItem(
                 count: 15,
                 icon: Icons.local_mall_outlined,
                 title: 'Sales',
               ),
-              SellerDashbordItem(
+              SellerDashboardItem(
+                onTap: () => GoRouter.of(context).push(SellerProductView.path),
                 count: 15,
-                icon: Icons.inventory_2_outlined,
-                title: 'Sales',
+                icon: Icons.storefront_outlined,
+                title: 'Products',
               ),
-              SellerDashbordItem(
+              const SellerDashboardItem(
                 count: 15,
                 icon: Icons.description_outlined,
-                title: 'Sales',
+                title: 'Orders',
               ),
             ]),
           ),
