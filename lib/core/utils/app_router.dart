@@ -225,12 +225,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: SellerProductView.path,
-        builder: (context, state) => BlocProvider(
-          create: (context) =>
-              ProductSellerCubit(getIt.get<HomeSellerRepoImpl>())
-                ..getProductOfSeller(),
-          child: const SellerProductView(),
-        ),
+        builder: (context, state) => const SellerProductView(),
       ),
       GoRoute(
         path: EditProductView.path,

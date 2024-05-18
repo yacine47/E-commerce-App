@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce_app/features/seller_features/product/data/repos/product_repo.dart';
 import 'package:meta/meta.dart';
@@ -11,8 +13,11 @@ class AddProductCubit extends Cubit<AddProductState> {
   late String description;
   late int price;
   late int quantity;
+  List<File> images = [];
 
   final ProductRepo productRepo;
+
+  listImagesEmpty(String message) => emit(AddProductImagesEmpty(message));
   Future<void> addNewProduct() async {
     emit(AddProductLoading());
     var result = await productRepo.addNewProduct({
@@ -20,7 +25,7 @@ class AddProductCubit extends Cubit<AddProductState> {
       'description': description,
       'price': price,
       'quantity': quantity,
-    });
+    }, images);
 
     result.fold(
       (failure) => emit(AddProductFailure(failure.error)),

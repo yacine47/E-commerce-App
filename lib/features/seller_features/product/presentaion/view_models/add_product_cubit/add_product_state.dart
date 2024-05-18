@@ -18,3 +18,9 @@ class AddProductFailure extends AddProductState {
 
   AddProductFailure(this.errMessage);
 }
+
+class AddProductImagesEmpty extends AddProductState {
+  final String errMessage;
+
+  AddProductImagesEmpty(this.errMessage);
+}

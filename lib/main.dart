@@ -14,6 +14,8 @@ import 'package:ecommerce_app/features/client_features/home/presentaion/view_mod
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/all_order_item_delivred_cubit/all_order_item_delivred_cubit.dart';
 import 'package:ecommerce_app/features/client_features/profile/data/repos/profile_client_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/profile/presentation/view_models/user_information_cubit/user_information_cubit.dart';
+import 'package:ecommerce_app/features/seller_features/home/data/repos/home_seller_repo_impl.dart';
+import 'package:ecommerce_app/features/seller_features/home/presentation/view_models/product_seller_cubit/product_seller_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -37,6 +39,10 @@ class EcommerceApp extends StatelessWidget {
           create: (context) =>
               FavoriteProductCubit(getIt.get<FavoriteRepoImpl>())
                 ..getFavoriteProducts(),
+        ),
+        BlocProvider<ProductSellerCubit>(
+          create: (context) =>
+              ProductSellerCubit(getIt.get<HomeSellerRepoImpl>()),
         ),
         BlocProvider<CreateAddressCubit>(
             create: (context) => CreateAddressCubit(getIt.get<CartRepoImpl>())),
