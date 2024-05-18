@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/widgets/custom_failure_widget.dart';
-import 'package:ecommerce_app/core/widgets/custom_loading_products_grid_view.dart';
+import 'package:ecommerce_app/core/widgets/custom_loading_widget.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/view_models/product_seller_cubit/product_seller_cubit.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/views/widgets/product_seller_items_list_view.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +30,10 @@ class SellerProductFetchData extends StatelessWidget {
               products: state.products,
             );
           } else {
-            return const CustomLoadingProductsGridView();
+            return SliverToBoxAdapter(
+                child: SizedBox(
+                    height: MediaQuery.of(context).size.height * .3,
+                    child: const CustomLoadingWidget()));
           }
         },
       ),

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomUploadImageSelected extends StatelessWidget {
@@ -27,9 +28,13 @@ class CustomUploadImageSelected extends StatelessWidget {
           right: -3,
           child: GestureDetector(
             onTap: onTap,
-            child: const Icon(
-              Icons.close,
-              size: 12,
+            child: CircleAvatar(
+              backgroundColor: MyColors.primaryColor2,
+              radius: 8,
+              child: const Icon(
+                Icons.close,
+                size: 12,
+              ),
             ),
           ),
         )

@@ -1,5 +1,3 @@
-
-
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/features/client_features/profile/presentation/views/widgets/order_item.dart';
@@ -17,7 +15,7 @@ class OrderItemsListView extends StatelessWidget {
     return ListView.separated(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      padding: const EdgeInsets.symmetric(horizontal: kHorPadding, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: kHorPadding, vertical: 0),
       itemBuilder: (context, index) => OrderItem(
         product: products[index],
       ),

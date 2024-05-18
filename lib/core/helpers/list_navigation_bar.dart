@@ -10,6 +10,7 @@ import 'package:ecommerce_app/features/client_features/profile/data/repos/profil
 import 'package:ecommerce_app/features/client_features/profile/presentation/view_models/logout_cubit/logout_cubit.dart';
 import 'package:ecommerce_app/features/client_features/profile/presentation/views/profile_client_view_body.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/views/widgets/home_seller_view_body.dart';
+import 'package:ecommerce_app/features/seller_features/profile/presentation/views/widgets/profile_seller_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -51,6 +52,15 @@ abstract class NavigationView {
     const HomeSellerViewBody(),
     const HomeSellerViewBody(),
     const HomeSellerViewBody(),
+
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => LogoutCubit(getIt.get<ProfileClientRepoImpl>()),
+        ),
+      ],
+      child: const ProfileSellerViewBody(),
+    ),
     // const AddToCartView(),
     // const ProfileClientViewBody(),
   ];

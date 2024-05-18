@@ -10,6 +10,7 @@ class AuthRepoImpl implements AuthRepo {
   final ApiService apiService;
 
   AuthRepoImpl(this.apiService);
+
   @override
   Future<Either<Failure, TokenModel>> login(Map<String, dynamic> data) async {
     try {
@@ -20,7 +21,6 @@ class AuthRepoImpl implements AuthRepo {
       if (e is DioException) {
         return left(ServiceFailure.fromDioError(e));
       }
-      print(e.toString());
       return left(ServiceFailure(e.toString()));
     }
   }

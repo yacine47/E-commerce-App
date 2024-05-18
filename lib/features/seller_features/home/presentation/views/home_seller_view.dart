@@ -16,6 +16,20 @@ class _HomeSellerViewState extends State<HomeSellerView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(555),
+        ),
+        onPressed: () {
+          // GoRouter.of(context).push(CartView.path);
+        },
+        backgroundColor: Colors.white,
+        child: const Icon(
+          Icons.add,
+        ),
+      ),
       bottomNavigationBar: CustomBottomNavigationBarSeller(
         currentIndex: _currentIndex,
         onTap: (index) {

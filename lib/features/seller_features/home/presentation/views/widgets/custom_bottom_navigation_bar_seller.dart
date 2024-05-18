@@ -39,7 +39,22 @@ class CustomBottomNavigationBarSeller extends StatelessWidget {
           showUnselectedLabels: false,
           selectedFontSize: 0,
           elevation: 16,
-
+// const SellerDashboardItem(
+//                 count: 15,
+//                 icon: Icons.local_mall_outlined,
+//                 title: 'Sales',
+//               ),
+//               SellerDashboardItem(
+//                 onTap: () => GoRouter.of(context).push(SellerProductView.path),
+//                 count: 15,
+//                 icon: Icons.storefront_outlined,
+//                 title: 'Products',
+//               ),
+//               const SellerDashboardItem(
+//                 count: 15,
+//                 icon: Icons.description_outlined,
+//                 title: 'Orders',
+//               ),
           // unselectedItemColor: primaryColor,
           items: [
             const BottomNavigationBarItem(
@@ -54,32 +69,53 @@ class CustomBottomNavigationBarSeller extends StatelessWidget {
               ),
               label: '',
             ),
-            const BottomNavigationBarItem(
-              icon: Icon(
-                
-                IconlyLight.heart,
-                size: kSizeIconNoActive,
-              ),
-              activeIcon: Icon(
-                IconlyBold.heart,
-                size: kSizeIconActive,
-                color: MyColors.primaryColor,
-              ),
-              label: '',
-            ),
+            // const BottomNavigationBarItem(
+            //   icon: Icon(
+            //     Icons.storefront_outlined,
+            //     size: kSizeIconNoActive,
+            //   ),
+            //   activeIcon: Icon(
+            //     Icons.storefront_sharp,
+            //     size: kSizeIconActive,
+            //     color: MyColors.primaryColor,
+            //   ),
+            //   label: '',
+            // ),
             BottomNavigationBarItem(
               icon: Iconify(
-                kCartIconify,
+                kStoreIcon,
                 size: kSizeIconNoActive + 4,
                 color: MyColors.iconColorNavigationBar,
               ),
               activeIcon: const Iconify(
-                kCartIconifyActive,
+                kStoreIconActive,
                 size: kSizeIconNoActive + 8,
                 color: MyColors.primaryColor,
               ),
               label: '',
             ),
+            const BottomNavigationBarItem(
+              icon: Icon(
+                Icons.abc,
+                size: 0,
+                color: Colors.transparent,
+              ),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Iconify(
+                kOrderDescIcon,
+                size: kSizeIconNoActive + 6,
+                color: MyColors.iconColorNavigationBar,
+              ),
+              activeIcon: const Iconify(
+                kOrderDescIconActive,
+                size: kSizeIconNoActive + 8,
+                color: MyColors.primaryColor,
+              ),
+              label: '',
+            ),
+
             const BottomNavigationBarItem(
               icon: Icon(
                 IconlyLight.profile,

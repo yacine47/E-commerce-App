@@ -9,6 +9,7 @@ import 'package:ecommerce_app/features/client_features/profile/data/repos/profil
 import 'package:ecommerce_app/features/client_features/review/data/repos/review_repo_impl.dart';
 import 'package:ecommerce_app/features/client_features/search/data/repos/search_repo_impl.dart';
 import 'package:ecommerce_app/features/seller_features/home/data/repos/home_seller_repo_impl.dart';
+import 'package:ecommerce_app/features/seller_features/product/data/repos/product_repo_impl.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -34,6 +35,9 @@ void setup() {
 
   getIt.registerSingleton<HomeSellerRepoImpl>(
       HomeSellerRepoImpl(getIt.get<ApiService>()));
+
+  getIt.registerSingleton<ProductRepoImpl>(
+      ProductRepoImpl(getIt.get<ApiService>()));
 
   getIt.registerSingleton<UserModel>(UserModel());
 
