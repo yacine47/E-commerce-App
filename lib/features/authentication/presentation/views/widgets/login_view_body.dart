@@ -2,6 +2,7 @@ import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_button_submit.dart';
 import 'package:ecommerce_app/core/widgets/error_message_widget_auth.dart';
+import 'package:ecommerce_app/features/admin_features/home/presentation/views/home_admin_view.dart';
 import 'package:ecommerce_app/features/authentication/presentation/view_models/login_cubit/login_cubit.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:ecommerce_app/features/authentication/presentation/views/widgets/auther_option.dart';
@@ -117,6 +118,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       GoRouter.of(context).pushReplacement(HomeClientView.path);
     } else if (state.userModel.role == 'seller') {
       GoRouter.of(context).pushReplacement(HomeSellerView.path);
+    } else if (state.userModel.role == 'admin') {
+      GoRouter.of(context).pushReplacement(HomeAdminView.path);
     }
   }
 }

@@ -9,7 +9,7 @@ import 'package:ecommerce_app/features/seller_features/orders/data/repos/order_s
 
 class OrderSellerRepoImpl extends OrderSellerRepo {
   final ApiService apiService;
-
+  late int idOrder;
   OrderSellerRepoImpl(this.apiService);
   @override
   Future<Either<Failure, List<OrderModel>>> getSellerOrders(int index) async {
@@ -22,6 +22,20 @@ class OrderSellerRepoImpl extends OrderSellerRepo {
       }
 
       return right(orders);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServiceFailure.fromDioError(e));
+      }
+      return left(ServiceFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> updateOrder(int id) async {
+    try {
+      await apiService.put('order/order_items/update/$id', {});
+
+      return right('The order updated successfully');
     } catch (e) {
       if (e is DioException) {
         return left(ServiceFailure.fromDioError(e));

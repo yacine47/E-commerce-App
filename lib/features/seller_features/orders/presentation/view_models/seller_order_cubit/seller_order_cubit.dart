@@ -6,14 +6,15 @@ import 'package:meta/meta.dart';
 part 'seller_order_state.dart';
 
 class SellerOrderCubit extends Cubit<SellerOrderState> {
-  SellerOrderCubit(this.profileClientRepo) : super(SellerOrderInitial());
+  SellerOrderCubit(this.orderSellerRepo) : super(SellerOrderInitial());
 
+  final OrderSellerRepo orderSellerRepo;
+  int indexOrder = 0;
 
-  final OrderSellerRepo profileClientRepo;
 
   Future<void> getSellerOrders(int index) async {
     emit(SellerOrderLoading());
-    var result = await profileClientRepo.getSellerOrders(index);
+    var result = await orderSellerRepo.getSellerOrders(index);
 
     result.fold(
       (failure) => emit(SellerOrderFailure(failure.error)),

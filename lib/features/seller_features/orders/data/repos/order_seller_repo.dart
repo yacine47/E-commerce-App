@@ -7,4 +7,6 @@ import 'package:ecommerce_app/features/client_features/profile/data/models/order
 
 abstract class OrderSellerRepo{
 Future<Either<Failure, List<OrderModel>>> getSellerOrders(int index);
+
+Future<Either<Failure, String>> updateOrder(int id);
 }

@@ -7,7 +7,7 @@ import 'package:ecommerce_app/features/client_features/home/presentaion/views/wi
 import 'package:ecommerce_app/features/seller_features/product/data/repos/product_repo_impl.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/view_models/delete_product_cubit/delete_product_cubit.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/views/edit_product_view.dart';
-import 'package:ecommerce_app/features/seller_features/product/presentaion/views/widgets/custom_confirm_alert_dialog.dart';
+import 'package:ecommerce_app/features/seller_features/product/presentaion/views/widgets/custom_confirm_alert_dialog_delete_product.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/views/widgets/custom_delete_product_button.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/views/widgets/custom_edit_product_button.dart';
 import 'package:flutter/material.dart';
@@ -112,7 +112,7 @@ class SellerProductItem extends StatelessWidget {
                                 return BlocProvider(
                                   create: (context) => DeleteProductCubit(
                                       getIt.get<ProductRepoImpl>()),
-                                  child: CustomConfirmAlertDialog(
+                                  child: CustomConfirmAlertDialogDeleteProduct(
                                     idProduct: product.id!,
                                   ),
                                 );

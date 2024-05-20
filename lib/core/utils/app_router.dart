@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/functions/init_route.dart';
 import 'package:ecommerce_app/core/utils/service_locator.dart';
+import 'package:ecommerce_app/features/admin_features/home/presentation/views/home_admin_view.dart';
 import 'package:ecommerce_app/features/authentication/data/models/user_model.dart';
 import 'package:ecommerce_app/features/authentication/data/repos/auth_repo_impl.dart';
 import 'package:ecommerce_app/features/authentication/presentation/view_models/login_cubit/login_cubit.dart';
@@ -52,8 +53,7 @@ import 'package:ecommerce_app/features/seller_features/add/presentaion/views/add
 import 'package:ecommerce_app/features/seller_features/add/presentaion/views/add_coupon_view.dart';
 import 'package:ecommerce_app/features/seller_features/add/presentaion/views/seller_add_features_view.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/views/home_seller_view.dart';
-import 'package:ecommerce_app/features/seller_features/orders/data/repos/order_seller_repo_impl.dart';
-import 'package:ecommerce_app/features/seller_features/orders/presentation/view_models/seller_order_cubit/seller_order_cubit.dart';
+import 'package:ecommerce_app/features/seller_features/orders/data/models/order_item_model.dart';
 import 'package:ecommerce_app/features/seller_features/orders/presentation/views/seller_order_details_view.dart';
 import 'package:ecommerce_app/features/seller_features/orders/presentation/views/seller_orders_view.dart';
 import 'package:ecommerce_app/features/seller_features/product/data/repos/product_repo_impl.dart';
@@ -313,17 +313,16 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: SellerOrderDetailsView.path,
-        builder: (context, state) => const SellerOrderDetailsView(),
-      ),
-      GoRoute(
-        path: SellerOrderView.path,
-        builder: (context, state) => BlocProvider(
-          create: (context) =>
-              SellerOrderCubit(getIt.get<OrderSellerRepoImpl>())
-                ..getSellerOrders(0),
-          child: const SellerOrderView(),
+        builder: (context, state) => SellerOrderDetailsView(
+          orderItemModel: state.extra as OrderItemModel,
         ),
       ),
+      GoRoute(
+          path: SellerOrderView.path,
+          builder: (context, state) => const SellerOrderView()),
+      GoRoute(
+          path: HomeAdminView.path,
+          builder: (context, state) => const HomeAdminView()),
     ],
   );
 }

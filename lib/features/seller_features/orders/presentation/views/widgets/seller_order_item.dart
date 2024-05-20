@@ -1,9 +1,9 @@
-import 'package:ecommerce_app/core/functions/get_price_format.dart';
 import 'package:ecommerce_app/core/functions/order_item_status_string.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_cached_network_image.dart';
+import 'package:ecommerce_app/features/seller_features/orders/data/models/order_item_model.dart';
 import 'package:ecommerce_app/features/seller_features/orders/presentation/views/seller_order_details_view.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/views/widgets/custom_edit_product_button.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +58,7 @@ class SellerOrderItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Product ID : ${product.id!}',
+                        'Order Product ID : ${product.orderItemsId!}',
                         style: Styles.style12.copyWith(
                           color: MyColors.hintColorTextField,
                           fontWeight: FontWeight.bold,
@@ -103,11 +103,15 @@ class SellerOrderItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      CustomEditProductButton(
-                        onTap: () => GoRouter.of(context).push(
+                      CustomEditProductButton(onTap: () {
+                       
+                        GoRouter.of(context).push(
                           SellerOrderDetailsView.path,
-                        ),
-                      ),
+                          extra: OrderItemModel(
+                              orderItemId: product.orderItemsId!,
+                              orderItemStatus: product.orderItemStatus!),
+                        );
+                      }),
                     ],
                   ),
                   const SizedBox(),

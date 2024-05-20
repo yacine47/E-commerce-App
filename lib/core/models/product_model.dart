@@ -16,9 +16,11 @@ class ProductModel {
     this.quantityCartItem,
     this.quantityOrderItem,
     this.orderItemStatus,
+    this.orderItemsId,
   });
 
   int? id;
+  int? orderItemsId;
   String? name;
   String? description;
   int? price;
@@ -60,6 +62,7 @@ class ProductModel {
               json['reviews_avg_reviewsrating'],
             ),
       orderItemStatus: json['order_item_status'],
+      orderItemsId: json['order_items_id'],
     );
   }
 }

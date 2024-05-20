@@ -33,6 +33,7 @@ class _CategoryItemOrderSellerListViewState
               onTap: () {
                 currentIndex = index;
                 BlocProvider.of<SellerOrderCubit>(context).getSellerOrders(index);
+                BlocProvider.of<SellerOrderCubit>(context).indexOrder = index;
                 setState(() {});
               },
               isActive: currentIndex == index,

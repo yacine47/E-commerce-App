@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class CustomConfirmAlertDialog extends StatelessWidget {
-  const CustomConfirmAlertDialog({
+class CustomConfirmAlertDialogDeleteProduct extends StatelessWidget {
+  const CustomConfirmAlertDialogDeleteProduct({
     super.key,
     required this.idProduct,
   });

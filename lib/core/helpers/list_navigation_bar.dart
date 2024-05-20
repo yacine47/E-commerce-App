@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/utils/service_locator.dart';
+import 'package:ecommerce_app/features/admin_features/home/presentation/views/home_admin_view.dart';
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/cart_view.dart';
 import 'package:ecommerce_app/features/client_features/favorite/presentaion/views/widgets/favorite_view_body.dart';
 import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo_impl.dart';
@@ -71,5 +72,12 @@ abstract class NavigationView {
     ),
     // const AddToCartView(),
     // const ProfileClientViewBody(),
+  ];
+
+  static List<Widget> navigationViewAdmin = [
+    HomeAdminView(),
+    HomeAdminView(),
+    HomeAdminView(),
+    HomeAdminView(),
   ];
 }

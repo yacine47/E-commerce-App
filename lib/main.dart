@@ -16,6 +16,8 @@ import 'package:ecommerce_app/features/client_features/profile/data/repos/profil
 import 'package:ecommerce_app/features/client_features/profile/presentation/view_models/user_information_cubit/user_information_cubit.dart';
 import 'package:ecommerce_app/features/seller_features/home/data/repos/home_seller_repo_impl.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/view_models/product_seller_cubit/product_seller_cubit.dart';
+import 'package:ecommerce_app/features/seller_features/orders/data/repos/order_seller_repo_impl.dart';
+import 'package:ecommerce_app/features/seller_features/orders/presentation/view_models/seller_order_cubit/seller_order_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -56,6 +58,13 @@ class EcommerceApp extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 AllOrderItemDelivredCubit(getIt.get<HomeClientRepoImpl>())),
+
+                BlocProvider(
+            create: (context) =>
+                SellerOrderCubit(getIt.get<OrderSellerRepoImpl>())),
+
+// CustomConfirmAlertDialogUploadOrder
+                
         BlocProvider(
             create: (context) => AllOrderItemDelivredCountCubit(
                 getIt.get<HomeClientRepoImpl>())),
@@ -69,12 +78,14 @@ class EcommerceApp extends StatelessWidget {
           // textTheme: GoogleFonts.urbanistTextTheme(Theme.of(context).textTheme),
           scaffoldBackgroundColor: Colors.white,
           cardColor: Colors.white,
+          
 
           dialogBackgroundColor: Colors.white,
           dialogTheme: const DialogTheme(elevation: 0),
           colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.white,
             primary: MyColors.primaryColor,
+          
           ),
         ),
       ),
