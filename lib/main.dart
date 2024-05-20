@@ -68,7 +68,14 @@ class EcommerceApp extends StatelessWidget {
           fontFamily: MyAssets.fontFamilyUrbanist,
           // textTheme: GoogleFonts.urbanistTextTheme(Theme.of(context).textTheme),
           scaffoldBackgroundColor: Colors.white,
-          colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primaryColor),
+          cardColor: Colors.white,
+
+          dialogBackgroundColor: Colors.white,
+          dialogTheme: const DialogTheme(elevation: 0),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.white,
+            primary: MyColors.primaryColor,
+          ),
         ),
       ),
     );

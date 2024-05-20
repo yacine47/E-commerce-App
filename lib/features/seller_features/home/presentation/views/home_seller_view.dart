@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/core/helpers/list_navigation_bar.dart';
+import 'package:ecommerce_app/features/seller_features/add/presentaion/views/seller_add_features_view.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/views/widgets/custom_bottom_navigation_bar_seller.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeSellerView extends StatefulWidget {
   const HomeSellerView({super.key});
@@ -23,7 +25,7 @@ class _HomeSellerViewState extends State<HomeSellerView> {
           borderRadius: BorderRadius.circular(555),
         ),
         onPressed: () {
-          // GoRouter.of(context).push(CartView.path);
+          GoRouter.of(context).push(SellerAddFeaturesView.path);
         },
         backgroundColor: Colors.white,
         child: const Icon(

@@ -2,6 +2,8 @@ import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_button_submit.dart';
 import 'package:ecommerce_app/core/widgets/custom_card_item_height.dart';
+import 'package:ecommerce_app/core/widgets/custom_loading_widget.dart';
+import 'package:ecommerce_app/features/seller_features/product/presentaion/views/widgets/custom_multi_select_dialog_field_add_product.dart';
 import 'package:ecommerce_app/core/widgets/error_message_widget_auth.dart';
 import 'package:ecommerce_app/core/widgets/go_back_button.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
@@ -9,6 +11,7 @@ import 'package:ecommerce_app/features/authentication/presentation/views/widgets
 import 'package:ecommerce_app/features/client_features/cart/presentaion/views/widgets/address_view_body.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/view_models/product_seller_cubit/product_seller_cubit.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/view_models/add_product_cubit/add_product_cubit.dart';
+import 'package:ecommerce_app/features/seller_features/product/presentaion/view_models/all_category_cubit/all_categories_cubit.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/views/widgets/upload_multiple_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,8 +30,9 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AddProductCubit, AddProductState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is AddProductSuccess) {
+          BlocProvider.of<ProductSellerCubit>(context).getProductOfSeller();
           GoRouter.of(context).pop();
         }
       },
@@ -98,14 +102,17 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                                     .quantity = int.parse(value!);
                               },
                             ),
-                            // const SpaceBetweenTextFieldAdress(),
-                            // CustomTextFieldSignIn(
-                            //   hint: 'Category',
-                            //   onSaved: (value) {
-                            //     // BlocProvider.of<CreateAddressCubit>(context).city =
-                            //     // value!;
-                            //   },
-                            // ),
+                            const SpaceBetweenTextFieldAdress(),
+                            BlocBuilder<AllCategoriesCubit, AllCategoriesState>(
+                              builder: (context, state) {
+                                if (state is AllCategoriesSuccess) {
+                                  return CustomMultiSelectDialogFieldAddProduct(
+                                    multiSelectCategories: state.categories,
+                                  );
+                                }
+                                return const CustomLoadingWidget();
+                              },
+                            ),
                             const SpaceBetweenTextFieldAdress(),
                             CustomTextFieldSignIn(
                               hint: 'Description',
@@ -129,7 +136,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                 child: CustomButtonSubmit(
                   isLoadingState: state is AddProductLoading,
                   title: 'Add Product',
-                  onPressed: () {
+                  onPressed: () async {
                     if (formKey.currentState!.validate() &&
                         BlocProvider.of<AddProductCubit>(context)
                                 .images
@@ -138,9 +145,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                       BlocProvider.of<AddProductCubit>(context)
                           .listImagesEmpty('');
                       formKey.currentState!.save();
-                      BlocProvider.of<AddProductCubit>(context).addNewProduct();
-                      BlocProvider.of<ProductSellerCubit>(context)
-                          .getProductOfSeller();
+                      await addProduct(context);
                     } else {
                       autovalidateMode = AutovalidateMode.always;
 
@@ -157,5 +162,9 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
         );
       },
     );
+  }
+
+  Future<void> addProduct(BuildContext context) async {
+    await BlocProvider.of<AddProductCubit>(context).addNewProduct();
   }
 }

@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/constants.dart';
-import 'package:ecommerce_app/features/client_features/home/data/models/category_model.dart';
+import 'package:ecommerce_app/core/models/category_model.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/view_models/product_by_category/product_by_category_cubit.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/category_item.dart';
 import 'package:flutter/material.dart';

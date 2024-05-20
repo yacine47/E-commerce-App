@@ -1,12 +1,17 @@
 import 'package:ecommerce_app/core/functions/get_price_format.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/core/utils/my_colors.dart';
+import 'package:ecommerce_app/core/utils/service_locator.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/features/client_features/home/presentaion/views/widgets/custom_cached_network_image.dart';
+import 'package:ecommerce_app/features/seller_features/product/data/repos/product_repo_impl.dart';
+import 'package:ecommerce_app/features/seller_features/product/presentaion/view_models/delete_product_cubit/delete_product_cubit.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/views/edit_product_view.dart';
+import 'package:ecommerce_app/features/seller_features/product/presentaion/views/widgets/custom_confirm_alert_dialog.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/views/widgets/custom_delete_product_button.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/views/widgets/custom_edit_product_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class SellerProductItem extends StatelessWidget {
@@ -95,11 +100,25 @@ class SellerProductItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       CustomEditProductButton(
-                        onTap: () =>
-                            GoRouter.of(context).push(EditProductView.path),
+                        onTap: () => GoRouter.of(context)
+                            .push(EditProductView.path, extra: product),
                       ),
                       const SizedBox(width: 12),
-                      const CustomDeleteProductButton(),
+                      CustomDeleteProductButton(
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return BlocProvider(
+                                  create: (context) => DeleteProductCubit(
+                                      getIt.get<ProductRepoImpl>()),
+                                  child: CustomConfirmAlertDialog(
+                                    idProduct: product.id!,
+                                  ),
+                                );
+                              });
+                        },
+                      ),
                     ],
                   ),
                   const SizedBox(),
@@ -114,3 +133,6 @@ class SellerProductItem extends StatelessWidget {
     );
   }
 }
+
+
+// deleteProduct

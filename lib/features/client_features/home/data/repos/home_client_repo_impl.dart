@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/core/errors/failures.dart';
+import 'package:ecommerce_app/core/models/category_model.dart';
 import 'package:ecommerce_app/core/utils/api_service.dart';
 import 'package:ecommerce_app/features/client_features/home/data/models/advertising_model.dart';
-import 'package:ecommerce_app/features/client_features/home/data/models/category_model.dart';
 import 'package:ecommerce_app/core/models/product_model.dart';
 import 'package:ecommerce_app/features/client_features/home/data/models/notification_model.dart';
 import 'package:ecommerce_app/features/client_features/home/data/repos/home_client_repo.dart';

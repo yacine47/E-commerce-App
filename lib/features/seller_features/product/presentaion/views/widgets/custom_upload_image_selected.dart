@@ -28,12 +28,13 @@ class CustomUploadImageSelected extends StatelessWidget {
           right: -3,
           child: GestureDetector(
             onTap: onTap,
-            child: CircleAvatar(
-              backgroundColor: MyColors.primaryColor2,
+            child: const CircleAvatar(
+              backgroundColor: MyColors.primaryColor,
               radius: 8,
-              child: const Icon(
+              child: Icon(
                 Icons.close,
                 size: 12,
+                color: Colors.white,
               ),
             ),
           ),

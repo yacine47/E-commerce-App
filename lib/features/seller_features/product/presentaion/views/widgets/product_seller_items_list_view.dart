@@ -12,13 +12,19 @@ class ProductSellerItemsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemBuilder: (context, index) =>
-            SellerProductItem(product: products[index]),
-        itemCount: products.length,
-      ),
+    return SliverList.builder(
+      itemBuilder: (context, index) =>
+          SellerProductItem(product: products[index]),
+      itemCount: products.length,
     );
+
+    // return SliverToBoxAdapter(
+    //   child: ListView.builder(
+    //     shrinkWrap: true,
+    //     itemBuilder: (context, index) =>
+    //         SellerProductItem(product: products[index]),
+    //     itemCount: products.length,
+    //   ),
+    // );
   }
 }

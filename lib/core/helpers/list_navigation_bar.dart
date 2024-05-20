@@ -10,6 +10,10 @@ import 'package:ecommerce_app/features/client_features/profile/data/repos/profil
 import 'package:ecommerce_app/features/client_features/profile/presentation/view_models/logout_cubit/logout_cubit.dart';
 import 'package:ecommerce_app/features/client_features/profile/presentation/views/profile_client_view_body.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/views/widgets/home_seller_view_body.dart';
+import 'package:ecommerce_app/features/seller_features/orders/data/repos/order_seller_repo_impl.dart';
+import 'package:ecommerce_app/features/seller_features/orders/presentation/view_models/seller_order_cubit/seller_order_cubit.dart';
+import 'package:ecommerce_app/features/seller_features/orders/presentation/views/widgets/seller_order_view_body.dart';
+import 'package:ecommerce_app/features/seller_features/product/presentaion/views/widgets/seller_product_view_body.dart';
 import 'package:ecommerce_app/features/seller_features/profile/presentation/views/widgets/profile_seller_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,9 +53,13 @@ abstract class NavigationView {
 
   static List<Widget> navigationViewSeller = [
     const HomeSellerViewBody(),
-    const HomeSellerViewBody(),
-    const HomeSellerViewBody(),
-    const HomeSellerViewBody(),
+    const SellerProductViewBody(),
+    const SellerOrderViewBody(),
+    BlocProvider(
+      create: (context) => SellerOrderCubit(getIt.get<OrderSellerRepoImpl>())
+        ..getSellerOrders(0),
+      child: const SellerOrderViewBody(),
+    ),
 
     MultiBlocProvider(
       providers: [

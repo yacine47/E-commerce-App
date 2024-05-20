@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/core/widgets/custom_app_bar.dart';
 import 'package:ecommerce_app/core/widgets/item_has_padding.dart';
+import 'package:ecommerce_app/features/seller_features/orders/presentation/views/seller_orders_view.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/views/seller_product_view.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/views/widgets/seller_dashboard_item.dart';
 import 'package:flutter/material.dart';
@@ -37,18 +38,19 @@ class HomeSellerViewBody extends StatelessWidget {
             ),
             delegate: SliverChildListDelegate.fixed([
               const SellerDashboardItem(
-                count: 15,
+                count: 3,
                 icon: Icons.local_mall_outlined,
                 title: 'Sales',
               ),
               SellerDashboardItem(
                 onTap: () => GoRouter.of(context).push(SellerProductView.path),
-                count: 15,
+                count: 4,
                 icon: Icons.storefront_outlined,
                 title: 'Products',
               ),
-              const SellerDashboardItem(
-                count: 15,
+              SellerDashboardItem(
+                onTap: () => GoRouter.of(context).push(SellerOrderView.path),
+                count: 8,
                 icon: Icons.description_outlined,
                 title: 'Orders',
               ),

@@ -7,7 +7,8 @@ class CustomLoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * .2,
       child: Center(
         child: SizedBox(
           height: 26,

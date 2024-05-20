@@ -30,10 +30,10 @@ class SellerProductFetchData extends StatelessWidget {
               products: state.products,
             );
           } else {
-            return SliverToBoxAdapter(
-                child: SizedBox(
-                    height: MediaQuery.of(context).size.height * .3,
-                    child: const CustomLoadingWidget()));
+            return const SliverToBoxAdapter(
+              
+              child: CustomLoadingWidget(),
+            );
           }
         },
       ),

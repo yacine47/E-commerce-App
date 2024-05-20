@@ -44,11 +44,23 @@ import 'package:ecommerce_app/features/client_features/search/presentaion/view_m
 import 'package:ecommerce_app/features/client_features/search/presentaion/views/result_product_view.dart';
 import 'package:ecommerce_app/features/client_features/search/presentaion/views/search_product_view.dart';
 import 'package:ecommerce_app/features/introduction_screen/presentation/views/introduction_screen_view.dart';
-import 'package:ecommerce_app/features/seller_features/home/data/repos/home_seller_repo_impl.dart';
-import 'package:ecommerce_app/features/seller_features/home/presentation/view_models/product_seller_cubit/product_seller_cubit.dart';
+import 'package:ecommerce_app/features/seller_features/add/data/repos/add_features_repo_impl.dart';
+import 'package:ecommerce_app/features/seller_features/add/presentaion/view_models/add_advertising_cubit/add_advertising_cubit.dart';
+import 'package:ecommerce_app/features/seller_features/add/presentaion/view_models/add_coupon_cubit/add_coupon_cubit.dart';
+import 'package:ecommerce_app/features/seller_features/add/presentaion/view_models/get_product_seller_cubit/get_product_seller_cubit.dart';
+import 'package:ecommerce_app/features/seller_features/add/presentaion/views/add_advertising_view.dart';
+import 'package:ecommerce_app/features/seller_features/add/presentaion/views/add_coupon_view.dart';
+import 'package:ecommerce_app/features/seller_features/add/presentaion/views/seller_add_features_view.dart';
 import 'package:ecommerce_app/features/seller_features/home/presentation/views/home_seller_view.dart';
+import 'package:ecommerce_app/features/seller_features/orders/data/repos/order_seller_repo_impl.dart';
+import 'package:ecommerce_app/features/seller_features/orders/presentation/view_models/seller_order_cubit/seller_order_cubit.dart';
+import 'package:ecommerce_app/features/seller_features/orders/presentation/views/seller_order_details_view.dart';
+import 'package:ecommerce_app/features/seller_features/orders/presentation/views/seller_orders_view.dart';
 import 'package:ecommerce_app/features/seller_features/product/data/repos/product_repo_impl.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/view_models/add_product_cubit/add_product_cubit.dart';
+import 'package:ecommerce_app/features/seller_features/product/presentaion/view_models/all_category_cubit/all_categories_cubit.dart';
+import 'package:ecommerce_app/features/seller_features/product/presentaion/view_models/category_product_cubit/category_product_cubit.dart';
+import 'package:ecommerce_app/features/seller_features/product/presentaion/view_models/edit_product_cubit/edit_product_cubit.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/views/add_product_view.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/views/edit_product_view.dart';
 import 'package:ecommerce_app/features/seller_features/product/presentaion/views/seller_product_view.dart';
@@ -229,16 +241,87 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: EditProductView.path,
-        builder: (context, state) => BlocProvider(
-          create: (context) => AddProductCubit(getIt.get<ProductRepoImpl>()),
-          child: const EditProductView(),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  CategoryProductCubit(getIt.get<ProductRepoImpl>()),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  EditProductCubit(getIt.get<ProductRepoImpl>()),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  AddProductCubit(getIt.get<ProductRepoImpl>()),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  AllCategoriesCubit(getIt.get<ProductRepoImpl>())
+                    ..getAllCategories(),
+            ),
+          ],
+          child: EditProductView(product: state.extra as ProductModel),
         ),
       ),
       GoRoute(
-        path: AddProductView.path,
+          path: AddProductView.path,
+          builder: (context, state) => MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                    create: (context) =>
+                        AddProductCubit(getIt.get<ProductRepoImpl>()),
+
+                    // AllCategoriesCubit
+                  ),
+                  BlocProvider(
+                    create: (context) =>
+                        AllCategoriesCubit(getIt.get<ProductRepoImpl>())
+                          ..getAllCategories(),
+
+                    //
+                  ),
+                ],
+                child: const AddProductView(),
+              )),
+      GoRoute(
+        path: SellerAddFeaturesView.path,
+        builder: (context, state) => const SellerAddFeaturesView(),
+      ),
+      GoRoute(
+          path: AddCouponView.path,
+          builder: (context, state) => MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                    create: (context) =>
+                        GetProductSellerCubit(getIt.get<AddFeaturesRepoImpl>())
+                          ..getProductsSeller(),
+                  ),
+                  BlocProvider(
+                      create: (context) =>
+                          AddCouponCubit(getIt.get<AddFeaturesRepoImpl>())),
+                ],
+                child: const AddCouponView(),
+              )),
+      GoRoute(
+        path: AddAdvertisingView.path,
         builder: (context, state) => BlocProvider(
-          create: (context) => AddProductCubit(getIt.get<ProductRepoImpl>()),
-          child: const AddProductView(),
+          create: (context) =>
+              AddAdvertisingCubit(getIt.get<AddFeaturesRepoImpl>()),
+          child: const AddAdvertisingView(),
+        ),
+      ),
+      GoRoute(
+        path: SellerOrderDetailsView.path,
+        builder: (context, state) => const SellerOrderDetailsView(),
+      ),
+      GoRoute(
+        path: SellerOrderView.path,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              SellerOrderCubit(getIt.get<OrderSellerRepoImpl>())
+                ..getSellerOrders(0),
+          child: const SellerOrderView(),
         ),
       ),
     ],

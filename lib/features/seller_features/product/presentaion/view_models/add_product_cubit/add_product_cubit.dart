@@ -14,6 +14,7 @@ class AddProductCubit extends Cubit<AddProductState> {
   late int price;
   late int quantity;
   List<File> images = [];
+  late List<int> categoriesProduct ;
 
   final ProductRepo productRepo;
 
@@ -25,7 +26,7 @@ class AddProductCubit extends Cubit<AddProductState> {
       'description': description,
       'price': price,
       'quantity': quantity,
-    }, images);
+    }, images,categoriesProduct);
 
     result.fold(
       (failure) => emit(AddProductFailure(failure.error)),
