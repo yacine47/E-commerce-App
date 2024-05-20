@@ -17,7 +17,7 @@ class _HomeAdminViewState extends State<HomeAdminView> {
   Widget build(BuildContext context) {
     return Scaffold(
       // resizeToAvoidBottomInset: false,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
       bottomNavigationBar: CustomBottomNavigationBarAdmin(
         currentIndex: _currentIndex,

@@ -54,22 +54,14 @@ class CustomBottomNavigationBarAdmin extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: Iconify(
-                kStoreIcon,
+                kUsersIcon,
                 size: kSizeIconNoActive + 4,
                 color: MyColors.iconColorNavigationBar,
               ),
               activeIcon: const Iconify(
-                kStoreIconActive,
+                kUsersAciveIcon,
                 size: kSizeIconNoActive + 8,
                 color: MyColors.primaryColor,
-              ),
-              label: '',
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(
-                Icons.abc,
-                size: 0,
-                color: Colors.transparent,
               ),
               label: '',
             ),
